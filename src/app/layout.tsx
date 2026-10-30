@@ -109,6 +109,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" data-theme="light" suppressHydrationWarning>
       <head>
         <ThemeScript />
+        <link rel="llms" href="/llms.txt" />
       </head>
       <body>
         <a
