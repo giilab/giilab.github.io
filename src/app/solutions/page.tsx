@@ -17,7 +17,7 @@ export default function SolutionsPage() {
       <PageHero
         visual={<AgentLogVisual />}
         eyebrow="Solutions"
-        title={<>Use cases <span className="serif accent">judged on results.</span></>}
+        title={<>Use cases <span className="serif accent">proven on your data.</span></>}
         lead="Four problems we see most often, what we build for each, and the measure that decides whether it worked."
       />
 
