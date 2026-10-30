@@ -31,16 +31,6 @@ export default function Footer() {
               <span className="mb-1 block font-semibold text-text">Office</span>
               {SITE.location}
             </address>
-            {/* Author credit on every page: who writes the site, and why to trust them. */}
-            <p className="author-bio mt-[18px] max-w-[19rem] text-[0.84rem] text-muted">
-              Written by{" "}
-              <a href="/about/#founder" rel="author" className="font-semibold text-text hover:text-accent-ink">
-                {SITE.founder.name}
-              </a>
-              , {SITE.founder.role}, with 10+ years of experience building production Python
-              and AWS backends.{" "}
-              <a href={SITE.founder.linkedin} target="_blank" rel="noopener noreferrer me" className="text-accent-ink">LinkedIn</a>
-            </p>
           </div>
 
           <nav aria-label="Services">

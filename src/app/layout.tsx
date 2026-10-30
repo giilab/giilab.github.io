@@ -108,7 +108,7 @@ const JSONLD = [
         "@id": `${HOME}#founder`,
         name: SITE.founder.name,
         jobTitle: SITE.founder.role,
-        description: `${SITE.founder.role} at ${SITE.name}, with 10+ years of experience building production Python and AWS backends.`,
+        description: `${SITE.founder.role} at ${SITE.name}, with 12+ years of experience building backend platforms with Python and AWS.`,
         url: `${SITE.url}/about/#founder`,
         sameAs: [SITE.founder.linkedin, SITE.portfolio],
         worksFor: { "@type": "ProfessionalService", "@id": `${HOME}#organization` },

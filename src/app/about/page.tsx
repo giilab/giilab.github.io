@@ -54,16 +54,16 @@ export default function AboutPage() {
             title={<>What we believe about <span className="serif accent">building this stuff.</span></>}
             lead="Six beliefs that shape every project, and a quick way to tell if we fit."
           />
-          {/* Same numbered layout as the engagement stages below. */}
-          <Grid className="mt-12 gap-y-10">
+          {/* Numbered like the engagement stages below, but as cards. */}
+          <Grid className="mt-12">
             {PRINCIPLES.map((p, i) => (
-              <div key={p.t} className="border-t-2 border-line-strong pt-6">
+              <Card key={p.t} className="gap-0">
                 <span className="block font-[family-name:var(--font-display)] text-[3rem] font-extrabold leading-none tracking-[-0.05em] text-accent-ink">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <h3 className="mt-3 text-[1.1rem]">{p.t}</h3>
+                <h3 className="mt-4 text-[1.1rem] font-semibold">{p.t}</h3>
                 <p className="mt-2 text-[0.93rem] text-muted">{p.d}</p>
-              </div>
+              </Card>
             ))}
           </Grid>
         </Container>
@@ -128,24 +128,47 @@ export default function AboutPage() {
               eyebrow="Who you work with"
               title={<>The person who scopes it <span className="serif accent">builds it.</span></>}
             />
-            <Card className="gap-3">
-              <p className="text-[1.25rem] font-semibold">{SITE.founder.name}</p>
-              <p className="text-[0.9rem] font-medium text-accent-ink">{SITE.founder.role}</p>
-              <p className="text-[0.95rem] text-muted">
-                Pratik has spent over a decade building production Python backends and
-                platforms. He founded {SITE.name} to bring that engineering discipline to AI
-                work. He scopes and builds every engagement himself, so the person who
-                estimates the work is the person who does it.
-              </p>
-              <div className="flex flex-wrap gap-4 pt-1">
-                <a href={SITE.founder.linkedin} target="_blank" rel="noopener noreferrer me" className="text-[0.9rem] font-medium text-accent-ink">
-                  LinkedIn &rarr;
-                </a>
+            {/* Photo, then name + LinkedIn, role and a bio of verifiable facts. */}
+            <div className="grid gap-6 rounded-[var(--radius-brand)] border border-line bg-surface p-6 sm:grid-cols-[160px_1fr] sm:p-7">
+              {/* eslint-disable-next-line @next/next/no-img-element -- static export, no image optimiser */}
+              <img
+                src="/team/pratik.jpg"
+                alt={`${SITE.founder.name}, ${SITE.founder.role}`}
+                width={160}
+                height={160}
+                loading="lazy"
+                className="aspect-square w-[160px] rounded-[var(--radius-brand)] object-cover"
+              />
+              <div className="grid content-start gap-2.5">
+                <div className="flex items-center gap-2.5">
+                  <h3 className="text-[1.25rem] font-semibold">{SITE.founder.name}</h3>
+                  <a
+                    href={SITE.founder.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer me"
+                    aria-label={`${SITE.founder.name} on LinkedIn`}
+                    className="text-accent-ink hover:opacity-80"
+                  >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z" />
+                    </svg>
+                  </a>
+                </div>
+                <p className="text-[0.9rem] font-medium text-accent-ink">{SITE.founder.role}</p>
+                <p className="text-[0.95rem] text-muted">
+                  Pratik has more than twelve years of experience building backend platforms,
+                  SaaS products and cloud-native applications with Python and AWS. He has led
+                  engineering teams through planning, delivery and code review, and built
+                  platforms for healthcare, SaaS, IoT and open-source education and analytics.
+                  He founded {SITE.name} to bring that engineering discipline to AI work. He
+                  scopes and builds every engagement himself, so the person who estimates the
+                  work is the person who does it.
+                </p>
                 <a href={SITE.portfolio} target="_blank" rel="noopener noreferrer me" className="text-[0.9rem] font-medium text-accent-ink">
                   Portfolio &rarr;
                 </a>
               </div>
-            </Card>
+            </div>
           </div>
         </Container>
       </Section>
