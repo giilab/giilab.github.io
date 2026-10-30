@@ -56,6 +56,7 @@ const LOG: [string, string][] = [
   ["✓", "Policy RAG"],
   ["✓", "Agentic RAG"],
   ["✓", "AI Governance"],
+  ["✓", "LLM-as-a-Judge"],
   ["✓", "Multi-Agent Systems"],
   ["✓", "LLM Gateway"],
   ["✓", "AI-powered Chatbots"],
@@ -87,7 +88,7 @@ export function AgentLogVisual() {
         ))}
         <span className="ml-2 text-[0.75rem] text-faint">giilab — solutions</span>
       </div>
-      <div className="min-h-[236px] px-4 py-4 font-mono text-[0.8rem] leading-[1.9]">
+      <div className="min-h-[260px] px-4 py-4 font-mono text-[0.8rem] leading-[1.9]">
         {LOG.slice(0, shown).map(([mark, text]) => (
           <div key={text} className="hv-in flex gap-2.5">
             <span className={mark === "✓" ? "text-accent-ink" : mark === "?" ? "text-accent-2" : "text-faint"}>
