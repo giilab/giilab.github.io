@@ -33,61 +33,45 @@ function MarkAt({ cx, cy, size, gradId }: { cx: number; cy: number; size: number
   );
 }
 
+// Bold "AI" letterforms in a 400-unit scene: A (with its triangular counter
+// cut out, evenodd) and I. The counter's incircle sits at (160, 238), r ≈ 37.
+const AI_PATH =
+  "M130 50H190L300 350H240L229 320H91L80 350H20Z M160 132L107.5 275H212.5Z M330 50H385V350H330Z";
+
 /**
- * Contact hero: dots joined into the letters "AI", pulses running along the
- * strokes, and the mark sitting in the A's triangle (centred on its incircle).
+ * Contact hero, built like the homepage HeroMark: on an 8s loop the "AI"
+ * outline draws itself, fills with the brand gradient, holds, then unwinds,
+ * floating throughout. The mark fades in with the fill, inside the A's counter.
+ * Reduced motion shows it filled and still.
  */
 export function AiVisual() {
   const g = `ai-${useId().replace(/:/g, "")}`;
-  // Each stroke: x1, y1, x2, y2, segment count. Joints land on shared nodes.
-  const strokes = [
-    [70, 330, 150, 70, 4], [150, 70, 230, 330, 4], [90, 265, 210, 265, 2], // A
-    [270, 70, 330, 70, 2], [300, 70, 300, 330, 4], [270, 330, 330, 330, 2], // I
-  ];
-  const links: string[] = [];
-  const nodes = new Map<string, number[]>();
-  for (const [x1, y1, x2, y2, n] of strokes) {
-    const pts = Array.from({ length: n + 1 }, (_, i) => [x1 + ((x2 - x1) * i) / n, y1 + ((y2 - y1) * i) / n]);
-    pts.forEach((p, i) => {
-      nodes.set(p.join(","), p);
-      if (i) links.push(`M${pts[i - 1].join(" ")}L${p.join(" ")}`);
-    });
-  }
   return (
-    <svg viewBox="0 0 400 400" className="w-full" focusable="false">
-      <defs><MarkGradient id={g} /></defs>
-      {links.map((d) => (
-        <path key={d} d={d} stroke="var(--line-strong)" strokeWidth={1} />
-      ))}
-      {links.map((d, i) => (
+    <div className="relative">
+      <div className="hero-mark-glow" />
+      <svg viewBox="0 0 400 400" className="hero-mark-float relative w-full" focusable="false">
+        <defs>
+          <MarkGradient id={g} />
+          <linearGradient id={`${g}-s`} gradientUnits="userSpaceOnUse" x1={20} y1={50} x2={385} y2={350}>
+            {GRADIENT.stops.map(([offset, color]) => (
+              <stop key={offset} offset={offset} stopColor={color} />
+            ))}
+          </linearGradient>
+        </defs>
+        <path d={AI_PATH} fillRule="evenodd" fill={`url(#${g}-s)`} className="hero-mark-fill" />
         <path
-          key={`p${d}`}
-          d={d}
-          pathLength={1}
+          d={AI_PATH}
           fill="none"
-          stroke="var(--accent)"
-          strokeWidth={2.5}
-          strokeLinecap="round"
-          className="hv-pulse hv-loop"
-          style={{ animationDelay: `${(i * 0.2) % 2.4}s` }}
+          stroke={`url(#${g}-s)`}
+          strokeWidth={3}
+          pathLength={1}
+          className="hero-mark-draw"
         />
-      ))}
-      {[...nodes.values()].map(([x, y], i) => (
-        <circle
-          key={`${x},${y}`}
-          cx={x}
-          cy={y}
-          r={5.5}
-          fill="var(--bg-card)"
-          stroke="var(--accent)"
-          strokeWidth={2}
-          className="hv-node hv-loop"
-          style={{ animationDelay: `${(i * 0.3) % 2.4}s` }}
-        />
-      ))}
-      <circle cx={150} cy={221} r={36} fill="var(--accent-soft)" className="hv-node hv-loop" />
-      <MarkAt cx={150} cy={221} size={54} gradId={g} />
-    </svg>
+        <g className="hero-mark-fill">
+          <MarkAt cx={160} cy={238} size={46} gradId={g} />
+        </g>
+      </svg>
+    </div>
   );
 }
 

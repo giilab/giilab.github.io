@@ -18,7 +18,7 @@ export default function CTABand({
           <h2 className="t-h2 mx-auto mt-[22px] max-w-[20ch]">
             {title ?? (
               <>
-                Tell us the part that <span className="serif accent">keeps breaking.</span>
+                Tell us what your <span className="serif accent">business needs.</span>
               </>
             )}
           </h2>

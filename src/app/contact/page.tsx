@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Container, Section, PageHero, Card } from "@/components/ui";
+import { Container, Section, SectionHead, PageHero, Card } from "@/components/ui";
 import { AiVisual } from "@/components/HeroVisuals";
 import ContactForm from "@/components/ContactForm";
 import { SITE, pageMeta } from "@/lib/site";
@@ -16,7 +16,7 @@ export default function ContactPage() {
       <PageHero
         visual={<AiVisual />}
         eyebrow="Contact"
-        title={<>Tell us the part that <span className="serif accent">keeps breaking.</span></>}
+        title={<>Tell us what your <span className="serif accent">business needs.</span></>}
         lead="One free 30-minute call, and an honest answer on what AI can and cannot do about it. Bring a problem rather than a brief."
       />
 
@@ -67,47 +67,50 @@ export default function ContactPage() {
                   <li>A scoped proposal, or an honest no.</li>
                 </ol>
               </Card>
-              <Card className="gap-2.5">
-                <h2 className="text-[1.05rem] font-semibold">What to put in your message</h2>
-                <p className="text-[0.92rem] text-muted">
-                  You do not need a brief. A few lines on each of these is plenty:
-                </p>
-                <ul className="grid list-disc gap-1.5 pl-4 text-[0.92rem] text-muted">
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      <Section className="pt-0">
+        <Container>
+          <SectionHead
+            eyebrow="FAQ"
+            title={<>Before you <span className="serif accent">get in touch.</span></>}
+          />
+          <dl className="mt-10 grid gap-5 lg:grid-cols-2">
+            <Card className="gap-2.5 lg:row-span-2">
+              <dt className="text-[1.05rem] font-semibold">What should I put in my message?</dt>
+              <dd className="grid gap-2.5 text-[0.95rem] text-muted">
+                <p>You do not need a brief. A few lines on each of these is plenty:</p>
+                <ul className="grid list-disc gap-1.5 pl-4">
                   <li>What the work looks like today, and who does it.</li>
                   <li>Roughly how often it happens, or how much of it there is.</li>
                   <li>Which systems or files the data lives in.</li>
                   <li>What you have already tried.</li>
                 </ul>
-                <p className="text-[0.92rem] text-muted">
+                <p>
                   Not sure AI is the answer? Say so. Often the cheaper fix is a change to a
                   process or to the data, and we will tell you if it is.
                 </p>
+              </dd>
+            </Card>
+            {FAQ.map(([q, a]) => (
+              <Card key={q} className="gap-2.5">
+                <dt className="text-[1.05rem] font-semibold">{q}</dt>
+                <dd className="text-[0.95rem] text-muted">{a}</dd>
               </Card>
-              <Card className="gap-2.5">
-                <h2 className="text-[1.05rem] font-semibold">Common questions</h2>
-                <dl className="grid gap-3 text-[0.92rem]">
-                  <div>
-                    <dt className="font-medium">Is the first call free?</dt>
-                    <dd className="text-muted">Yes. One 30-minute call, with no obligation to go further. Bring whoever knows the work best.</dd>
-                  </div>
-                  <div>
-                    <dt className="font-medium">What does it cost?</dt>
-                    <dd className="text-muted">It depends on the scope. After the call you get a scoped proposal, so you know the cost before any work starts.</dd>
-                  </div>
-                  <div>
-                    <dt className="font-medium">Will you sign an NDA?</dt>
-                    <dd className="text-muted">Yes. If it helps, we sign one before you share any details.</dd>
-                  </div>
-                  <div>
-                    <dt className="font-medium">Do you work with teams outside India?</dt>
-                    <dd className="text-muted">Yes. We work across time zones and keep some overlap with your day.</dd>
-                  </div>
-                </dl>
-              </Card>
-            </div>
-          </div>
+            ))}
+          </dl>
         </Container>
       </Section>
     </>
   );
 }
+
+const FAQ = [
+  ["Is the first call free?", "Yes. One 30-minute call, with no obligation to go further. Bring whoever knows the work best."],
+  ["What does it cost?", "It depends on the scope. After the call you get a scoped proposal, so you know the cost before any work starts."],
+  ["Will you sign an NDA?", "Yes. If it helps, we sign one before you share any details."],
+  ["Do you work with teams outside India?", "Yes. We work across time zones and keep some overlap with your day."],
+];
