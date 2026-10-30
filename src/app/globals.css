@@ -91,6 +91,11 @@
 }
 
 @layer base {
+  /* Tailwind v4 dropped the pointer cursor on buttons; links already have it. */
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]) {
+    cursor: pointer;
+  }
   html {
     /* Smooth scrolling comes from Lenis (SmoothScroll.tsx); CSS smooth
        scroll-behavior fights it. */
