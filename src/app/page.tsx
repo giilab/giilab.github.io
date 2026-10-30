@@ -19,9 +19,9 @@ export default function HomePage() {
             for <span className="serif accent">your business.</span>
           </h1>
           <p className="t-lead mt-6">
-            Most AI projects stall between the demo and the real system. Giilab builds the
-            engineering underneath &mdash; the integrations, the guardrails, the evaluation
-            &mdash; and proves it on your own data before you scale it.
+            Most AI projects stall between the demo and the real system. Giilab builds what
+            sits underneath: the integrations, the guardrails and the testing. We prove it
+            on your own data before you scale it.
           </p>
           <div className="mt-9 flex flex-wrap gap-3.5">
             <ButtonLink href="/contact/">Discuss your project</ButtonLink>
@@ -141,9 +141,9 @@ export default function HomePage() {
               {[
                 ["Senior engineering, not a hand-off", "The studio is led by a solutions architect with over a decade building production Python backends and platforms. The person who scopes the work builds it."],
                 ["Accuracy as a number", "Every engagement defines a measurable success criterion up front and reports against it on your own data. If we cannot measure it, we will say so."],
-                ["Your data stays yours", "Systems are designed to keep your data in your accounts wherever possible, with least-privilege access and a log of what the system did."],
+                ["Your data stays yours", "We keep your data in your own accounts wherever possible. Access is kept to the minimum, and the system logs what it did."],
                 ["Model-agnostic by design", "The model sits behind an interface so it can be swapped as prices and capabilities change. No architecture built around one vendor."],
-                ["We will tell you not to build", "If the honest answer is that the problem is a process or data issue rather than an AI one, that is the recommendation you get."],
+                ["We will tell you not to build", "Sometimes the real problem is a process or data issue, not an AI one. If so, that is what we will tell you."],
               ].map(([t, d]) => (
                 <li key={t} className="rounded-[var(--radius-brand)] border border-line bg-surface p-5">
                   <h3 className="text-[1.02rem] font-semibold">{t}</h3>

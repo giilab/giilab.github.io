@@ -17,7 +17,7 @@ export default function IndustriesPage() {
         visual={<RippleVisual />}
         eyebrow="Industries"
         title={<>Where we have <span className="serif accent">actually shipped.</span></>}
-        lead="This is a short list on purpose. These are the sectors we have built production systems in, rather than every industry an AI studio could claim."
+        lead="This is a short list on purpose. These are the sectors where we have built production systems. We have not listed every industry an AI studio could claim."
       />
 
       <Section>
@@ -34,11 +34,15 @@ export default function IndustriesPage() {
           <div className="mt-12 rounded-[var(--radius-brand)] border border-line bg-surface p-7">
             <h2 className="text-[1.1rem] font-semibold">Not on the list?</h2>
             <p className="mt-2 max-w-[62ch] text-[0.95rem] text-muted">
-              The engineering underneath these systems &mdash; retrieval, extraction,
-              integration, pipelines, review workflows &mdash; transfers across sectors.
-              What does not transfer is domain knowledge, so if your field is not here we
-              will say what we would need to learn and how long that takes before quoting
-              anything.
+              The engineering under these systems carries over from one sector to the
+              next: search, extraction, integration, data pipelines and review queues.
+              Domain knowledge does not. If your field is not here, we will tell you what
+              we would need to learn, and how long that takes, before we quote anything.
+            </p>
+            <p className="mt-3 max-w-[62ch] text-[0.95rem] text-muted">
+              Whatever the sector, the work starts the same way. We look at one process as
+              it runs today and agree a number that defines success. Then we test the idea
+              on your own data before building anything bigger.
             </p>
           </div>
         </Container>

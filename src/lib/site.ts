@@ -62,7 +62,7 @@ export const SERVICES: Service[] = [
     summary:
       "One process that eats hours every week, run end to end, with your people kept for the exceptions.",
     detail:
-      "We start from the workflow as it actually runs, not as the process document describes it. The parts a model handles reliably get automated; the rest route to a person with the context already attached.",
+      "We start from the workflow as it actually runs, not as the process document describes it. The parts a model handles well get automated. The rest go to a person, with the context already attached.",
     deliverables: [
       "Workflow and data mapping",
       "Automation built against your real cases",
@@ -76,7 +76,7 @@ export const SERVICES: Service[] = [
     summary:
       "Agents that use your tools under explicit limits, and stop when they are out of their depth.",
     detail:
-      "An agent is only as good as its tools, its guardrails and its evaluation harness. We build all three together, so you can see what the agent did and why before you widen what it is allowed to touch.",
+      "An agent is only as good as its tools, its guardrails and its tests. We build all three together. You can see what the agent did, and why, before you let it touch more.",
     deliverables: [
       "Tool and permission design",
       "Guardrails and failure handling",
@@ -118,7 +118,7 @@ export const SERVICES: Service[] = [
     summary:
       "Software that removes the manual steps between systems, with or without a model involved.",
     detail:
-      "Not every problem needs AI. Plenty of expensive manual work is a scheduling, data or integration problem, and we will tell you when that is the cheaper fix.",
+      "Not every problem needs AI. Plenty of costly manual work is really a scheduling, data or integration problem. When that is the cheaper fix, we will tell you.",
     deliverables: [
       "Process analysis",
       "Pipelines and scheduled jobs",
@@ -153,9 +153,9 @@ export const SOLUTIONS: Solution[] = [
   {
     title: "Customer support automation",
     problem:
-      "Support volume grows with the customer base, so headcount has to grow with it or response times slip.",
+      "Support volume grows with your customer base. Either headcount grows with it, or replies get slower.",
     approach:
-      "An assistant answers from your own documentation and ticket history, acts on the routine requests through your helpdesk, and hands anything involving money, policy or judgment to a person.",
+      "An assistant answers from your own documents and past tickets. It handles routine requests through your helpdesk. Anything involving money, policy or judgment goes to a person.",
     outcome:
       "Measured on deflection rate, answer accuracy and time to first response — on your tickets, before and after.",
   },
@@ -164,16 +164,16 @@ export const SOLUTIONS: Solution[] = [
     problem:
       "Invoices, forms, contracts and reports arrive in inconsistent formats and get re-keyed by hand.",
     approach:
-      "Extraction tuned to your document types, with confidence scores per field. High-confidence fields post straight through; the rest go to a review queue built for speed.",
+      "Extraction tuned to your document types, with a confidence score for each field. Fields we are sure of post straight through. The rest go to a fast review queue.",
     outcome:
       "Measured on field-level accuracy, straight-through rate and cost per document.",
   },
   {
     title: "Knowledge search over internal systems",
     problem:
-      "The answer exists somewhere across a wiki, a drive and a ticket system, and nobody can find it.",
+      "The answer is somewhere in a wiki, a shared drive or a ticket system. Nobody can find it.",
     approach:
-      "Retrieval across your sources with permissions respected, answers that cite the document they came from, and an evaluation set so you can tell when quality regresses.",
+      "Search runs across all your sources and respects who can see what. Every answer cites the document it came from. A test set of real questions shows you when quality slips.",
     outcome:
       "Measured on answer accuracy against a question set drawn from your own staff.",
   },
@@ -182,7 +182,7 @@ export const SOLUTIONS: Solution[] = [
     problem:
       "Device, machine or transaction data arrives faster than the reporting stack can absorb it.",
     approach:
-      "Ingestion, validation and aggregation built as ordinary, observable backend services, with the model layer added only where it earns its place.",
+      "Data is taken in, checked and rolled up by ordinary backend services you can monitor. A model is added only where it earns its place.",
     outcome:
       "Measured on freshness, completeness and the cost of running the pipeline.",
   },
@@ -227,7 +227,7 @@ export const PROCESS = [
   {
     n: "01",
     title: "Discover",
-    body: "We map the workflow, the data and the constraints, then agree what a good result looks like as a number rather than a feeling.",
+    body: "We map the workflow, the data and the limits. Then we agree what a good result looks like, as a number rather than a feeling.",
   },
   {
     n: "02",
@@ -242,7 +242,7 @@ export const PROCESS = [
   {
     n: "04",
     title: "Run",
-    body: "A supervised rollout with monitoring and human escalation in place, then a clean handover to your team or ongoing support from us.",
+    body: "A supervised rollout, with monitoring and human escalation in place. Then a clean handover to your team, or ongoing support from us.",
   },
 ] as const;
 

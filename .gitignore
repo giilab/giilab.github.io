@@ -9,3 +9,6 @@ next-env.d.ts
 # Wrangler local state and secrets
 .wrangler/
 .dev.vars*
+
+# Local SEO audit reports
+out.txt

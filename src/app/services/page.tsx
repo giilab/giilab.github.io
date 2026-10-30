@@ -73,8 +73,8 @@ export default function ServicesPage() {
               </h2>
               <p className="mt-4 max-w-[48ch] text-[1.02rem] text-muted">
                 Most people arrive with a problem rather than a service in mind. A
-                30-minute call is usually enough to work out whether it is an AI problem,
-                an integration problem or a process problem.
+                30-minute call is usually enough to tell whether it is an AI, integration
+                or process problem.
               </p>
               <div className="mt-8">
                 <ButtonLink href="/contact/">Book a call</ButtonLink>

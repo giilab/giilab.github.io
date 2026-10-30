@@ -126,8 +126,8 @@ export default function RoutingVisual({ full = false }: { full?: boolean }) {
           {full && (
             <p className="text-faint">
               Confidence alone never authorises an action. Anything sensitive must also pass
-              your business rules and permission controls, and confidence scores are an
-              estimate, so thresholds are set and adjusted on measured results.
+              your business rules and permission checks. Confidence scores are only an
+              estimate, so thresholds are set and tuned on measured results.
             </p>
           )}
         </div>

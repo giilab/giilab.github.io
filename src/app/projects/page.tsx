@@ -94,6 +94,25 @@ export default function ProjectsPage() {
               </Card>
             </div>
 
+            <div className="mt-12 max-w-[62ch]">
+              <h2 className="text-[clamp(1.4rem,2.8vw,2rem)] font-bold">
+                What a published case study will cover
+              </h2>
+              <p className="mt-3 text-[0.98rem] text-muted">
+                When a client agrees to publish, each entry here will cover four things:
+              </p>
+              <ul className="mt-3 grid list-disc gap-1.5 pl-5 text-[0.98rem] text-muted">
+                <li>The problem, in plain terms.</li>
+                <li>What we built, and how it fits their systems.</li>
+                <li>The number we agreed to measure, and what it came to.</li>
+                <li>The tools and stack we used.</li>
+              </ul>
+              <p className="mt-3 text-[0.98rem] text-muted">
+                If we cannot back an outcome with evidence, we leave it out rather than
+                estimate it.
+              </p>
+            </div>
+
             <div className="mt-12">
               <h2 className="text-[clamp(1.4rem,2.8vw,2rem)] font-bold">
                 Sectors the team has delivered in
