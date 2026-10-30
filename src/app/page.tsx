@@ -126,32 +126,33 @@ export default function HomePage() {
       {/* ---------------- credibility ---------------- */}
       <Section>
         <Container>
-          <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-16">
-            <div>
-              <SectionHead
-                eyebrow="Why trust the work"
-                title={<>What we will put <span className="serif accent">in writing.</span></>}
-                lead="Giilab is a young studio, so here is what is actually verifiable rather than a wall of logos."
-              />
-              <div className="mt-8 flex flex-wrap gap-2">
-                {INDUSTRIES.map((i) => <Pill key={i.name}>{i.name}</Pill>)}
-              </div>
-            </div>
-            <ul className="grid gap-4">
-              {[
-                ["Senior engineering, not a hand-off", "The studio is led by a solutions architect with over a decade building production Python backends and platforms. The person who scopes the work builds it."],
-                ["Accuracy as a number", "Every engagement defines a measurable success criterion up front and reports against it on your own data. If we cannot measure it, we will say so."],
-                ["Your data stays yours", "We keep your data in your own accounts wherever possible. Access is kept to the minimum, and the system logs what it did."],
-                ["Model-agnostic by design", "The model sits behind an interface so it can be swapped as prices and capabilities change. No architecture built around one vendor."],
-                ["We will tell you not to build", "Sometimes the real problem is a process or data issue, not an AI one. If so, that is what we will tell you."],
-              ].map(([t, d]) => (
-                <li key={t} className="rounded-[var(--radius-brand)] border border-line bg-surface p-5">
-                  <h3 className="text-[1.02rem] font-semibold">{t}</h3>
-                  <p className="mt-1.5 text-[0.93rem] text-muted">{d}</p>
-                </li>
-              ))}
-            </ul>
+          <SectionHead
+            eyebrow="Why trust the work"
+            title={<>What we will put <span className="serif accent">in writing.</span></>}
+            lead="Giilab is a young studio, so here is what is actually verifiable rather than a wall of logos."
+          />
+          <div className="mt-8 flex flex-wrap gap-2">
+            {INDUSTRIES.map((i) => <Pill key={i.name}>{i.name}</Pill>)}
           </div>
+          {/* Numbered cards, matching the beliefs on the About page. */}
+          <Grid className="mt-12">
+            {[
+              ["Senior engineering, not a hand-off", "The studio is led by its founder, an architect with 12+ years building production Python and AWS backends. The person who scopes the work builds it."],
+              ["Accuracy as a number", "Every engagement defines a measurable success criterion up front and reports against it on your own data. If we cannot measure it, we will say so."],
+              ["Your data stays yours", "We keep your data in your own accounts wherever possible. Access is kept to the minimum, and the system logs what it did."],
+              ["Model-agnostic by design", "The model sits behind an interface so it can be swapped as prices and capabilities change. No architecture built around one vendor."],
+              ["We will tell you not to build", "Sometimes the real problem is a process or data issue, not an AI one. If so, that is what we will tell you."],
+              ["A decision point at every stage", "Work runs in short stages, and each one ends with something you can evaluate. You can stop after any of them."],
+            ].map(([t, d], i) => (
+              <Card key={t} className="gap-0">
+                <span className="block font-[family-name:var(--font-display)] text-[3rem] font-extrabold leading-none tracking-[-0.05em] text-accent-ink">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="mt-4 text-[1.1rem] font-semibold">{t}</h3>
+                <p className="mt-2 text-[0.93rem] text-muted">{d}</p>
+              </Card>
+            ))}
+          </Grid>
         </Container>
       </Section>
 
