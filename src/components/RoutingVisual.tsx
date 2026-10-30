@@ -3,7 +3,7 @@ import { Mark } from "./Logo";
 const INPUTS = [
   { label: "Documents", meta: "Invoices, forms, scans · PDF or image" },
   { label: "Customer messages", meta: "Emails, chats and tickets" },
-  { label: "Contracts", meta: "Clauses to check · Word or PDF" },
+  { label: "Requests and approvals", meta: "Orders, refunds and sign-offs" },
 ];
 
 const CONTROLS = [
