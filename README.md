@@ -1,6 +1,6 @@
-# Giilab — giilab.github.io
+# Giilab — www.giilab.in
 
-Marketing site for Giilab, an AI engineering studio in Pune.
+Company portfolio site for Giilab, an AI engineering studio in Pune.
 
 Next.js 15 (App Router) · TypeScript · Tailwind CSS v4 · static export.
 
@@ -33,11 +33,16 @@ To send to a different inbox, create a new key at web3forms.com and replace it.
 Pages on every push to `main`. Enable it once under Settings → Pages → Source →
 GitHub Actions.
 
-The site is served at <https://giilab.github.io> (the `giilab.github.io` repo is
-the organisation's root Pages site, so no `basePath` is needed).
-`public/.nojekyll` stops Pages from hiding the `_next/` directory. To move to a
-custom domain later, add `public/CNAME` containing the domain and update
-`SITE.url` in `src/lib/site.ts`.
+The site is served at <https://www.giilab.in>; `giilab.in` and
+`giilab.github.io` redirect to it. The `giilab.github.io` repo is the
+organisation's root Pages site, so no `basePath` is needed.
+`public/.nojekyll` stops Pages from hiding the `_next/` directory.
+
+The custom domain is set in Settings → Pages → Custom domain. Because the site
+deploys through GitHub Actions, a `public/CNAME` file is ignored and not needed.
+DNS lives at Cloudflare (domain registered at Hostinger). To change the domain,
+update it there and in `SITE.url` in `src/lib/site.ts`, which every canonical,
+sitemap, robots and structured-data URL is built from.
 
 ## How it is put together
 
