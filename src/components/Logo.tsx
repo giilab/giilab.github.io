@@ -142,8 +142,8 @@ export function LockupStacked({
           }}
         />
         <span
-          className="hidden whitespace-nowrap font-medium uppercase leading-none text-muted sm:block"
-          style={{ fontSize: `${descriptorSize}px`, letterSpacing: "0.12em" }}
+          className="hidden whitespace-nowrap font-medium leading-none text-muted sm:block"
+          style={{ fontSize: `${descriptorSize}px`, letterSpacing: "0.02em" }}
         >
           AI Engineering Studio
         </span>
