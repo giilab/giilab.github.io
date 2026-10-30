@@ -1,4 +1,4 @@
-# Cloudflare Pages / Netlify response headers. GitHub Pages ignores this file.
+# Static response headers. The CSP is set per request in worker.js (it needs a nonce).
 /*
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
@@ -6,7 +6,6 @@
   Permissions-Policy: camera=(), microphone=(), geolocation=()
   Cross-Origin-Opener-Policy: same-origin
   Strict-Transport-Security: max-age=31536000; includeSubDomains
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https://api.web3forms.com https://cloudflareinsights.com; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
 
 # Hashed build assets never change.
 /_next/static/*

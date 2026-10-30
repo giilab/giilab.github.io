@@ -2,8 +2,12 @@
 {
   "name": "giilab",
   "compatibility_date": "2025-10-01",
+  "main": "worker.js",
   "assets": {
     "directory": "./out",
-    "not_found_handling": "404-page"
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    // Pages go through worker.js for the CSP nonce; hashed assets skip it.
+    "run_worker_first": ["/*", "!/_next/*"]
   }
 }
