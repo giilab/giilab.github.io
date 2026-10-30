@@ -24,7 +24,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: `${SITE.name} — ${SITE.descriptor} for AI Automation & Agents`,
+    default: `${SITE.descriptor} for Automation & Agents — ${SITE.name}`,
     template: `%s — ${SITE.name}`,
   },
   description:
@@ -59,41 +59,49 @@ export const metadata: Metadata = {
     ],
     apple: [{ url: "/apple-touch-icon-180.png", sizes: "180x180" }],
   },
+  referrer: "strict-origin-when-cross-origin",
   robots: { index: true, follow: true },
   alternates: { canonical: "/" },
 };
 
-const ORGANISATION_JSONLD = {
+// One @graph so parsers that ignore top-level arrays still see every @type.
+const HOME = `${SITE.url}/`;
+const JSONLD = {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  name: SITE.name,
-  legalName: SITE.legalName,
-  description: SITE.positioning,
-  url: SITE.url,
-  logo: `${SITE.url}/icon-512.png`,
-  image: `${SITE.url}/og.png`,
-  email: SITE.email,
-  telephone: SITE.phone,
-  sameAs: [SITE.linkedin, SITE.github],
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Pune",
-    addressRegion: "Maharashtra",
-    addressCountry: "IN",
-  },
-  areaServed: "Worldwide",
-  knowsAbout: [
-    "Artificial intelligence engineering",
-    "Business process automation",
-    "Software architecture",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": `${HOME}#organization`,
+      name: SITE.name,
+      legalName: SITE.legalName,
+      description: SITE.positioning,
+      url: HOME,
+      logo: `${SITE.url}/icon-512.png`,
+      image: `${SITE.url}/og.png`,
+      email: SITE.email,
+      telephone: SITE.phone,
+      sameAs: [SITE.linkedin, SITE.github],
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Pune",
+        addressRegion: "Maharashtra",
+        addressCountry: "IN",
+      },
+      areaServed: "Worldwide",
+      knowsAbout: [
+        "Artificial intelligence engineering",
+        "Business process automation",
+        "Software architecture",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${HOME}#website`,
+      name: SITE.name,
+      url: HOME,
+      publisher: { "@id": `${HOME}#organization` },
+    },
   ],
-};
-
-const WEBSITE_JSONLD = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: SITE.name,
-  url: `${SITE.url}/`,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -115,7 +123,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SmoothScroll />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify([ORGANISATION_JSONLD, WEBSITE_JSONLD]) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(JSONLD) }}
         />
       </body>
     </html>

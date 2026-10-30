@@ -4,7 +4,7 @@ import { SITE, pageMeta } from "@/lib/site";
 
 export const metadata: Metadata = pageMeta(
   "/privacy/",
-  "Privacy Policy",
+  "Privacy Policy: How We Handle Your Data",
   `What personal data the ${SITE.name} website receives when you contact us, why we use it, our no-tracking approach, and your rights.`,
 );
 

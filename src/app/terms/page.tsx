@@ -4,7 +4,7 @@ import { SITE, pageMeta } from "@/lib/site";
 
 export const metadata: Metadata = pageMeta(
   "/terms/",
-  "Terms of Use",
+  "Website Terms of Use and Liability",
   `The terms for using the ${SITE.name} website: what its information does and does not promise, intellectual property and liability.`,
 );
 
