@@ -49,21 +49,23 @@ export default function AboutPage() {
 
       <Section>
         <Container>
-          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-            <SectionHead
-              eyebrow="Our approach"
-              title={<>What we believe about <span className="serif accent">building this stuff.</span></>}
-              lead="Six beliefs that shape every project, and a quick way to tell if we fit."
-            />
-            <ul className="grid gap-4">
-              {PRINCIPLES.map((p) => (
-                <li key={p.t} className="rounded-[var(--radius-brand)] border border-line bg-surface p-6">
-                  <h3 className="text-[1.05rem] font-semibold">{p.t}</h3>
-                  <p className="mt-2 text-[0.94rem] text-muted">{p.d}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <SectionHead
+            eyebrow="Our approach"
+            title={<>What we believe about <span className="serif accent">building this stuff.</span></>}
+            lead="Six beliefs that shape every project, and a quick way to tell if we fit."
+          />
+          {/* Same numbered layout as the engagement stages below. */}
+          <Grid className="mt-12 gap-y-10">
+            {PRINCIPLES.map((p, i) => (
+              <div key={p.t} className="border-t-2 border-line-strong pt-6">
+                <span className="block font-[family-name:var(--font-display)] text-[3rem] font-extrabold leading-none tracking-[-0.05em] text-accent-ink">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="mt-3 text-[1.1rem]">{p.t}</h3>
+                <p className="mt-2 text-[0.93rem] text-muted">{p.d}</p>
+              </div>
+            ))}
+          </Grid>
         </Container>
       </Section>
 
