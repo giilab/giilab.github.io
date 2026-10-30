@@ -1,9 +1,9 @@
 import { Mark } from "./Logo";
 
 const INPUTS = [
-  { label: "Document Processing", meta: "Any document · PDF, image, scan" },
-  { label: "Customer Support", meta: "Support request · Email" },
-  { label: "Contract Review", meta: "Contract clause · DOCX" },
+  { label: "Documents", meta: "Invoices, forms, scans · PDF or image" },
+  { label: "Customer messages", meta: "Emails, chats and tickets" },
+  { label: "Contracts", meta: "Clauses to check · Word or PDF" },
 ];
 
 const CONTROLS = [
@@ -49,9 +49,9 @@ export default function RoutingVisual({ full = false }: { full?: boolean }) {
 
       <div className="rounded-[var(--radius-brand)] border border-line bg-surface p-5 sm:p-6">
         <div className="grid grid-cols-1 items-center gap-4 lg:grid-cols-[1fr_auto_auto_auto_1fr] lg:gap-5">
-          {/* 1. business inputs */}
+          {/* 1. what comes in */}
           <div>
-            <p className={LABEL}>Your business inputs</p>
+            <p className={LABEL}>What comes in</p>
             <ul className="grid gap-2.5">
               {INPUTS.map((item) => (
                 <li key={item.label} className="rounded-xl border border-line bg-bg px-3.5 py-2.5">
