@@ -101,3 +101,14 @@ export function AgentLogVisual() {
     </div>
   );
 }
+
+/**
+ * Renders decorative hero art only after hydration, keeping its SVG markup out
+ * of the page HTML. Safe because HeroVisual is absolutely positioned and
+ * aria-hidden: nothing reflows and nothing is lost for crawlers or screen readers.
+ */
+export function AfterMount({ children }: { children: React.ReactNode }) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  return mounted ? children : null;
+}

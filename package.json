@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "postbuild": "node scripts/externalize-rsc.mjs",
     "start": "npx serve@latest out",
     "lint": "eslint",
     "typecheck": "tsc --noEmit"

@@ -118,11 +118,29 @@ export function LockupStacked({
   const wordHeight = markHeight / LOCKUP.markToWord;
   const gap = wordHeight * LOCKUP.gapToWord;
   const descriptorSize = Math.max(12, wordHeight * 0.42);
+  const wordmarkHeight = wordHeight * 1.28;
+  // Header and footer load the logo as cached files rather than ~19 KB of
+  // inline path data on every page. The wordmark is a mask so it still takes
+  // the theme's text colour. public/giilab-wordmark.svg is WORD_PATH as a file.
   return (
     <span className={`inline-flex items-center ${className ?? ""}`} style={{ gap: `${gap}px` }}>
-      <Mark height={markHeight} title="Giilab" />
+      {/* eslint-disable-next-line @next/next/no-img-element -- static export, no image optimiser */}
+      <img
+        src="/giilab-mark.svg"
+        alt="Giilab"
+        width={Math.round(markHeight * MARK_ASPECT * 100) / 100}
+        height={markHeight}
+      />
       <span className="flex flex-col" style={{ gap: `${wordHeight * 0.38}px` }}>
-        <Wordmark height={wordHeight * 1.28} />
+        <span
+          aria-hidden="true"
+          className="block bg-current"
+          style={{
+            width: `${Math.round(wordmarkHeight * WORD_ASPECT * 100) / 100}px`,
+            height: `${wordmarkHeight}px`,
+            mask: "url(/giilab-wordmark.svg) center / contain no-repeat",
+          }}
+        />
         <span
           className="hidden whitespace-nowrap font-medium uppercase leading-none text-muted sm:block"
           style={{ fontSize: `${descriptorSize}px`, letterSpacing: "0.12em" }}

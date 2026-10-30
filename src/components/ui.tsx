@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { AfterMount } from "@/components/HeroVisualsClient";
 
 export function Section({
   id,
@@ -182,7 +183,7 @@ export function HeroVisual({ children }: { children: ReactNode }) {
       aria-hidden="true"
       className="pointer-events-none absolute right-[clamp(20px,4vw,48px)] top-[40px] hidden w-[clamp(240px,22vw,360px)] xl:block"
     >
-      {children}
+      <AfterMount>{children}</AfterMount>
     </div>
   );
 }
