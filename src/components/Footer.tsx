@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { LockupStacked } from "./Logo";
-import { Container } from "./ui";
+import { Container, SocialIcon } from "./ui";
 import { SITE, SERVICES, NAV, BUILT } from "@/lib/site";
 
 const COMPANY = [
@@ -69,11 +69,27 @@ export default function Footer() {
             <ul className="grid gap-[11px]">
               <li><a href={`mailto:${SITE.email}`} className="text-[0.9rem] text-muted transition-colors hover:text-accent-ink">{SITE.email}</a></li>
               <li><a href={`tel:${SITE.phone.replace(/\s/g, "")}`} className="text-[0.9rem] text-muted transition-colors hover:text-accent-ink">{SITE.phone}</a></li>
-              <li><a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" className="text-[0.9rem] text-muted transition-colors hover:text-accent-ink">LinkedIn</a></li>
-              {SITE.whatsapp && (
-                <li><a href={SITE.whatsapp} target="_blank" rel="noopener noreferrer" className="text-[0.9rem] text-muted transition-colors hover:text-accent-ink">WhatsApp</a></li>
-              )}
-              <li><a href={SITE.github} target="_blank" rel="noopener noreferrer" className="text-[0.9rem] text-muted transition-colors hover:text-accent-ink">GitHub</a></li>
+              <li className="flex gap-4 pt-1">
+                {[
+                  { href: SITE.linkedin, icon: "linkedin" as const, label: "LinkedIn" },
+                  { href: SITE.whatsapp, icon: "whatsapp" as const, label: "WhatsApp" },
+                  { href: SITE.github, icon: "github" as const, label: "GitHub" },
+                ]
+                  .filter((s) => s.href)
+                  .map((s) => (
+                    <a
+                      key={s.icon}
+                      href={s.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${SITE.name} on ${s.label}`}
+                      title={s.label}
+                      className="text-muted transition-colors hover:text-accent-ink"
+                    >
+                      <SocialIcon name={s.icon} />
+                    </a>
+                  ))}
+              </li>
             </ul>
           </nav>
         </div>
