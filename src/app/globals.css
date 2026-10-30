@@ -148,7 +148,8 @@
     font-family: var(--font-display);
     font-size: clamp(2.75rem, 8.2vw, 7rem);
     font-weight: 800;
-    line-height: 0.98;
+    /* Below ~1.08 the serif accent's descenders (p, y, g) hit the next line. */
+    line-height: 1.08;
     letter-spacing: -0.035em;
     text-wrap: balance;
   }
