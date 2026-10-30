@@ -103,10 +103,10 @@ export function Lockup({
  *
  * One documented deviation: the board sets the descriptor at 0.141x the
  * wordmark height, which only becomes legible at a ~140px mark — far larger
- * than a site header allows. Here the descriptor is floored at 8px and may run
- * slightly wider than the wordmark. Below the `sm` breakpoint it is hidden,
- * since 8px text is unreadable on a phone. The exported SVG logo files keep the
- * board's exact proportions for large-format use.
+ * than a site header allows. Here the descriptor is floored at 12px (the
+ * smallest size mobile audits accept) and runs wider than the wordmark. Below
+ * the `sm` breakpoint it is hidden to keep the phone header compact. The
+ * exported SVG logo files keep the board's exact proportions for large-format use.
  */
 export function LockupStacked({
   markHeight = 44,
@@ -117,15 +117,15 @@ export function LockupStacked({
 }) {
   const wordHeight = markHeight / LOCKUP.markToWord;
   const gap = wordHeight * LOCKUP.gapToWord;
-  const descriptorSize = Math.max(8, wordHeight * 0.42);
+  const descriptorSize = Math.max(12, wordHeight * 0.42);
   return (
     <span className={`inline-flex items-center ${className ?? ""}`} style={{ gap: `${gap}px` }}>
       <Mark height={markHeight} title="Giilab" />
-      <span className="flex flex-col" style={{ gap: `${descriptorSize * 0.9}px` }}>
+      <span className="flex flex-col" style={{ gap: `${wordHeight * 0.38}px` }}>
         <Wordmark height={wordHeight * 1.28} />
         <span
           className="hidden whitespace-nowrap font-medium uppercase leading-none text-muted sm:block"
-          style={{ fontSize: `${descriptorSize}px`, letterSpacing: "0.17em" }}
+          style={{ fontSize: `${descriptorSize}px`, letterSpacing: "0.12em" }}
         >
           AI Engineering Studio
         </span>

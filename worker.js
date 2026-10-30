@@ -16,7 +16,7 @@ const csp = (nonce) =>
     "upgrade-insecure-requests",
   ].join("; ");
 
-export default {
+const worker = {
   async fetch(request, env) {
     const res = await env.ASSETS.fetch(request);
     if (!res.headers.get("content-type")?.includes("text/html")) return res;
@@ -33,3 +33,5 @@ export default {
     return new Response(out.body, { status: out.status, statusText: out.statusText, headers });
   },
 };
+
+export default worker;
