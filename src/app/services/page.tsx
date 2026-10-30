@@ -2,14 +2,13 @@ import type { Metadata } from "next";
 import { Container, Section, PageHero, Card, Grid, ButtonLink } from "@/components/ui";
 import { ServicesVisual } from "@/components/HeroVisuals";
 import CTABand from "@/components/CTABand";
-import { SERVICES } from "@/lib/site";
+import { SERVICES, pageMeta } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Services",
-  description:
-    "AI automation, agent development, custom AI applications, integrations, business process automation and AI consulting.",
-  alternates: { canonical: "/services/" },
-};
+export const metadata: Metadata = pageMeta(
+  "/services/",
+  "AI Automation, Agents & Consulting Services",
+  "AI automation, AI agent development, custom AI applications, integrations, business process automation and AI consulting, built and measured on your real data.",
+);
 
 export default function ServicesPage() {
   return (

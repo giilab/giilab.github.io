@@ -3,14 +3,13 @@ import { Container, Section, PageHero, Card, SectionHead } from "@/components/ui
 import { AgentLogVisual } from "@/components/HeroVisualsClient";
 import CTABand from "@/components/CTABand";
 import RoutingVisual from "@/components/RoutingVisual";
-import { SOLUTIONS } from "@/lib/site";
+import { SOLUTIONS, pageMeta } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Solutions",
-  description:
-    "Practical business use cases for AI: support automation, document processing, knowledge search and operational data pipelines.",
-  alternates: { canonical: "/solutions/" },
-};
+export const metadata: Metadata = pageMeta(
+  "/solutions/",
+  "AI Solutions for Support, Documents & Search",
+  "Practical AI use cases: customer support automation, document processing, knowledge search and operational data pipelines, each measured on your data.",
+);
 
 export default function SolutionsPage() {
   return (

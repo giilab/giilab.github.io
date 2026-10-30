@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { PageHero, LegalSections } from "@/components/ui";
-import { SITE } from "@/lib/site";
+import { SITE, pageMeta } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Terms of use",
-  description: `The terms that apply when you use the ${SITE.name} website.`,
-  alternates: { canonical: "/terms/" },
-};
+export const metadata: Metadata = pageMeta(
+  "/terms/",
+  "Terms of Use",
+  `The terms that apply when you use the ${SITE.name} website: what its information does and does not promise, intellectual property, liability and governing law.`,
+);
 
 const SECTIONS = [
   {

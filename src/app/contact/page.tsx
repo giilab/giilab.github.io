@@ -2,14 +2,13 @@ import type { Metadata } from "next";
 import { Container, Section, PageHero, Card } from "@/components/ui";
 import { NeuralVisual } from "@/components/HeroVisuals";
 import ContactForm from "@/components/ContactForm";
-import { SITE } from "@/lib/site";
+import { SITE, pageMeta } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Contact",
-  description:
-    "Start a project with Giilab. Tell us the problem you are trying to solve and we will give you an honest answer on whether AI is the right tool.",
-  alternates: { canonical: "/contact/" },
-};
+export const metadata: Metadata = pageMeta(
+  "/contact/",
+  "Contact Us to Start an AI Project",
+  "Start a project with Giilab. Tell us the problem you are trying to solve and we will give you an honest answer on whether AI is the right tool.",
+);
 
 export default function ContactPage() {
   return (

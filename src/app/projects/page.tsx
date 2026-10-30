@@ -2,14 +2,13 @@ import type { Metadata } from "next";
 import { Container, Section, PageHero, Card, Grid, Pill, ButtonLink } from "@/components/ui";
 import { TokenStreamVisual } from "@/components/HeroVisuals";
 import CTABand from "@/components/CTABand";
-import { CASE_STUDIES, INDUSTRIES, SITE } from "@/lib/site";
+import { CASE_STUDIES, INDUSTRIES, SITE, pageMeta } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Projects",
-  description:
-    "Work Giilab has delivered, and an honest account of what we can and cannot publish yet.",
-  alternates: { canonical: "/projects/" },
-};
+export const metadata: Metadata = pageMeta(
+  "/projects/",
+  "Projects & Case Studies",
+  "Work Giilab has delivered in AI automation and backend engineering, and an honest account of which client projects we can and cannot publish yet.",
+);
 
 export default function ProjectsPage() {
   const hasPublished = CASE_STUDIES.length > 0;

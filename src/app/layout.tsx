@@ -24,11 +24,11 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: `${SITE.name} — ${SITE.descriptor}`,
+    default: `${SITE.name} — ${SITE.descriptor} for AI Automation & Agents`,
     template: `%s — ${SITE.name}`,
   },
   description:
-    "Giilab is an AI engineering studio. We build AI automation, agents and custom applications, and the backend engineering underneath them.",
+    "Giilab is an AI engineering studio in Pune, India. We build AI automation, AI agents and custom AI applications, and the backend engineering underneath them.",
   applicationName: SITE.name,
   keywords: [
     "AI engineering studio",
@@ -67,9 +67,14 @@ const ORGANISATION_JSONLD = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   name: SITE.name,
+  legalName: SITE.legalName,
   description: SITE.positioning,
   url: SITE.url,
+  logo: `${SITE.url}/icon-512.png`,
+  image: `${SITE.url}/og.png`,
   email: SITE.email,
+  telephone: SITE.phone,
+  sameAs: [SITE.linkedin, SITE.github],
   address: {
     "@type": "PostalAddress",
     addressLocality: "Pune",

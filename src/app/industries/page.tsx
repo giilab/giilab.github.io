@@ -2,14 +2,13 @@ import type { Metadata } from "next";
 import { Container, Section, PageHero, Card, Grid } from "@/components/ui";
 import { RippleVisual } from "@/components/HeroVisuals";
 import CTABand from "@/components/CTABand";
-import { INDUSTRIES } from "@/lib/site";
+import { INDUSTRIES, pageMeta } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Industries",
-  description:
-    "Sectors where Giilab has delivered production software: education, food, healthcare, manufacturing, industrial, energy, IIoT and open source.",
-  alternates: { canonical: "/industries/" },
-};
+export const metadata: Metadata = pageMeta(
+  "/industries/",
+  "AI & Software for Manufacturing, Energy, IIoT",
+  "Sectors where Giilab has delivered production software: education, food, healthcare, manufacturing, industrial, energy, IIoT and open source.",
+);
 
 export default function IndustriesPage() {
   return (

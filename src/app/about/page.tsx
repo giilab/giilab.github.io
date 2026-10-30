@@ -2,14 +2,13 @@ import type { Metadata } from "next";
 import { Container, Section, PageHero, Card, Grid, SectionHead } from "@/components/ui";
 import { ParticleVisual } from "@/components/HeroVisualsClient";
 import CTABand from "@/components/CTABand";
-import { SITE, PROCESS } from "@/lib/site";
+import { SITE, PROCESS, pageMeta } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "About",
-  description:
-    "Giilab is an AI engineering studio in Pune. How we work, what we believe about building AI systems, and what we will not claim.",
-  alternates: { canonical: "/about/" },
-};
+export const metadata: Metadata = pageMeta(
+  "/about/",
+  "About Our AI Engineering Studio in Pune",
+  "Giilab is an AI engineering studio in Pune, India. How we work, what we believe about building AI systems, and what we will not claim.",
+);
 
 const PRINCIPLES = [
   {

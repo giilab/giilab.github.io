@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { PageHero, LegalSections } from "@/components/ui";
-import { SITE } from "@/lib/site";
+import { SITE, pageMeta } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Privacy policy",
-  description: `What personal data the ${SITE.name} website collects, why, and your rights over it.`,
-  alternates: { canonical: "/privacy/" },
-};
+export const metadata: Metadata = pageMeta(
+  "/privacy/",
+  "Privacy Policy",
+  `What personal data the ${SITE.name} website receives when you contact us, why we use it, our no-tracking approach to cookies, and your rights over that data.`,
+);
 
 const SECTIONS = [
   {

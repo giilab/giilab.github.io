@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+
 export const SITE = {
   name: "Giilab",
   legalName: "Great Ideas Innovation Lab LLP",
@@ -13,6 +15,28 @@ export const SITE = {
   // wa.me link: country code + number, no "+" or spaces. Empty hides the footer link.
   whatsapp: "https://wa.me/919028735097",
 } as const;
+
+/**
+ * Per-page metadata. Next shallow-merges `openGraph`/`twitter`, so a page that
+ * only sets title/description would otherwise share the homepage's social tags.
+ */
+export function pageMeta(path: string, title: string, description: string): Metadata {
+  const full = `${title} — ${SITE.name}`;
+  return {
+    title,
+    description,
+    alternates: { canonical: path },
+    openGraph: {
+      type: "website",
+      siteName: SITE.name,
+      url: path,
+      title: full,
+      description,
+      images: [{ url: "/og.png", width: 1200, height: 630, alt: `${SITE.name} — ${SITE.descriptor}` }],
+    },
+    twitter: { card: "summary_large_image", title: full, description, images: ["/og.png"] },
+  };
+}
 
 export const NAV = [
   { href: "/services/", label: "Services" },
