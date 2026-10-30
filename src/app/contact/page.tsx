@@ -20,7 +20,40 @@ export default function ContactPage() {
         lead="One free 30-minute call, and an honest answer on what AI can and cannot do about it. Bring a problem rather than a brief."
       />
 
-      <Section>
+      <Section className="pt-0">
+        <Container>
+          <SectionHead
+            eyebrow="FAQ"
+            title={<>Before you <span className="serif accent">get in touch.</span></>}
+          />
+          <dl className="mt-10 grid gap-5 lg:grid-cols-2">
+            <div className={`${FAQ_ITEM} lg:row-span-2`}>
+              <dt className="text-[1.05rem] font-semibold">What should I put in my message?</dt>
+              <dd className="mt-2.5 grid gap-2.5 text-[0.95rem] text-muted">
+                <p>You do not need a brief or a spec. A few lines on each of these is plenty:</p>
+                <ul className="grid list-disc gap-1.5 pl-4">
+                  <li>What the work looks like today, and who does it.</li>
+                  <li>Roughly how often it happens, or how much of it there is.</li>
+                  <li>Which systems or files the data lives in.</li>
+                  <li>What you have already tried.</li>
+                </ul>
+                <p>
+                  Not sure AI is the answer? Say so. Often the cheaper fix is a change to a
+                  process or to the data, and we will tell you if it is.
+                </p>
+              </dd>
+            </div>
+            {FAQ.map(([q, a]) => (
+              <div key={q} className={FAQ_ITEM}>
+                <dt className="text-[1.05rem] font-semibold">{q}</dt>
+                <dd className="mt-2.5 text-[0.95rem] text-muted">{a}</dd>
+              </div>
+            ))}
+          </dl>
+        </Container>
+      </Section>
+
+      <Section className="pt-0">
         <Container>
           <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-14">
             <div className="rounded-[var(--radius-brand)] border border-line bg-surface p-6 sm:p-9">
@@ -72,38 +105,6 @@ export default function ContactPage() {
         </Container>
       </Section>
 
-      <Section className="pt-0">
-        <Container>
-          <SectionHead
-            eyebrow="FAQ"
-            title={<>Before you <span className="serif accent">get in touch.</span></>}
-          />
-          <dl className="mt-10 grid gap-5 lg:grid-cols-2">
-            <div className={`${FAQ_ITEM} lg:row-span-2`}>
-              <dt className="text-[1.05rem] font-semibold">What should I put in my message?</dt>
-              <dd className="mt-2.5 grid gap-2.5 text-[0.95rem] text-muted">
-                <p>You do not need a brief or a spec. A few lines on each of these is plenty:</p>
-                <ul className="grid list-disc gap-1.5 pl-4">
-                  <li>What the work looks like today, and who does it.</li>
-                  <li>Roughly how often it happens, or how much of it there is.</li>
-                  <li>Which systems or files the data lives in.</li>
-                  <li>What you have already tried.</li>
-                </ul>
-                <p>
-                  Not sure AI is the answer? Say so. Often the cheaper fix is a change to a
-                  process or to the data, and we will tell you if it is.
-                </p>
-              </dd>
-            </div>
-            {FAQ.map(([q, a]) => (
-              <div key={q} className={FAQ_ITEM}>
-                <dt className="text-[1.05rem] font-semibold">{q}</dt>
-                <dd className="mt-2.5 text-[0.95rem] text-muted">{a}</dd>
-              </div>
-            ))}
-          </dl>
-        </Container>
-      </Section>
     </>
   );
 }
