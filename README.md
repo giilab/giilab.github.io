@@ -17,7 +17,7 @@ npx tsc --noEmit
 ```
 
 `npm run build` writes a fully static site to `out/`. There is no server at
-runtime, which is what lets it sit on GitHub Pages.
+runtime, which is what lets it sit on any static host.
 
 ## Configuration
 
@@ -29,20 +29,25 @@ To send to a different inbox, create a new key at web3forms.com and replace it.
 
 ## Deployment
 
-`.github/workflows/deploy.yml` lints, typechecks, builds and publishes to GitHub
-Pages on every push to `main`. Enable it once under Settings → Pages → Source →
-GitHub Actions.
+The site is served at <https://www.giilab.in> by Cloudflare Workers. Cloudflare
+builds every push to `main` (`npm run build`, then `npx wrangler deploy`) and
+serves `out/` as static assets, configured in `wrangler.jsonc`.
 
-The site is served at <https://www.giilab.in>; `giilab.in` and
-`giilab.github.io` redirect to it. The `giilab.github.io` repo is the
-organisation's root Pages site, so no `basePath` is needed.
-`public/.nojekyll` stops Pages from hiding the `_next/` directory.
+- `worker.js` runs in front of HTML pages only. It stamps a per-request nonce on
+  every `<script>` and sends the Content-Security-Policy that trusts it, so the
+  CSP needs no `'unsafe-inline'`. Edit the CSP there.
+- `public/_headers` sets the other security headers and the long cache on
+  `/_next/static/*`.
+- `public/_redirects` makes the no-trailing-slash redirects permanent (301).
 
-The custom domain is set in Settings → Pages → Custom domain. Because the site
-deploys through GitHub Actions, a `public/CNAME` file is ignored and not needed.
-DNS lives at Cloudflare (domain registered at Hostinger). To change the domain,
-update it there and in `SITE.url` in `src/lib/site.ts`, which every canonical,
-sitemap, robots and structured-data URL is built from.
+DNS lives at Cloudflare (domain registered at Hostinger). In the Cloudflare
+dashboard, the Worker has `www.giilab.in` and `giilab.in` as custom domains, and
+a Redirect Rule sends `giilab.in/*` to `www`. To change the domain, update it
+there and in `SITE.url` in `src/lib/site.ts`, which every canonical, sitemap,
+robots and structured-data URL is built from.
+
+`.github/workflows/deploy.yml` still publishes a copy to `giilab.github.io`; its
+canonical tags point at `www.giilab.in`.
 
 ## How it is put together
 
