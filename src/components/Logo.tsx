@@ -104,7 +104,8 @@ export function Lockup({
  * One documented deviation: the board sets the descriptor at 0.141x the
  * wordmark height, which only becomes legible at a ~140px mark — far larger
  * than a site header allows. Here the descriptor is floored at 8px and may run
- * slightly wider than the wordmark. The exported SVG logo files keep the
+ * slightly wider than the wordmark. Below the `sm` breakpoint it is hidden,
+ * since 8px text is unreadable on a phone. The exported SVG logo files keep the
  * board's exact proportions for large-format use.
  */
 export function LockupStacked({
@@ -123,7 +124,7 @@ export function LockupStacked({
       <span className="flex flex-col" style={{ gap: `${descriptorSize * 0.9}px` }}>
         <Wordmark height={wordHeight * 1.28} />
         <span
-          className="whitespace-nowrap font-medium uppercase leading-none text-muted"
+          className="hidden whitespace-nowrap font-medium uppercase leading-none text-muted sm:block"
           style={{ fontSize: `${descriptorSize}px`, letterSpacing: "0.17em" }}
         >
           AI Engineering Studio
