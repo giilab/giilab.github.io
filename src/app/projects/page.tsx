@@ -7,7 +7,7 @@ import { CASE_STUDIES, INDUSTRIES, SITE, pageMeta } from "@/lib/site";
 export const metadata: Metadata = pageMeta(
   "/projects/",
   "Projects & Case Studies",
-  "Work Giilab has delivered in AI automation and backend engineering, and an honest account of which client projects we can and cannot publish yet.",
+  "Work Giilab has delivered in AI automation and backend engineering, and which client projects we can and cannot publish yet.",
 );
 
 export default function ProjectsPage() {

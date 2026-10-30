@@ -8,7 +8,7 @@ import { SOLUTIONS, pageMeta } from "@/lib/site";
 export const metadata: Metadata = pageMeta(
   "/solutions/",
   "AI Solutions for Support, Documents & Search",
-  "Practical AI use cases: customer support automation, document processing, knowledge search and operational data pipelines, each measured on your data.",
+  "Practical AI use cases: support automation, document processing, knowledge search and data pipelines, measured on your data.",
 );
 
 export default function SolutionsPage() {

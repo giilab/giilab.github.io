@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     template: `%s — ${SITE.name}`,
   },
   description:
-    "Giilab is an AI engineering studio in Pune, India. We build AI automation, AI agents and custom AI applications, and the backend engineering underneath them.",
+    "AI engineering studio in Pune, India. We build AI automation, AI agents and custom AI applications on solid backend engineering.",
   applicationName: SITE.name,
   keywords: [
     "AI engineering studio",
@@ -89,6 +89,13 @@ const ORGANISATION_JSONLD = {
   ],
 };
 
+const WEBSITE_JSONLD = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: SITE.name,
+  url: `${SITE.url}/`,
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" data-theme="light" suppressHydrationWarning>
@@ -108,7 +115,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SmoothScroll />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANISATION_JSONLD) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify([ORGANISATION_JSONLD, WEBSITE_JSONLD]) }}
         />
       </body>
     </html>

@@ -7,7 +7,7 @@ import { SITE, pageMeta } from "@/lib/site";
 export const metadata: Metadata = pageMeta(
   "/contact/",
   "Contact Us to Start an AI Project",
-  "Start a project with Giilab. Tell us the problem you are trying to solve and we will give you an honest answer on whether AI is the right tool.",
+  "Tell us the problem you are trying to solve and get an honest answer on whether AI is the right tool. Start a project with Giilab.",
 );
 
 export default function ContactPage() {

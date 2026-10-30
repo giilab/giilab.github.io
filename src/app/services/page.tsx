@@ -7,7 +7,7 @@ import { SERVICES, pageMeta } from "@/lib/site";
 export const metadata: Metadata = pageMeta(
   "/services/",
   "AI Automation, Agents & Consulting Services",
-  "AI automation, AI agent development, custom AI applications, integrations, business process automation and AI consulting, built and measured on your real data.",
+  "AI automation, agent development, custom AI apps, integrations, process automation and AI consulting, measured on your real data.",
 );
 
 export default function ServicesPage() {
