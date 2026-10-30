@@ -11,7 +11,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ThemeScript from "@/components/ThemeScript";
 import SmoothScroll from "@/components/SmoothScroll";
-import { SITE } from "@/lib/site";
+import { SITE, BUILT } from "@/lib/site";
 
 // Mobile browser chrome matches the page background (follows the system theme).
 export const viewport: Viewport = {
@@ -30,6 +30,8 @@ export const metadata: Metadata = {
   description:
     "AI engineering studio in Pune, India. We build AI automation, AI agents and custom AI applications on solid backend engineering.",
   applicationName: SITE.name,
+  authors: [{ name: SITE.founder.name, url: SITE.portfolio }],
+  creator: SITE.founder.name,
   keywords: [
     "AI engineering studio",
     "AI automation",
@@ -64,11 +66,10 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-// One @graph so parsers that ignore top-level arrays still see every @type.
+// One JSON-LD script per node, each with its own @context and @type: some auditors
+// count a bare @graph wrapper as a schema missing @type. Nodes link up by @id.
 const HOME = `${SITE.url}/`;
-const JSONLD = {
-  "@context": "https://schema.org",
-  "@graph": [
+const JSONLD = [
     {
       "@type": "ProfessionalService",
       "@id": `${HOME}#organization`,
@@ -81,6 +82,7 @@ const JSONLD = {
       email: SITE.email,
       telephone: SITE.phone,
       sameAs: [SITE.linkedin, SITE.github],
+      founder: { "@type": "Person", "@id": `${HOME}#founder` },
       address: {
         "@type": "PostalAddress",
         addressLocality: "Pune",
@@ -99,10 +101,23 @@ const JSONLD = {
       "@id": `${HOME}#website`,
       name: SITE.name,
       url: HOME,
-      publisher: { "@id": `${HOME}#organization` },
+      publisher: { "@type": "ProfessionalService", "@id": `${HOME}#organization` },
+      // Person defined inline: some parsers only read author fields written here.
+      author: {
+        "@type": "Person",
+        "@id": `${HOME}#founder`,
+        name: SITE.founder.name,
+        jobTitle: SITE.founder.role,
+        description: `${SITE.founder.role} at ${SITE.name}, with 10+ years of experience building production Python and AWS backends.`,
+        url: `${SITE.url}/about/#founder`,
+        sameAs: [SITE.founder.linkedin, SITE.portfolio],
+        worksFor: { "@type": "ProfessionalService", "@id": `${HOME}#organization` },
+        knowsAbout: ["Python", "AWS", "Backend engineering", "AI engineering", "Software architecture"],
+      },
+      datePublished: SITE.launched,
+      dateModified: BUILT,
     },
-  ],
-};
+].map((node) => ({ "@context": "https://schema.org", ...node }));
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -122,10 +137,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="main">{children}</main>
         <Footer />
         <SmoothScroll />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(JSONLD) }}
-        />
+        {JSONLD.map((node) => (
+          <script
+            key={node["@type"]}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(node) }}
+          />
+        ))}
       </body>
     </html>
   );

@@ -79,10 +79,10 @@ export default function ContactPage() {
             title={<>Before you <span className="serif accent">get in touch.</span></>}
           />
           <dl className="mt-10 grid gap-5 lg:grid-cols-2">
-            <Card className="gap-2.5 lg:row-span-2">
+            <div className={`${FAQ_ITEM} lg:row-span-2`}>
               <dt className="text-[1.05rem] font-semibold">What should I put in my message?</dt>
-              <dd className="grid gap-2.5 text-[0.95rem] text-muted">
-                <p>You do not need a brief. A few lines on each of these is plenty:</p>
+              <dd className="mt-2.5 grid gap-2.5 text-[0.95rem] text-muted">
+                <p>You do not need a brief or a spec. A few lines on each of these is plenty:</p>
                 <ul className="grid list-disc gap-1.5 pl-4">
                   <li>What the work looks like today, and who does it.</li>
                   <li>Roughly how often it happens, or how much of it there is.</li>
@@ -94,12 +94,12 @@ export default function ContactPage() {
                   process or to the data, and we will tell you if it is.
                 </p>
               </dd>
-            </Card>
+            </div>
             {FAQ.map(([q, a]) => (
-              <Card key={q} className="gap-2.5">
+              <div key={q} className={FAQ_ITEM}>
                 <dt className="text-[1.05rem] font-semibold">{q}</dt>
-                <dd className="text-[0.95rem] text-muted">{a}</dd>
-              </Card>
+                <dd className="mt-2.5 text-[0.95rem] text-muted">{a}</dd>
+              </div>
             ))}
           </dl>
         </Container>
@@ -108,9 +108,12 @@ export default function ContactPage() {
   );
 }
 
+// Static answers, so a plain box rather than Card (no hover lift on something you cannot click).
+const FAQ_ITEM = "rounded-[var(--radius-brand)] border border-line bg-surface px-7 py-[26px]";
+
 const FAQ = [
   ["Is the first call free?", "Yes. One 30-minute call, with no obligation to go further. Bring whoever knows the work best."],
   ["What does it cost?", "It depends on the scope. After the call you get a scoped proposal, so you know the cost before any work starts."],
-  ["Will you sign an NDA?", "Yes. If it helps, we sign one before you share any details."],
-  ["Do you work with teams outside India?", "Yes. We work across time zones and keep some overlap with your day."],
+  ["Will you sign an NDA?", "Yes. If it helps, we sign one before you share any details about your systems or your data."],
+  ["Do you work with teams outside India?", "Yes. We work with teams across time zones and keep a few hours of overlap with your working day."],
 ];

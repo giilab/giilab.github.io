@@ -1,13 +1,14 @@
 import Link from "next/link";
 import { LockupStacked } from "./Logo";
 import { Container } from "./ui";
-import { SITE, SERVICES, NAV } from "@/lib/site";
+import { SITE, SERVICES, NAV, BUILT } from "@/lib/site";
 
 const COMPANY = [
   { href: "/about/", label: "About" },
   { href: "/contact/", label: "Contact" },
   { href: "/privacy/", label: "Privacy" },
   { href: "/terms/", label: "Terms" },
+  { href: "/about/#editorial-policy", label: "Editorial policy" },
 ];
 
 export default function Footer() {
@@ -30,6 +31,16 @@ export default function Footer() {
               <span className="mb-1 block font-semibold text-text">Office</span>
               {SITE.location}
             </address>
+            {/* Author credit on every page: who writes the site, and why to trust them. */}
+            <p className="author-bio mt-[18px] max-w-[19rem] text-[0.84rem] text-muted">
+              Written by{" "}
+              <a href="/about/#founder" rel="author" className="font-semibold text-text hover:text-accent-ink">
+                {SITE.founder.name}
+              </a>
+              , {SITE.founder.role}, with 10+ years of experience building production Python
+              and AWS backends.{" "}
+              <a href={SITE.founder.linkedin} target="_blank" rel="noopener noreferrer me" className="text-accent-ink">LinkedIn</a>
+            </p>
           </div>
 
           <nav aria-label="Services">
@@ -79,7 +90,12 @@ export default function Footer() {
 
         <div className="flex flex-wrap items-center justify-between gap-2.5 border-t border-line py-[26px] text-[0.84rem] text-faint">
           <span>&copy; {new Date().getFullYear()} {SITE.legalName}. All rights reserved.</span>
-          <span>Built for businesses worldwide.</span>
+          <span>
+            Site updated{" "}
+            <time dateTime={BUILT}>
+              {new Date(BUILT).toLocaleDateString("en-GB", { month: "long", year: "numeric" })}
+            </time>
+          </span>
         </div>
       </Container>
     </footer>

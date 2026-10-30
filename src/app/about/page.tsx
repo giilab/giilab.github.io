@@ -13,27 +13,27 @@ export const metadata: Metadata = pageMeta(
 const PRINCIPLES = [
   {
     t: "A model is a component, not an architecture",
-    d: "The interesting engineering is everywhere else: the retrieval, the integration, the error handling, the place a human steps in. Treat the model as swappable and the system outlives the vendor.",
+    d: "The real work is around the model: retrieval, integration, error handling. Keep the model swappable and the system outlives the vendor.",
   },
   {
     t: "If you cannot measure it, you cannot ship it",
-    d: "An evaluation set built from your real cases is the first thing we build and the last thing we hand over. Without it, every release is a guess and every regression is a surprise.",
+    d: "We build a test set from your real cases first, so every release is checked, not guessed.",
   },
   {
     t: "Automate the confident part, route the rest",
-    d: "Full automation is rarely the cheapest answer. Automating the eighty per cent a system handles well, and routing the rest to a person with context attached, usually is.",
+    d: "Automate what the system handles well. Send the rest to a person, with the context attached.",
   },
   {
     t: "Boring infrastructure, carefully chosen",
-    d: "Observability, tests, migrations and queues are not glamorous, but they are why a system still works in month nine. We would rather be unfashionable than paged at night.",
+    d: "Tests, monitoring and queues are not glamorous. They are why a system still works in month nine.",
   },
   {
     t: "Say when AI is the wrong tool",
-    d: "A good share of expensive manual work is a data or process problem wearing an AI costume. Naming that early is worth more to you than a project we should not have sold.",
+    d: "Many costly problems are really data or process problems. We say so early, before you spend.",
   },
   {
     t: "Your data stays yours",
-    d: "Systems are designed to keep data in your accounts where possible, with least-privilege access and an audit trail. We do not retain or reuse client knowledge without explicit agreement.",
+    d: "Data stays in your accounts where possible, with minimal access and an audit trail. We never reuse it without your agreement.",
   },
 ];
 
@@ -53,7 +53,7 @@ export default function AboutPage() {
             <SectionHead
               eyebrow="Our approach"
               title={<>What we believe about <span className="serif accent">building this stuff.</span></>}
-              lead="Six positions that shape every engagement. They are also the quickest way to tell whether we are a good fit for you."
+              lead="Six beliefs that shape every project, and a quick way to tell if we fit."
             />
             <ul className="grid gap-4">
               {PRINCIPLES.map((p) => (
@@ -115,6 +115,54 @@ export default function AboutPage() {
                 have not evidenced it.
               </p>
             </Card>
+          </div>
+        </Container>
+      </Section>
+
+      <Section id="founder">
+        <Container>
+          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+            <SectionHead
+              eyebrow="Who you work with"
+              title={<>The person who scopes it <span className="serif accent">builds it.</span></>}
+            />
+            <Card className="gap-3">
+              <p className="text-[1.25rem] font-semibold">{SITE.founder.name}</p>
+              <p className="text-[0.9rem] font-medium text-accent-ink">{SITE.founder.role}</p>
+              <p className="text-[0.95rem] text-muted">
+                Pratik has spent over a decade building production Python backends and
+                platforms. He founded {SITE.name} to bring that engineering discipline to AI
+                work. He scopes and builds every engagement himself, so the person who
+                estimates the work is the person who does it.
+              </p>
+              <div className="flex flex-wrap gap-4 pt-1">
+                <a href={SITE.founder.linkedin} target="_blank" rel="noopener noreferrer me" className="text-[0.9rem] font-medium text-accent-ink">
+                  LinkedIn &rarr;
+                </a>
+                <a href={SITE.portfolio} target="_blank" rel="noopener noreferrer me" className="text-[0.9rem] font-medium text-accent-ink">
+                  Portfolio &rarr;
+                </a>
+              </div>
+            </Card>
+          </div>
+        </Container>
+      </Section>
+
+      <Section id="editorial-policy">
+        <Container>
+          <div className="max-w-[68ch]">
+            <SectionHead eyebrow="Editorial policy" title={<>How we write <span className="serif accent">about our work.</span></>} />
+            <ul className="mt-8 grid list-disc gap-2.5 pl-5 text-[0.98rem] text-muted">
+              <li>We publish client work only with the client&rsquo;s permission.</li>
+              <li>We state an outcome only if we can back it with evidence. If we cannot, we leave it out rather than estimate it.</li>
+              <li>We do not show logos, testimonials, numbers or certifications we cannot verify.</li>
+              <li>Pages are written by {SITE.founder.name}. Legal pages show the date they were last updated.</li>
+              <li>
+                Spotted something wrong? Email{" "}
+                <a href={`mailto:${SITE.email}`} className="text-accent-ink underline underline-offset-4">{SITE.email}</a>{" "}
+                and we will correct it.
+              </li>
+            </ul>
           </div>
         </Container>
       </Section>

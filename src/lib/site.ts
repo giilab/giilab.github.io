@@ -15,7 +15,17 @@ export const SITE = {
   linkedin: "https://www.linkedin.com/company/gii-lab",
   // wa.me link: country code + number, no "+" or spaces. Empty hides the footer link.
   whatsapp: "https://wa.me/919028735097",
+  founder: {
+    name: "Pratik Karanje",
+    role: "Founder & Chief AI Architect",
+    linkedin: "https://www.linkedin.com/in/pratikkaranje/",
+  },
+  /** First public release; structured data's datePublished. */
+  launched: "2026-10-28",
 } as const;
+
+/** When this build was made: the site's dateModified and the footer's "updated" line. */
+export const BUILT = new Date().toISOString().slice(0, 10);
 
 /**
  * Per-page metadata. Next shallow-merges `openGraph`/`twitter`, so a page that
