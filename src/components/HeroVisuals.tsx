@@ -33,25 +33,26 @@ function MarkAt({ cx, cy, size, gradId }: { cx: number; cy: number; size: number
   );
 }
 
-const polar = (r: number, deg: number) => {
-  const a = (deg * Math.PI) / 180;
-  return [200 + r * Math.cos(a), 200 + r * Math.sin(a)].map((n) => Math.round(n * 10) / 10);
-};
-
-/** Option 1: neural network — pulses travel from outer nodes through a hidden layer into the mark. */
-export function NeuralVisual() {
-  const g = `nv-${useId().replace(/:/g, "")}`;
-  const inner = [30, 90, 150, 210, 270, 330].map((d) => polar(100, d));
-  const outer = Array.from({ length: 8 }, (_, i) => polar(175, 22.5 + i * 45));
-  // Each outer node feeds its two nearest inner nodes; every inner node feeds the centre.
+/**
+ * Contact hero: dots joined into the letters "AI", pulses running along the
+ * strokes, and the mark sitting in the A's triangle (centred on its incircle).
+ */
+export function AiVisual() {
+  const g = `ai-${useId().replace(/:/g, "")}`;
+  // Each stroke: x1, y1, x2, y2, segment count. Joints land on shared nodes.
+  const strokes = [
+    [70, 330, 150, 70, 4], [150, 70, 230, 330, 4], [90, 265, 210, 265, 2], // A
+    [270, 70, 330, 70, 2], [300, 70, 300, 330, 4], [270, 330, 330, 330, 2], // I
+  ];
   const links: string[] = [];
-  outer.forEach(([x, y]) => {
-    [...inner]
-      .sort((a, b) => Math.hypot(a[0] - x, a[1] - y) - Math.hypot(b[0] - x, b[1] - y))
-      .slice(0, 2)
-      .forEach(([ix, iy]) => links.push(`M${x} ${y}L${ix} ${iy}`));
-  });
-  inner.forEach(([x, y]) => links.push(`M${x} ${y}L200 200`));
+  const nodes = new Map<string, number[]>();
+  for (const [x1, y1, x2, y2, n] of strokes) {
+    const pts = Array.from({ length: n + 1 }, (_, i) => [x1 + ((x2 - x1) * i) / n, y1 + ((y2 - y1) * i) / n]);
+    pts.forEach((p, i) => {
+      nodes.set(p.join(","), p);
+      if (i) links.push(`M${pts[i - 1].join(" ")}L${p.join(" ")}`);
+    });
+  }
   return (
     <svg viewBox="0 0 400 400" className="w-full" focusable="false">
       <defs><MarkGradient id={g} /></defs>
@@ -68,15 +69,15 @@ export function NeuralVisual() {
           strokeWidth={2.5}
           strokeLinecap="round"
           className="hv-pulse hv-loop"
-          style={{ animationDelay: `${(i * 0.37) % 2.4}s` }}
+          style={{ animationDelay: `${(i * 0.2) % 2.4}s` }}
         />
       ))}
-      {[...outer, ...inner].map(([x, y], i) => (
+      {[...nodes.values()].map(([x, y], i) => (
         <circle
           key={`${x},${y}`}
           cx={x}
           cy={y}
-          r={i < outer.length ? 5 : 6}
+          r={5.5}
           fill="var(--bg-card)"
           stroke="var(--accent)"
           strokeWidth={2}
@@ -84,8 +85,8 @@ export function NeuralVisual() {
           style={{ animationDelay: `${(i * 0.3) % 2.4}s` }}
         />
       ))}
-      <circle cx={200} cy={200} r={62} fill="var(--accent-soft)" className="hv-node hv-loop" />
-      <MarkAt cx={200} cy={200} size={92} gradId={g} />
+      <circle cx={150} cy={221} r={36} fill="var(--accent-soft)" className="hv-node hv-loop" />
+      <MarkAt cx={150} cy={221} size={54} gradId={g} />
     </svg>
   );
 }

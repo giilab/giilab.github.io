@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Container, Section, PageHero, Card } from "@/components/ui";
-import { NeuralVisual } from "@/components/HeroVisuals";
+import { AiVisual } from "@/components/HeroVisuals";
 import ContactForm from "@/components/ContactForm";
 import { SITE, pageMeta } from "@/lib/site";
 
@@ -14,7 +14,7 @@ export default function ContactPage() {
   return (
     <>
       <PageHero
-        visual={<NeuralVisual />}
+        visual={<AiVisual />}
         eyebrow="Contact"
         title={<>Tell us the part that <span className="serif accent">keeps breaking.</span></>}
         lead="One free 30-minute call, and an honest answer on what AI can and cannot do about it. Bring a problem rather than a brief."
