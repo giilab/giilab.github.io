@@ -34,14 +34,14 @@ function MarkAt({ cx, cy, size, gradId }: { cx: number; cy: number; size: number
 }
 
 // Bold "AI" letterforms in a 400-unit scene: A (with its triangular counter
-// cut out, evenodd) and I. The counter's incircle sits at (160, 238), r ≈ 37.
+// cut out, evenodd) and I.
 const AI_PATH =
   "M130 50H190L300 350H240L229 320H91L80 350H20Z M160 132L107.5 275H212.5Z M330 50H385V350H330Z";
 
 /**
  * Contact hero, built like the homepage HeroMark: on an 8s loop the "AI"
  * outline draws itself, fills with the brand gradient, holds, then unwinds,
- * floating throughout. The mark fades in with the fill, inside the A's counter.
+ * floating throughout.
  * Reduced motion shows it filled and still.
  */
 export function AiVisual() {
@@ -51,7 +51,6 @@ export function AiVisual() {
       <div className="hero-mark-glow" />
       <svg viewBox="0 0 400 400" className="hero-mark-float relative w-full" focusable="false">
         <defs>
-          <MarkGradient id={g} />
           <linearGradient id={`${g}-s`} gradientUnits="userSpaceOnUse" x1={20} y1={50} x2={385} y2={350}>
             {GRADIENT.stops.map(([offset, color]) => (
               <stop key={offset} offset={offset} stopColor={color} />
@@ -67,9 +66,6 @@ export function AiVisual() {
           pathLength={1}
           className="hero-mark-draw"
         />
-        <g className="hero-mark-fill">
-          <MarkAt cx={160} cy={238} size={46} gradId={g} />
-        </g>
       </svg>
     </div>
   );
