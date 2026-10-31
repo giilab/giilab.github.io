@@ -136,11 +136,10 @@ export function RippleVisual() {
   );
 }
 
-/** Option 5: raw tokens flow into the mark, structured fields come out. */
+/** Projects hero: what we build drifts into the mark, a live system comes out. */
 export function TokenStreamVisual() {
   const g = `tv-${useId().replace(/:/g, "")}`;
-  const tokens = ["Frontend app", "Backend API", "RAG search", "Data pipeline", "Cloud infra"];
-  const json = ["{", '  "build": "green",', '  "tests": "pass",', '  "deploy": "live",', '  "uptime": 0.999', "}"];
+  const tokens = ["AI Engineering", "SaaS", "Data & Cloud Engineering", "Software Engineering"];
   return (
     <svg viewBox="0 0 400 400" className="w-full" focusable="false">
       <defs><MarkGradient id={g} /></defs>
@@ -148,30 +147,28 @@ export function TokenStreamVisual() {
         <text
           key={t}
           x={0}
-          y={130 + i * 34}
-          fontSize={12}
+          y={152 + i * 36}
+          fontSize={17}
+          fontWeight={500}
           className="hv-token hv-loop"
-          style={{ fill: "var(--muted)", animationDelay: `${i * 0.9}s` }}
+          style={{ fill: "var(--muted)", animationDelay: `${i * 1.125}s` }}
         >
           {t}
         </text>
       ))}
-      <circle cx={190} cy={200} r={50} fill="var(--accent-soft)" className="hv-node hv-loop" />
-      <MarkAt cx={190} cy={200} size={72} gradId={g} />
-      <g fontFamily="ui-monospace, SFMono-Regular, Menlo, monospace" fontSize={11.5}>
-        {json.map((line, i) => (
-          <text
-            key={line}
-            x={252}
-            y={150 + i * 21}
-            xmlSpace="preserve"
-            className="hv-json hv-loop"
-            style={{ fill: i === 0 || i === json.length - 1 ? "var(--muted)" : "var(--accent-text)", animationDelay: `${i * 0.35}s` }}
-          >
-            {line}
-          </text>
-        ))}
-      </g>
+      <circle cx={340} cy={200} r={46} fill="var(--accent-soft)" className="hv-node hv-loop" />
+      <MarkAt cx={340} cy={200} size={66} gradId={g} />
+      <text
+        x={340}
+        y={276}
+        textAnchor="middle"
+        fontFamily="ui-monospace, SFMono-Regular, Menlo, monospace"
+        fontSize={14}
+        className="hv-json hv-loop"
+        style={{ fill: "var(--accent-text)" }}
+      >
+        status: live
+      </text>
     </svg>
   );
 }
