@@ -9,7 +9,7 @@ import Pill from "@/components/ui/Pill.astro";
 import ButtonLink from "@/components/ui/ButtonLink.astro";
 import TokenStreamVisual from "@/components/visuals/TokenStreamVisual.astro";
 import CTABand from "@/components/CTABand.astro";
-import { CASE_STUDIES, INDUSTRIES, pageMeta } from "@/lib/site";
+import { SITE, CASE_STUDIES, INDUSTRIES, pageMeta } from "@/lib/site";
 
 const meta = pageMeta(
   "/projects/",
@@ -26,7 +26,7 @@ const CATEGORIES = [
   },
   {
     name: "AI Engineering",
-    body: "RAG, intelligent applications, AI agents and automation demonstrations.",
+    body: "RAG, intelligent applications, AI agents and automation.",
     icon: "M7 5h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2ZM9.5 15l1.75-6h1.5L14.5 15M10.1 13h3.8M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3",
   },
   {
@@ -71,24 +71,21 @@ const CATEGORIES = [
 
   <Section>
     <Container>
-      <div class="grid gap-5 lg:grid-cols-3">
+      <div class="grid gap-5 lg:grid-cols-2">
         <Card class="gap-3">
-          <h2 class="text-[1.1rem] font-semibold">Engineering Portfolio</h2>
+          <h2 class="text-[1.1rem] font-semibold">Founder&rsquo;s Portfolio</h2>
           <p class="text-[0.95rem] text-muted">
-            Explore selected software projects, open-source contributions and technical
-            implementations.
+            {SITE.founder.name}&rsquo;s portfolio covers 12+ years of backend, cloud and data
+            engineering: the production experience {SITE.name} is built on.
           </p>
-        </Card>
-        <Card class="gap-3">
-          <h2 class="text-[1.1rem] font-semibold">Technical Demonstrations</h2>
-          <p class="text-[0.95rem] text-muted">
-            See how we approach practical engineering challenges through working
-            demonstrations and prototypes.
-          </p>
-          <p class="text-[0.95rem] text-muted">
-            Each demonstration explains the problem, architecture, implementation and
-            technical decisions.
-          </p>
+          <a
+            href={SITE.portfolio}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-auto w-fit text-[0.95rem] text-accent-ink underline-offset-4 hover:underline"
+          >
+            View the portfolio &rarr;
+          </a>
         </Card>
         <Card class="gap-3">
           <h2 class="text-[1.1rem] font-semibold">Client Engagements</h2>
