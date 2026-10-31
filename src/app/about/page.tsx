@@ -6,34 +6,34 @@ import { SITE, PROCESS, pageMeta } from "@/lib/site";
 
 export const metadata: Metadata = pageMeta(
   "/about/",
-  "About Our AI Engineering Studio in Pune",
-  "Giilab is an AI engineering studio in Pune, India. How we work, what we believe about building AI, and what we will not claim.",
+  "About Our AI Engineering Studio in Pune, India",
+  "Meet Giilab, an engineering studio building practical AI applications, intelligent automation and reliable software systems for businesses worldwide.",
 );
 
 const PRINCIPLES = [
   {
+    t: "Engineering before technology trends",
+    d: "We select technology based on the problem, not because it is popular.",
+  },
+  {
     t: "A model is a component, not an architecture",
-    d: "The real work is around the model: retrieval, integration, error handling. Keep the model swappable and the system outlives the vendor.",
+    d: "Reliable AI systems need strong data pipelines, integrations, testing and infrastructure.",
   },
   {
-    t: "If you cannot measure it, you cannot ship it",
-    d: "We build a test set from your real cases first, so every release is checked, not guessed.",
+    t: "Measure before scaling",
+    d: "We define evaluation criteria using real business scenarios before production deployment.",
   },
   {
-    t: "Automate the confident part, route the rest",
-    d: "Automate what the system handles well. Send the rest to a person, with the context attached.",
+    t: "Automate with appropriate oversight",
+    d: "Systems should know their boundaries and involve people when decisions require judgment.",
   },
   {
-    t: "Boring infrastructure, carefully chosen",
-    d: "Tests, monitoring and queues are not glamorous. They are why a system still works in month nine.",
+    t: "Build for long-term maintainability",
+    d: "Testing, monitoring, documentation and reliable infrastructure are part of the engineering work.",
   },
   {
-    t: "Say when AI is the wrong tool",
-    d: "Many costly problems are really data or process problems. We say so early, before you spend.",
-  },
-  {
-    t: "Your data stays yours",
-    d: "Data stays in your accounts where possible, with minimal access and an audit trail. We never reuse it without your agreement.",
+    t: "Respect business data",
+    d: "We design access controls and data handling around the client's requirements and agreements.",
   },
 ];
 
@@ -44,15 +44,14 @@ export default function AboutPage() {
         visual={<ParticleVisual />}
         eyebrow="About"
         title={<>An engineering studio that <span className="serif accent">happens to do AI.</span></>}
-        lead={`${SITE.name} is a small studio working with startups and growing companies worldwide. We build AI systems the way we would build any production software: measurable, observable and possible to maintain after we leave.`}
+        lead={`${SITE.name} is an independent engineering studio working with startups and growing businesses. We combine software engineering, AI development and automation to build systems that are practical, measurable and maintainable. Our approach is simple: understand the problem, choose the right technology and prove the solution before scaling it. Based in Pune, India. Working with teams worldwide.`}
       />
 
       <Section>
         <Container>
           <SectionHead
-            eyebrow="Our approach"
-            title={<>What we believe about <span className="serif accent">building this stuff.</span></>}
-            lead="Six beliefs that shape every project, and a quick way to tell if we fit."
+            eyebrow="Our philosophy"
+            title={<>What guides <span className="serif accent">our engineering.</span></>}
           />
           {/* Numbered like the engagement stages below, but as cards. */}
           <Grid className="mt-12">
@@ -72,8 +71,8 @@ export default function AboutPage() {
       <Section>
         <Container>
           <SectionHead
-            eyebrow="How an engagement runs"
-            title={<>Four stages, and a <span className="serif accent">decision point at each.</span></>}
+            eyebrow="How we work"
+            title={<>From discovery <span className="serif accent">to production.</span></>}
             lead="You are never more than one stage away from stopping, and every stage produces something you can evaluate."
           />
           <Grid cols={4} className="mt-12">
@@ -142,15 +141,25 @@ export default function AboutPage() {
               <div className="grid content-start gap-2.5">
                 <h3 className="text-[1.25rem] font-semibold">{SITE.founder.name}</h3>
                 <p className="text-[0.9rem] font-medium text-accent-ink">{SITE.founder.role}</p>
-                <p className="text-[0.95rem] text-muted">
-                  Pratik has more than twelve years of experience building backend platforms,
-                  SaaS products and cloud-native applications with Python and AWS. He has led
-                  engineering teams through planning, delivery and code review, and built
-                  platforms for healthcare, SaaS, IoT and open-source education and analytics.
-                  He founded {SITE.name} to bring that engineering discipline to AI work. He
-                  scopes and builds every engagement himself, so the person who estimates the
-                  work is the person who does it.
-                </p>
+                <div className="grid gap-2.5 text-[0.95rem] text-muted">
+                  <p>
+                    Pratik brings more than 12 years of experience in software engineering,
+                    backend platforms, SaaS applications and cloud-native systems.
+                  </p>
+                  <p>
+                    His engineering experience includes Python, AWS, distributed systems, data
+                    platforms and production application architecture.
+                  </p>
+                  <p>
+                    Through {SITE.name}, he brings this experience into practical AI engineering,
+                    helping businesses move from ideas and prototypes to reliable software
+                    systems.
+                  </p>
+                  <p>
+                    The goal is not to introduce AI everywhere. It is to build technology that
+                    solves the right problem.
+                  </p>
+                </div>
                 <a
                   href={SITE.founder.linkedin}
                   target="_blank"
@@ -167,8 +176,8 @@ export default function AboutPage() {
       </Section>
 
       <CTABand
-        title="Think we might fit?"
-        body="Bring a problem rather than a brief. Thirty minutes is usually enough to tell."
+        title={<>Let&rsquo;s solve something <span className="serif accent">meaningful.</span></>}
+        body="Have an idea, a technical challenge or a business process worth improving? Let's start with a conversation."
       />
     </>
   );
