@@ -27,5 +27,8 @@
     "typescript": "^5",
     "typescript-eslint": "^8.72.1"
   },
-  "type": "module"
+  "type": "module",
+  "overrides": {
+    "minimatch": "^11.0.3"
+  }
 }
