@@ -10,10 +10,23 @@ export const metadata: Metadata = pageMeta(
   "Explore Giilab's software engineering portfolio, technical demonstrations and AI application development approach.",
 );
 
+// Stroke icons drawn on a 24px grid, paths inlined to avoid an icon dependency.
 const CATEGORIES = [
-  { name: "Software Engineering", body: "Backend platforms, APIs, cloud applications and integrations." },
-  { name: "AI Engineering", body: "RAG, intelligent applications, AI agents and automation demonstrations." },
-  { name: "Data & Cloud Engineering", body: "Data pipelines, infrastructure and operational systems." },
+  {
+    name: "Software Engineering",
+    body: "Backend platforms, APIs, cloud applications and integrations.",
+    icon: "m8 7-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16",
+  },
+  {
+    name: "AI Engineering",
+    body: "RAG, intelligent applications, AI agents and automation demonstrations.",
+    icon: "M10 3.5 11.6 8a3 3 0 0 0 1.9 1.9l4.5 1.6-4.5 1.6a3 3 0 0 0-1.9 1.9L10 19.5 8.4 15a3 3 0 0 0-1.9-1.9L2 11.5l4.5-1.6A3 3 0 0 0 8.4 8L10 3.5ZM18.5 2.5v4M16.5 4.5h4M19 16v3M17.5 17.5h3",
+  },
+  {
+    name: "Data & Cloud Engineering",
+    body: "Data pipelines, infrastructure and operational systems.",
+    icon: "M7 13.5H6.5a4 4 0 0 1-.6-7.96A5.5 5.5 0 0 1 16.6 5a4 4 0 0 1 2.9 5.5M10 14.5c0-1.1 2.24-2 5-2s5 .9 5 2-2.24 2-5 2-5-.9-5-2ZM10 14.5v5c0 1.1 2.24 2 5 2s5-.9 5-2v-5M10 17c0 1.1 2.24 2 5 2s5-.9 5-2",
+  },
 ];
 
 export default function ProjectsPage() {
@@ -101,6 +114,11 @@ export default function ProjectsPage() {
             <Grid className="mt-6 lg:grid-cols-3">
               {CATEGORIES.map((c) => (
                 <Card key={c.name} className="gap-2">
+                  <span className="mb-2 grid size-11 place-items-center rounded-xl bg-accent-soft text-accent-ink">
+                    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d={c.icon} />
+                    </svg>
+                  </span>
                   <h3 className="text-[1.05rem] font-semibold">{c.name}</h3>
                   <p className="text-[0.95rem] text-muted">{c.body}</p>
                 </Card>
