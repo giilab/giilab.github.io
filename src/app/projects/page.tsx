@@ -14,7 +14,7 @@ export const metadata: Metadata = pageMeta(
 const CATEGORIES = [
   {
     name: "Software Engineering",
-    body: "Backend platforms, APIs, cloud applications and integrations.",
+    body: "Frontend applications, backend platforms, APIs, cloud applications and integrations.",
     icon: "m8 7-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16",
   },
   {
@@ -36,7 +36,7 @@ export default function ProjectsPage() {
         visual={<TokenStreamVisual />}
         eyebrow="Projects"
         title={<>Engineering ideas into <span className="serif accent">working systems.</span></>}
-        lead="Our work spans backend platforms, cloud-native applications, data engineering, software integrations and intelligent automation. Some client engagements are confidential. We share the technical work we can make public and discuss relevant delivery experience directly."
+        lead="Our work spans frontend applications, backend platforms, cloud-native applications, data engineering, software integrations and intelligent automation. Some client engagements are confidential. We share the technical work we can make public and discuss relevant delivery experience directly."
       />
 
       {CASE_STUDIES.length > 0 && (
