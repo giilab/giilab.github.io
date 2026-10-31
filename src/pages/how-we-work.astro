@@ -189,18 +189,28 @@ const LIST_DOT = "mt-[0.55rem] h-1.5 w-1.5 shrink-0 rounded-full";
     button.setAttribute("aria-expanded", String(open));
   };
 
+  // A row may overrun by this much (a two-line name like "OpenAI Agents SDK" makes rows a few
+  // px taller); the grid row grows slightly instead of leaving a near-empty gap.
+  const SLACK = 24;
+
   const layout = () => {
     cards.forEach((card) => show(card, card.dataset.open === "true" ? Infinity : VISIBLE));
-    for (const card of cards) {
-      if (card.dataset.open === "true") continue;
-      const total = card.querySelectorAll("li").length;
-      for (let n = VISIBLE; n < total; n += PER_ROW) {
-        const before = card.offsetHeight;
-        show(card, n + PER_ROW);
-        // The card got taller, so that row did not fit in the space it had: take it back.
-        if (card.offsetHeight > before) {
-          show(card, n);
-          break;
+    // Twice: a card that used the slack makes its row taller, which may fit a row in a card
+    // filled earlier.
+    for (let pass = 0; pass < 2; pass++) {
+      for (const card of cards) {
+        if (card.dataset.open === "true") continue;
+        const items = card.querySelectorAll("li");
+        let n = [...items].filter((li) => !li.hidden).length;
+        while (n < items.length) {
+          const before = card.offsetHeight;
+          show(card, n + PER_ROW);
+          // The card outgrew its row by more than the slack: that row did not fit, take it back.
+          if (card.offsetHeight > before + SLACK) {
+            show(card, n);
+            break;
+          }
+          n += PER_ROW;
         }
       }
     }
