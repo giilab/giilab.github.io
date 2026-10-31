@@ -8,7 +8,6 @@ export const SITE = {
   email: "hello@giilab.in",
   phone: "+91 90287 35097",
   location: "Pune, Maharashtra, India",
-  portfolio: "https://pkaranje.github.io",
   linkedin: "https://www.linkedin.com/company/gii-lab",
   // wa.me link: country code + number, no "+" or spaces. Empty hides the footer link.
   whatsapp: "https://wa.me/919028735097",

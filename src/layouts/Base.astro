@@ -60,7 +60,7 @@ const JSONLD = [
       jobTitle: SITE.founder.role,
       description: `${SITE.founder.role} at ${SITE.name}, with 12+ years of experience building backend platforms with Python and AWS.`,
       url: `${SITE.url}/about/#founder`,
-      sameAs: [SITE.founder.linkedin, SITE.portfolio],
+      sameAs: [SITE.founder.linkedin],
       worksFor: { "@type": "ProfessionalService", "@id": `${HOME}#organization` },
       knowsAbout: ["Python", "AWS", "Backend engineering", "AI engineering", "Software architecture"],
     },
@@ -85,7 +85,7 @@ const JSONLD = [
     <title>{title}</title>
     <meta name="description" content={meta.description} />
     <meta name="application-name" content={SITE.name} />
-    <link rel="author" href={SITE.portfolio} />
+    <link rel="author" href={SITE.founder.linkedin} />
     <meta name="author" content={SITE.founder.name} />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="creator" content={SITE.founder.name} />
