@@ -7,7 +7,7 @@ import { SERVICES, pageMeta } from "@/lib/site";
 export const metadata: Metadata = pageMeta(
   "/services/",
   "AI Development & Software Engineering Services",
-  "Explore Giilab's AI development, AI agent engineering, business automation, custom applications and software integration services.",
+  "Giilab services: custom AI applications, AI agents, AI automation, AI integrations, process automation and AI consulting.",
 );
 
 const GROUPS = [

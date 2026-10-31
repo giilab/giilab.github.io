@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   ...pageMeta(
     "/",
     "AI Engineering, Automation & Software Solutions",
-    "Giilab builds practical AI applications, intelligent automation and custom software systems for businesses. Explore your next technology solution.",
+    "Giilab builds practical AI applications, intelligent automation and custom software systems that hold up in everyday use.",
   ),
   title: { absolute: "Giilab | AI Engineering, Automation & Software Solutions" },
 };

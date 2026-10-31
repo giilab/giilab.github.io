@@ -7,7 +7,7 @@ import { CASE_STUDIES, INDUSTRIES, pageMeta } from "@/lib/site";
 export const metadata: Metadata = pageMeta(
   "/projects/",
   "AI Engineering Projects & Technical Portfolio",
-  "Explore Giilab's software engineering portfolio, technical demonstrations and AI application development approach.",
+  "The Giilab engineering portfolio: software projects, technical demonstrations and how we build AI applications in practice.",
 );
 
 // Stroke icons drawn on a 24px grid, paths inlined to avoid an icon dependency.
@@ -131,6 +131,11 @@ export default function ProjectsPage() {
               <li>The evaluation criteria and measured outcomes.</li>
               <li>The technology stack.</li>
             </ul>
+            <p className="mt-3 text-[0.98rem] text-muted">
+              If we cannot back an outcome with evidence, we leave it out rather than estimate
+              it. Until a client agrees to publish, we are happy to walk you through comparable
+              work on a call.
+            </p>
           </div>
 
           <div className="mt-12">

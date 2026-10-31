@@ -4,8 +4,8 @@ import { SITE, pageMeta } from "@/lib/site";
 
 export const metadata: Metadata = pageMeta(
   "/editorial-policy/",
-  "Editorial Policy",
-  `How ${SITE.name} writes about its work: client permission, evidence for every claim, who writes the pages and how to report an error.`,
+  "Editorial Policy: How We Publish Our Work",
+  `How ${SITE.name} writes about its work: client permission, evidence for each claim, who writes our pages and how to report errors.`,
 );
 
 const SECTIONS = [
@@ -24,7 +24,9 @@ const SECTIONS = [
     body: (
       <p>
         We publish client work only with the client&rsquo;s permission. Without it, we do not
-        name the client or share details that would identify them.
+        name the client or share details that would identify them. When a client agrees, we
+        describe four things: the problem, what we built, how the result was measured and the
+        technology we used.
       </p>
     ),
   },
@@ -33,7 +35,9 @@ const SECTIONS = [
     body: (
       <p>
         We state an outcome only if we can back it with evidence. If we cannot, we leave it
-        out rather than estimate it.
+        out rather than estimate it. Where we give a number, it comes from a measure agreed with
+        the client before the work began. General views on what AI can and cannot do are
+        written as opinion, not presented as results.
       </p>
     ),
   },
@@ -41,7 +45,18 @@ const SECTIONS = [
     h: "Logos, testimonials and numbers",
     body: (
       <p>
-        We do not show logos, testimonials, numbers or certifications we cannot verify.
+        We do not show logos, testimonials, numbers or certifications we cannot verify. When
+        we name a technology or a company, it is to describe our work, not to suggest an
+        endorsement or a partnership.
+      </p>
+    ),
+  },
+  {
+    h: "Technical content",
+    body: (
+      <p>
+        Our explanations of how we approach a problem are general. They are not advice for your
+        specific systems, data or legal position. For that, talk to us about your case directly.
       </p>
     ),
   },

@@ -8,7 +8,7 @@ import { SOLUTIONS, pageMeta } from "@/lib/site";
 export const metadata: Metadata = pageMeta(
   "/solutions/",
   "Business AI Solutions & Intelligent Automation",
-  "Explore AI-powered customer support, document processing, enterprise knowledge search and operational data solutions built around your business.",
+  "AI solutions for customer support, document processing, knowledge search and operational data, each tested on your data.",
 );
 
 const LABEL = "text-[0.75rem] font-semibold uppercase tracking-[0.14em] text-accent-ink";

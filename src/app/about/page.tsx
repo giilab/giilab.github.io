@@ -7,7 +7,7 @@ import { SITE, PROCESS, pageMeta } from "@/lib/site";
 export const metadata: Metadata = pageMeta(
   "/about/",
   "About Our AI Engineering Studio in Pune, India",
-  "Meet Giilab, an engineering studio building practical AI applications, intelligent automation and reliable software systems for businesses worldwide.",
+  "Meet Giilab, a Pune-based engineering studio building practical AI applications, automation and reliable software systems.",
 );
 
 const PRINCIPLES = [

@@ -10,3 +10,9 @@
 # Hashed build assets never change.
 /_next/static/*
   Cache-Control: public, max-age=31536000, immutable
+
+# Icons and logo files change rarely; cache for a day.
+/icons/*
+  Cache-Control: public, max-age=86400
+/giilab-*.svg
+  Cache-Control: public, max-age=86400
