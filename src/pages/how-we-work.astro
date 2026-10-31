@@ -8,7 +8,7 @@ import Grid from "@/components/ui/Grid.astro";
 import SectionHead from "@/components/ui/SectionHead.astro";
 import TokenStreamVisual from "@/components/visuals/TokenStreamVisual.astro";
 import CTABand from "@/components/CTABand.astro";
-import { STACK, logoSrc } from "@/lib/stack";
+import { STACK, logoSrc, type Tech } from "@/lib/stack";
 import { PROCESS, pageMeta } from "@/lib/site";
 
 const meta = pageMeta(
@@ -36,6 +36,17 @@ const MEASURE = [
   "We report the result against that measure, including when it falls short.",
   "If we cannot back a claim with evidence, we leave it out.",
 ];
+
+// Three scrolling rows, one per layer, built from the stack's groups (indexes into STACK).
+const ROWS: [string, Tech[]][] = (
+  [
+    ["AI and agents", [0, 1]],
+    ["Build", [2]],
+    ["Data and infrastructure", [3, 4, 5]],
+  ] as const
+).map(([label, groups]) => [label, groups.flatMap((g) => STACK[g][1])]);
+// Short rows repeat so one copy is wider than the viewport and the loop has no gap.
+const MIN_CHIPS = 16;
 
 const BIG_NUMBER =
   "block font-[family-name:var(--font-display)] text-[3rem] font-extrabold leading-none tracking-[-0.05em] text-accent-ink";
@@ -137,22 +148,31 @@ const LIST_DOT = "mt-[0.55rem] h-1.5 w-1.5 shrink-0 rounded-full";
       >
         The stack <span class="serif accent">we build on.</span>
       </SectionHead>
-      {/* Every logo renders; the script below trims each card to what fits (see there). */}
-      <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {STACK.map(([group, items]) => (
-          <div class="stack-card flex flex-col rounded-[var(--radius-brand)] border border-line bg-surface p-4">
-            <div class="flex items-baseline justify-between border-b border-line pb-2.5">
-              <h3 class="text-[0.9rem] font-semibold">{group}</h3>
-              <span class="text-[0.75rem] text-faint">{items.length}</span>
+      <div class="mt-12 grid gap-7">
+        {ROWS.map(([label, items], row) => {
+          const chips = Array.from({ length: Math.ceil(MIN_CHIPS / items.length) }, () => items).flat();
+          return (
+            <div class="min-w-0">
+              <h3 class="mb-3 text-[0.78rem] font-semibold uppercase tracking-[0.08em] text-muted">{label}</h3>
+              {/* Two identical copies; the track slides by one copy (-50%) and loops. Odd rows run
+                  the other way. Repeats past the first copy are hidden from screen readers. */}
+              <div class="marquee">
+                <div class={`marquee-track ${row % 2 ? "marquee-reverse" : ""}`} style={`--marquee-duration:${chips.length * 3}s`}>
+                  {[0, 1].map((copy) => (
+                    <ul class="marquee-copy" aria-hidden={copy === 1 ? "true" : undefined}>
+                      {chips.map(([name, logo], i) => (
+                        <li class="stack-chip" aria-hidden={i >= items.length ? "true" : undefined}>
+                          <img src={logoSrc(logo)} alt="" width="28" height="28" loading="lazy" />
+                          {name}
+                        </li>
+                      ))}
+                    </ul>
+                  ))}
+                </div>
+              </div>
             </div>
-            <ul class="mt-3.5 grid grid-cols-4 gap-x-1.5 gap-y-3">
-              {items.map(([name, logo]) => (
-                <li class="stack-tile"><img src={logoSrc(logo)} alt="" width="40" height="40" loading="lazy" />{name}</li>
-              ))}
-            </ul>
-            <button type="button" hidden class="stack-more mt-auto cursor-pointer self-start pt-3 text-[0.78rem] font-medium text-accent-ink"></button>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </Container>
   </Section>
@@ -164,62 +184,3 @@ const LIST_DOT = "mt-[0.55rem] h-1.5 w-1.5 shrink-0 rounded-full";
     Ready to take <span class="serif accent">the first step?</span>
   </CTABand>
 </Base>
-
-<script>
-  // Stack cards: a closed card shows two rows of logos, plus any further rows that fit in the
-  // height its grid row already has (an opened neighbour makes the row taller). The rest sit
-  // behind "+N more". Without JavaScript every logo shows.
-  const VISIBLE = 8;
-  const PER_ROW = 4;
-  const cards = [...document.querySelectorAll<HTMLElement>(".stack-card")];
-
-  const show = (card: HTMLElement, n: number) => {
-    const items = card.querySelectorAll("li");
-    items.forEach((li, i) => (li.hidden = i >= n));
-    const button = card.querySelector<HTMLButtonElement>(".stack-more")!;
-    const open = card.dataset.open === "true";
-    button.hidden = !open && n >= items.length;
-    button.textContent = open ? "Show less" : `+${items.length - n} more`;
-    button.setAttribute("aria-expanded", String(open));
-  };
-
-  // A row may overrun by this much (a two-line name like "OpenAI Agents SDK" makes rows a few
-  // px taller); the grid row grows slightly instead of leaving a near-empty gap.
-  const SLACK = 24;
-
-  const layout = () => {
-    cards.forEach((card) => show(card, card.dataset.open === "true" ? Infinity : VISIBLE));
-    // Twice: a card that used the slack makes its row taller, which may fit a row in a card
-    // filled earlier.
-    for (let pass = 0; pass < 2; pass++) {
-      for (const card of cards) {
-        if (card.dataset.open === "true") continue;
-        const items = card.querySelectorAll("li");
-        let n = [...items].filter((li) => !li.hidden).length;
-        while (n < items.length) {
-          const before = card.offsetHeight;
-          show(card, n + PER_ROW);
-          // The card outgrew its row by more than the slack: that row did not fit, take it back.
-          if (card.offsetHeight > before + SLACK) {
-            show(card, n);
-            break;
-          }
-          n += PER_ROW;
-        }
-      }
-    }
-  };
-
-  cards.forEach((card) =>
-    card.querySelector(".stack-more")!.addEventListener("click", () => {
-      card.dataset.open = String(card.dataset.open !== "true");
-      layout();
-    }),
-  );
-  let frame = 0;
-  addEventListener("resize", () => {
-    cancelAnimationFrame(frame);
-    frame = requestAnimationFrame(layout);
-  });
-  layout();
-</script>

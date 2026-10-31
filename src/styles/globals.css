@@ -148,16 +148,31 @@
 }
 
 @layer components {
-  /* Logo tiles in the How we work stack cards: classes, not utilities, because 70+ tiles
-     repeating the utility list bloats the page HTML. White tile keeps dark logos (Next.js,
-     Rust) visible in dark mode. */
-  .stack-tile {
-    display: flex; flex-direction: column; align-items: center; gap: 0.375rem;
-    text-align: center; font-size: 0.68rem; line-height: 1.25; color: var(--muted);
+  /* Scrolling logo rows on How we work. Each copy carries its own trailing gap so -50% lands
+     exactly on the start of the second copy. Edges fade out; hover pauses. Chips use classes,
+     not utilities, because ~150 repeated utility lists bloat the page HTML. The white tile
+     keeps dark logos (Next.js, GitHub) visible in dark mode. */
+  .marquee {
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
   }
-  .stack-tile img {
-    width: 2.5rem; height: 2.5rem; padding: 0.5625rem; object-fit: contain;
-    border: 1px solid var(--line); border-radius: 0.75rem; background: #fff;
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee var(--marquee-duration, 40s) linear infinite;
+  }
+  .marquee-reverse { animation-direction: reverse; }
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+  .marquee-copy { display: flex; gap: 0.6rem; padding-right: 0.6rem; }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+  .stack-chip {
+    display: inline-flex; flex-shrink: 0; align-items: center; gap: 0.5rem;
+    padding: 0.25rem 0.875rem 0.25rem 0.25rem; font-size: 0.85rem;
+    border: 1px solid var(--line); border-radius: 999px; background: var(--bg-card);
+  }
+  .stack-chip img {
+    width: 1.75rem; height: 1.75rem; padding: 0.3125rem; object-fit: contain;
+    border-radius: 999px; background: #fff;
   }
 
   /* Display headings: Urbanist, tight and heavy. */
@@ -283,5 +298,10 @@
      the per-class animation rules above at equal specificity. */
   @media (prefers-reduced-motion: reduce) {
     .hero-mark-draw, .hero-mark-fill, .hero-mark-float, .hero-mark-glow, .hv-loop { animation: none; }
+    /* Static rows instead: one copy, wrapped, no edge fade, no repeats. */
+    .marquee { mask-image: none; }
+    .marquee-track { animation: none; width: auto; }
+    .marquee-copy { flex-wrap: wrap; padding-right: 0; }
+    .marquee-copy[aria-hidden], .marquee-copy > [aria-hidden] { display: none; }
   }
 }
