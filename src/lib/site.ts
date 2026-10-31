@@ -198,34 +198,91 @@ export const SOLUTIONS: Solution[] = [
   },
 ];
 
+// `name` is the short label for lists; `title` heads the card on the Industries page.
 export const INDUSTRIES = [
   {
     name: "Education",
-    note: "Course and content recommendation, learner support, and the data pipelines behind both.",
+    title: "Education & Learning",
+    note: "Build technology that improves learning experiences and supports education operations.",
+    areas: [
+      "Learning management platforms",
+      "Content discovery and recommendations",
+      "Learner support automation",
+      "Education data platforms",
+      "Reporting and analytics",
+    ],
   },
   {
     name: "Food",
-    note: "Catalogue, ordering and operations systems, and automation across the manual steps between them.",
+    title: "Food & Commerce",
+    note: "Connect product discovery, ordering and business operations through practical software systems.",
+    areas: [
+      "Digital catalogues",
+      "Ordering and inventory workflows",
+      "Business process automation",
+      "Customer communication",
+      "Commerce integrations",
+    ],
   },
   {
     name: "Healthcare",
-    note: "Document-heavy intake and administrative workflows automated, with sensitive cases kept with people.",
+    title: "Healthcare",
+    note: "Improve administrative workflows and information accessibility while keeping appropriate human oversight.",
+    areas: [
+      "Document processing",
+      "Administrative automation",
+      "Information retrieval",
+      "Healthcare application integrations",
+      "Operational data management",
+    ],
   },
   {
     name: "Manufacturing",
-    note: "Production and quality data brought together, document-heavy processes automated, and reporting the floor can act on.",
+    title: "Manufacturing",
+    note: "Connect production information and operational systems to support more informed decisions.",
+    areas: [
+      "Production data integration",
+      "Quality data management",
+      "Document automation",
+      "Operational dashboards",
+      "Process monitoring",
+    ],
   },
   {
     name: "Industrial",
-    note: "Equipment and sensor data ingested at volume, monitoring and alerting, and maintenance workflows built around it.",
+    title: "Industrial",
+    note: "Build software infrastructure for connected equipment and industrial operations.",
+    areas: [
+      "Equipment and sensor data ingestion",
+      "Device and sensor monitoring",
+      "Data processing pipelines",
+      "Alerts and notifications",
+      "Operational dashboards",
+    ],
   },
   {
     name: "Energy",
-    note: "Asset and operational data consolidated, monitoring and reporting automated, and the pipelines that feed both.",
+    title: "Energy",
+    note: "Develop software systems that support energy monitoring, asset management and operational efficiency.",
+    areas: [
+      "Energy data analytics",
+      "Asset monitoring",
+      "Installation planning",
+      "Performance reporting",
+      "Energy management workflows",
+    ],
   },
   {
     name: "Open Source",
-    note: "Libraries, tooling and integrations built in the open, with the documentation and maintenance that keep them usable.",
+    title: "Open Source & Developer Ecosystems",
+    note: "Build and maintain software tools, integrations and platforms that support developer communities.",
+    areas: [
+      "Developer platforms",
+      "Open-source integrations",
+      "Data infrastructure",
+      "Platform engineering",
+      "Documentation and tooling",
+    ],
   },
 ] as const;
 

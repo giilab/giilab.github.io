@@ -6,8 +6,8 @@ import { INDUSTRIES, pageMeta } from "@/lib/site";
 
 export const metadata: Metadata = pageMeta(
   "/industries/",
-  "AI & Software for Manufacturing, Energy & Industry",
-  "Where Giilab has shipped production software: education, food, healthcare, manufacturing, industrial, energy, open source.",
+  "AI & Software Engineering for Industry",
+  "Explore Giilab's software engineering, AI automation, data integration and intelligent solutions for education, manufacturing, energy and other industries.",
 );
 
 export default function IndustriesPage() {
@@ -16,17 +16,29 @@ export default function IndustriesPage() {
       <PageHero
         visual={<RippleVisual />}
         eyebrow="Industries"
-        title={<>Where we have <span className="serif accent">actually shipped.</span></>}
-        lead="This is a short list on purpose. These are the sectors where we have built production systems. We have not listed every industry an AI studio could claim."
+        title={<>Engineering solutions <span className="serif accent">across industries.</span></>}
+        lead="Different industries have different operational challenges, data requirements and technology environments. Giilab applies AI engineering, software development, automation and data infrastructure to industry-specific problems. We focus on understanding the domain before recommending a solution."
       />
 
       <Section>
         <Container>
+          <p className="mb-8 max-w-[62ch] text-[0.98rem] text-muted">
+            Every sector below is one where we have delivered production systems. Areas of
+            application show the kinds of work we take on there.
+          </p>
           <Grid className="lg:grid-cols-2">
             {INDUSTRIES.map((i) => (
               <Card key={i.name} className="gap-3">
-                <h2 className="text-[1.2rem] font-semibold">{i.name}</h2>
+                <h2 className="text-[1.2rem] font-semibold">{i.title}</h2>
                 <p className="text-[0.95rem] text-muted">{i.note}</p>
+                <h3 className="mt-2 text-[0.7rem] font-medium uppercase tracking-[0.14em] text-faint">
+                  Areas of application
+                </h3>
+                <ul className="grid list-disc gap-1 pl-5 text-[0.95rem] text-muted">
+                  {i.areas.map((a) => (
+                    <li key={a}>{a}</li>
+                  ))}
+                </ul>
               </Card>
             ))}
           </Grid>
@@ -49,8 +61,9 @@ export default function IndustriesPage() {
       </Section>
 
       <CTABand
-        title="Tell us about your sector."
-        body="A short call is usually enough to work out whether the problem is one we can help with."
+        title={<>Have a challenge specific to <span className="serif accent">your industry?</span></>}
+        body="Tell us about your business environment and the problem you want to solve. We'll help evaluate the right technical approach."
+        cta="Discuss Your Industry Challenge"
       />
     </>
   );
