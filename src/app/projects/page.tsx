@@ -13,24 +13,19 @@ export const metadata: Metadata = pageMeta(
 // Stroke icons drawn on a 24px grid, paths inlined to avoid an icon dependency.
 const CATEGORIES = [
   {
+    name: "Software Engineering",
+    body: "Frontend applications, backend platforms, APIs, cloud applications and integrations.",
+    icon: "m8 7-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16",
+  },
+  {
     name: "AI Engineering",
     body: "RAG, intelligent applications, AI agents and automation demonstrations.",
     icon: "M7 5h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2ZM9.5 15l1.75-6h1.5L14.5 15M10.1 13h3.8M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3",
   },
   {
-    name: "SaaS",
-    body: "Multi-tenant products with sign-up, subscriptions, user management and dashboards.",
-    icon: "M12 3 2 8l10 5 10-5-10-5ZM2 12l10 5 10-5M2 16l10 5 10-5",
-  },
-  {
     name: "Data & Cloud Engineering",
     body: "Data pipelines, infrastructure and operational systems.",
     icon: "M7 13.5H6.5a4 4 0 0 1-.6-7.96A5.5 5.5 0 0 1 16.6 5a4 4 0 0 1 2.9 5.5M10 14.5c0-1.1 2.24-2 5-2s5 .9 5 2-2.24 2-5 2-5-.9-5-2ZM10 14.5v5c0 1.1 2.24 2 5 2s5-.9 5-2v-5M10 17c0 1.1 2.24 2 5 2s5-.9 5-2",
-  },
-  {
-    name: "Software Engineering",
-    body: "Frontend applications, backend platforms, APIs, cloud applications and integrations.",
-    icon: "m8 7-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16",
   },
 ];
 
@@ -116,16 +111,16 @@ export default function ProjectsPage() {
 
           <div className="mt-12">
             <h2 className="text-[clamp(1.4rem,2.8vw,2rem)] font-bold">What we build</h2>
-            <Grid cols={4} className="mt-6">
+            <Grid className="mt-6 lg:grid-cols-3">
               {CATEGORIES.map((c) => (
                 <Card key={c.name} className="gap-2">
                   <div className="flex items-center gap-3">
-                    <span className="grid size-13 shrink-0 place-items-center rounded-xl bg-accent-soft text-accent-ink">
-                      <svg width={28} height={28} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-accent-soft text-accent-ink">
+                      <svg width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                         <path d={c.icon} />
                       </svg>
                     </span>
-                    <h3 className="text-[1.12rem] font-semibold">{c.name}</h3>
+                    <h3 className="text-[1.05rem] font-semibold">{c.name}</h3>
                   </div>
                   <p className="text-[0.95rem] text-muted">{c.body}</p>
                 </Card>
