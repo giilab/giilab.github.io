@@ -1,7 +1,7 @@
 ---
 // Brand glyphs (Simple Icons, 24x24) live in public/icons/ as cached files rather
 // than ~2.5 KB of inline path data on every page; masked so they take currentColor.
-type Props = { name: "linkedin" | "whatsapp" | "github"; size?: number };
+type Props = { name: "linkedin" | "whatsapp"; size?: number };
 const { name, size = 20 } = Astro.props;
 const mask = `url(/icons/${name}.svg) center / contain no-repeat`;
 ---

@@ -3,12 +3,11 @@ export const SITE = {
   legalName: "Great Ideas Innovation Lab LLP",
   descriptor: "AI Engineering Studio",
   positioning: "Practical AI solutions for real business problems.",
-  // Single canonical origin: GitHub Pages 301s giilab.in and giilab.github.io here.
+  // Single canonical origin: Cloudflare 301s giilab.in here.
   url: "https://www.giilab.in",
   email: "hello@giilab.in",
   phone: "+91 90287 35097",
   location: "Pune, Maharashtra, India",
-  github: "https://github.com/giilab",
   portfolio: "https://pkaranje.github.io",
   linkedin: "https://www.linkedin.com/company/gii-lab",
   // wa.me link: country code + number, no "+" or spaces. Empty hides the footer link.
