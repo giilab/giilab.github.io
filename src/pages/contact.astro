@@ -26,7 +26,7 @@ const FAQ = [
   ["What happens after I submit the form?", "We review your enquiry, arrange a discovery conversation where appropriate and recommend the next steps."],
 ];
 
-// Enquiry types, each pointing at the page that describes it.
+// Enquiry types for the first FAQ answer, each pointing at the page that describes it.
 const TOPICS = [
   ["Custom AI applications and AI agents", "/services/#ai-engineering"],
   ["Automation and system integrations", "/services/#automation"],
@@ -58,9 +58,20 @@ const LINK = "text-[0.95rem] text-accent-ink underline-offset-4 hover:underline"
         Frequently asked <span class="serif accent">questions.</span>
       </SectionHead>
       <dl class="mt-10 grid gap-5 lg:grid-cols-2">
-        {FAQ.map(([q, a], i) => (
-          // Odd count: the last answer spans both columns so the grid has no gap.
-          <div class={`faq-item ${i === FAQ.length - 1 ? "lg:col-span-2" : ""}`}>
+        <div class="faq-item">
+          <dt class="text-[1.05rem] font-semibold">What can I contact you about?</dt>
+          <dd class="mt-2.5 text-[0.95rem] text-muted">
+            <ul class="grid gap-1.5">
+              {TOPICS.map(([label, href]) => (
+                <li>
+                  <a href={href} class="text-accent-ink underline-offset-4 hover:underline">{label}</a>
+                </li>
+              ))}
+            </ul>
+          </dd>
+        </div>
+        {FAQ.map(([q, a]) => (
+          <div class="faq-item">
             <dt class="text-[1.05rem] font-semibold">{q}</dt>
             <dd class="mt-2.5 text-[0.95rem] text-muted">{a}</dd>
           </div>
@@ -81,16 +92,6 @@ const LINK = "text-[0.95rem] text-accent-ink underline-offset-4 hover:underline"
         </div>
 
         <div class="grid content-start gap-5">
-          <Card class="gap-2.5">
-            <h2 class="text-[1.05rem] font-semibold">What you can contact us about</h2>
-            <ul class="grid gap-1.5 text-[0.92rem]">
-              {TOPICS.map(([label, href]) => (
-                <li>
-                  <a href={href} class="text-accent-ink underline-offset-4 hover:underline">{label}</a>
-                </li>
-              ))}
-            </ul>
-          </Card>
           <Card class="gap-2.5">
             <h2 class="text-[1.05rem] font-semibold">Email</h2>
             <a href={`mailto:${SITE.email}`} class={LINK}>{SITE.email}</a>
