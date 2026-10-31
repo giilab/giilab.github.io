@@ -13,7 +13,7 @@ const COMPANY = [
 const LEGAL = [
   { href: "/privacy/", label: "Privacy" },
   { href: "/terms/", label: "Terms" },
-  { href: "/about/#editorial-policy", label: "Editorial policy" },
+  { href: "/editorial-policy/", label: "Editorial policy" },
 ];
 
 function LinkColumn({ title, links }: { title: string; links: readonly { href: string; label: string }[] }) {

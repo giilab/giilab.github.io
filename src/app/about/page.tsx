@@ -166,25 +166,6 @@ export default function AboutPage() {
         </Container>
       </Section>
 
-      <Section id="editorial-policy">
-        <Container>
-          <div className="max-w-[68ch]">
-            <SectionHead eyebrow="Editorial policy" title={<>How we write <span className="serif accent">about our work.</span></>} />
-            <ul className="mt-8 grid list-disc gap-2.5 pl-5 text-[0.98rem] text-muted">
-              <li>We publish client work only with the client&rsquo;s permission.</li>
-              <li>We state an outcome only if we can back it with evidence. If we cannot, we leave it out rather than estimate it.</li>
-              <li>We do not show logos, testimonials, numbers or certifications we cannot verify.</li>
-              <li>Pages are written by {SITE.founder.name}. Legal pages show the date they were last updated.</li>
-              <li>
-                Spotted something wrong? Email{" "}
-                <a href={`mailto:${SITE.email}`} className="text-accent-ink underline underline-offset-4">{SITE.email}</a>{" "}
-                and we will correct it.
-              </li>
-            </ul>
-          </div>
-        </Container>
-      </Section>
-
       <CTABand
         title="Think we might fit?"
         body="Bring a problem rather than a brief. Thirty minutes is usually enough to tell."
