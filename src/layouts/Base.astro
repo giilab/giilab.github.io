@@ -15,7 +15,7 @@ import { SITE, BUILT, type PageMeta } from "@/lib/site";
 type Props = { meta: PageMeta };
 const { meta } = Astro.props;
 
-const title = `${meta.title} | ${SITE.name}`;
+const title = meta.brandFirst ? `${SITE.name} | ${meta.title}` : `${meta.title} | ${SITE.name}`;
 const canonical = new URL(meta.path, SITE.url).href;
 const og = `${SITE.url}/og.png`;
 const ogAlt = `${SITE.name} — ${SITE.descriptor}`;

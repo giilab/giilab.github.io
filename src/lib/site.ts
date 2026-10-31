@@ -28,9 +28,11 @@ export const BUILT = new Date().toISOString().slice(0, 10);
 export type PageMeta = {
   /** Canonical path, ending in "/". */
   path: string;
-  /** Page title; Base.astro appends " | Giilab" for <title> and social tags. */
+  /** Page title; Base.astro adds " | Giilab" (or "Giilab | " with brandFirst) for <title> and social tags. */
   title: string;
   description: string;
+  /** Home page: brand before the title. */
+  brandFirst?: boolean;
   /** Error pages: robots noindex and no canonical link. */
   noindex?: boolean;
 };
