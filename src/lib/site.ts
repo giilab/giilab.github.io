@@ -224,10 +224,6 @@ export const INDUSTRIES = [
     note: "Asset and operational data consolidated, monitoring and reporting automated, and the pipelines that feed both.",
   },
   {
-    name: "IIoT",
-    note: "Device telemetry ingested from the edge, stored and processed reliably, and turned into alerts and dashboards.",
-  },
-  {
     name: "Open Source",
     note: "Libraries, tooling and integrations built in the open, with the documentation and maintenance that keep them usable.",
   },

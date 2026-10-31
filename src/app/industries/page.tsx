@@ -6,8 +6,8 @@ import { INDUSTRIES, pageMeta } from "@/lib/site";
 
 export const metadata: Metadata = pageMeta(
   "/industries/",
-  "AI & Software for Manufacturing, Energy, IIoT",
-  "Where Giilab has shipped production software: education, food, healthcare, manufacturing, industrial, energy, IIoT, open source.",
+  "AI & Software for Manufacturing, Energy & Industry",
+  "Where Giilab has shipped production software: education, food, healthcare, manufacturing, industrial, energy, open source.",
 );
 
 export default function IndustriesPage() {
