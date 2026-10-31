@@ -140,12 +140,12 @@ export function RippleVisual() {
 export function TokenStreamVisual() {
   const g = `tv-${useId().replace(/:/g, "")}`;
   const flows = [
-    ["Product idea", "saas"],
-    ["Manual workflow", "automation"],
-    ["Scattered data", "data_cloud"],
-    ["Legacy system", "modernised"],
-    ["AI use case", "ai_app"],
-    ["Integration gap", "apis"],
+    ["Product idea", "SaaS / software"],
+    ["Manual workflow", "Automation"],
+    ["Scattered data", "Data / cloud system"],
+    ["Legacy system", "Modernised build"],
+    ["AI use case", "AI engineering"],
+    ["Integration gap", "APIs & integrations"],
   ];
   // Each JSON line lights up as its input reaches the mark (same delay, same period).
   const jsonY = (i: number) => 127 + i * 21;
@@ -167,20 +167,20 @@ export function TokenStreamVisual() {
       <circle cx={190} cy={200} r={50} fill="var(--accent-soft)" className="hv-node hv-loop" />
       <MarkAt cx={190} cy={200} size={72} gradId={g} />
       <g fontFamily="ui-monospace, SFMono-Regular, Menlo, monospace" fontSize={11}>
-        <text x={244} y={jsonY(0)} style={{ fill: "var(--muted)" }}>{"{"}</text>
-        {flows.map(([input, key], i) => (
+        <text x={238} y={jsonY(0)} style={{ fill: "var(--muted)" }}>{"["}</text>
+        {flows.map(([input, output], i) => (
           <text
             key={input}
-            x={244}
+            x={238}
             y={jsonY(i + 1)}
             xmlSpace="preserve"
             className="hv-out hv-loop"
             style={{ fill: "var(--accent-text)", animationDelay: `${i * 0.75}s` }}
           >
-            {`  "${key}": "live"${i < flows.length - 1 ? "," : ""}`}
+            {`  "${output}"${i < flows.length - 1 ? "," : ""}`}
           </text>
         ))}
-        <text x={244} y={jsonY(flows.length + 1)} style={{ fill: "var(--muted)" }}>{"}"}</text>
+        <text x={238} y={jsonY(flows.length + 1)} style={{ fill: "var(--muted)" }}>{"]"}</text>
       </g>
     </svg>
   );
