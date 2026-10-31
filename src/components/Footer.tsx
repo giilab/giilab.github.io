@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { LockupStacked } from "./Logo";
 import { Container, SocialIcon } from "./ui";
-import { SITE, SERVICES, NAV, BUILT } from "@/lib/site";
+import { SITE, SERVICES, NAV } from "@/lib/site";
+
+const HEADING = "mb-4 text-[0.75rem] font-semibold uppercase tracking-[0.1em] text-accent-ink";
 
 const COMPANY = [
   { href: "/about/", label: "About" },
@@ -14,11 +16,28 @@ const LEGAL = [
   { href: "/about/#editorial-policy", label: "Editorial policy" },
 ];
 
+function LinkColumn({ title, links }: { title: string; links: readonly { href: string; label: string }[] }) {
+  return (
+    <nav aria-label={title}>
+      <h2 className={HEADING}>{title}</h2>
+      <ul className="grid gap-[11px]">
+        {links.map((item) => (
+          <li key={item.href}>
+            <Link href={item.href} className="text-[0.9rem] text-muted transition-colors hover:text-accent-ink">
+              {item.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+}
+
 export default function Footer() {
   return (
     <footer className="relative z-[2] mt-[clamp(56px,7vw,88px)] border-t border-line bg-elevated pt-[clamp(56px,7vw,88px)]">
       <Container>
-        <div className="grid grid-cols-1 gap-[clamp(28px,3.5vw,48px)] pb-[clamp(48px,6vw,72px)] sm:grid-cols-2 lg:grid-cols-[1fr_auto_auto_auto_auto] lg:gap-x-[clamp(40px,4vw,64px)]">
+        <div className="grid grid-cols-1 gap-[clamp(28px,3.5vw,48px)] pb-[clamp(48px,6vw,72px)] sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[1fr_auto_auto_auto_auto_auto] lg:gap-x-[clamp(40px,4vw,64px)]">
           <div>
             <Link href="/">
               <LockupStacked markHeight={54} />
@@ -32,26 +51,11 @@ export default function Footer() {
             </p>
           </div>
 
-          {[
-            { title: "Explore", links: NAV.filter((item) => item.href !== "/about/") },
-            { title: "Company", links: COMPANY },
-          ].map((col) => (
-            <nav key={col.title} aria-label={col.title}>
-              <h2 className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-faint">{col.title}</h2>
-              <ul className="grid gap-[11px]">
-                {col.links.map((item) => (
-                  <li key={item.href}>
-                    <Link href={item.href} className="text-[0.9rem] text-muted transition-colors hover:text-accent-ink">
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          ))}
+          <LinkColumn title="Explore" links={NAV.filter((item) => item.href !== "/about/")} />
+          <LinkColumn title="Company" links={COMPANY} />
 
           <nav aria-label="Services">
-            <h2 className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-faint">Services</h2>
+            <h2 className={HEADING}>Services</h2>
             <ul className="grid gap-[11px]">
               {SERVICES.map((s) => (
                 <li key={s.slug}>
@@ -64,7 +68,7 @@ export default function Footer() {
           </nav>
 
           <nav aria-label="Connect">
-            <h2 className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-faint">Connect</h2>
+            <h2 className={HEADING}>Connect</h2>
             <ul className="grid gap-[11px]">
               <li><a href={`mailto:${SITE.email}`} className="text-[0.9rem] text-muted transition-colors hover:text-accent-ink">{SITE.email}</a></li>
               <li><a href={`tel:${SITE.phone.replace(/\s/g, "")}`} className="text-[0.9rem] text-muted transition-colors hover:text-accent-ink">{SITE.phone}</a></li>
@@ -92,23 +96,13 @@ export default function Footer() {
               </li>
             </ul>
           </nav>
+
+          <LinkColumn title="Legal" links={LEGAL} />
         </div>
 
         <div className="flex flex-wrap items-center justify-between gap-2.5 border-t border-line py-[26px] text-[0.84rem] text-faint">
           <span>&copy; {new Date().getFullYear()} {SITE.legalName}. All rights reserved.</span>
-          <nav aria-label="Legal" className="flex flex-wrap gap-x-5 gap-y-1">
-            {LEGAL.map((item) => (
-              <Link key={item.href} href={item.href} className="transition-colors hover:text-accent-ink">
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-          <span>
-            Site updated{" "}
-            <time dateTime={BUILT}>
-              {new Date(BUILT).toLocaleDateString("en-GB", { month: "long", year: "numeric" })}
-            </time>
-          </span>
+          <span>Built for businesses worldwide.</span>
         </div>
       </Container>
     </footer>
