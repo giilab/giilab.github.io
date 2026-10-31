@@ -148,16 +148,16 @@ export function TokenStreamVisual() {
     ["Integration gap", "APIs & integrations"],
   ];
   // Each JSON line lights up as its input reaches the mark (same delay, same period).
-  const jsonY = (i: number) => 127 + i * 21;
+  const jsonY = (i: number) => 119 + i * 23;
   return (
-    <svg viewBox="0 0 400 400" className="w-full" focusable="false">
+    <svg viewBox="0 0 400 400" className="w-full overflow-visible" focusable="false">
       <defs><MarkGradient id={g} /></defs>
       {flows.map(([input], i) => (
         <text
           key={input}
           x={0}
           y={115 + i * 34}
-          fontSize={12}
+          fontSize={14}
           className="hv-token hv-loop"
           style={{ fill: "var(--muted)", animationDelay: `${i * 0.75}s` }}
         >
@@ -166,7 +166,7 @@ export function TokenStreamVisual() {
       ))}
       <circle cx={190} cy={200} r={50} fill="var(--accent-soft)" className="hv-node hv-loop" />
       <MarkAt cx={190} cy={200} size={72} gradId={g} />
-      <g fontFamily="ui-monospace, SFMono-Regular, Menlo, monospace" fontSize={11}>
+      <g fontFamily="ui-monospace, SFMono-Regular, Menlo, monospace" fontSize={13}>
         <text x={238} y={jsonY(0)} style={{ fill: "var(--muted)" }}>{"["}</text>
         {flows.map(([input, output], i) => (
           <text
