@@ -108,7 +108,7 @@ export default function Footer() {
 
         <div className="flex flex-wrap items-center justify-between gap-2.5 border-t border-line py-[26px] text-[0.84rem] text-faint">
           <span>&copy; {new Date().getFullYear()} {SITE.legalName}. All rights reserved.</span>
-          <span>Built for businesses worldwide.</span>
+          <span>Working with businesses worldwide.</span>
         </div>
       </Container>
     </footer>
