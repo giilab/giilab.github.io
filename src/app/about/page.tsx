@@ -131,7 +131,7 @@ export default function AboutPage() {
             <div className="grid gap-6 rounded-[var(--radius-brand)] border border-line bg-surface p-6 sm:grid-cols-[160px_1fr] sm:p-7">
               {/* eslint-disable-next-line @next/next/no-img-element -- static export, no image optimiser */}
               <img
-                src="/team/pratik.jpg"
+                src="/team/pratik.webp"
                 alt={`${SITE.founder.name}, ${SITE.founder.role}`}
                 width={160}
                 height={160}

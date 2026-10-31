@@ -36,16 +36,16 @@ function Arrow() {
 export default function RoutingVisual({ full = false }: { full?: boolean }) {
   const Heading = full ? "h3" : "h2";
   return (
-    <figure className="m-0 w-full">
-      <figcaption className="mb-5">
-        <Heading className="text-[1.15rem] font-semibold sm:text-[1.25rem]">
+    <section aria-labelledby="routing-visual-title" className="w-full">
+      <div className="mb-5">
+        <Heading id="routing-visual-title" className="text-[1.15rem] font-semibold sm:text-[1.25rem]">
           How AI Automation Works at Giilab
         </Heading>
         <p className="mt-1.5 text-[0.92rem] text-muted">
           Every task is evaluated, automated when appropriate, and escalated to a person when
           needed.
         </p>
-      </figcaption>
+      </div>
 
       <div className="rounded-[var(--radius-brand)] border border-line bg-surface p-5 sm:p-6">
         <div className="grid grid-cols-1 items-center gap-4 lg:grid-cols-[1fr_auto_auto_auto_1fr] lg:gap-5">
@@ -132,6 +132,6 @@ export default function RoutingVisual({ full = false }: { full?: boolean }) {
           )}
         </div>
       </div>
-    </figure>
+    </section>
   );
 }
