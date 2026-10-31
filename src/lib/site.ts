@@ -64,7 +64,7 @@ export const SERVICES: Service[] = [
     summary:
       "Turn your AI product ideas into working applications built around real requirements.",
     detail:
-      "Retrieval over your documents, assistants inside your product, classification and extraction pipelines. Built as ordinary software with a model in it, which is what makes it maintainable.",
+      "Retrieval over your documents, chatbots and assistants inside your product, classification and extraction pipelines. Built as ordinary software with a model in it, which is what makes it maintainable.",
     deliverables: [
       "AI application architecture",
       "Retrieval and knowledge systems",
@@ -106,7 +106,7 @@ export const SERVICES: Service[] = [
     summary:
       "Connect AI capabilities with your existing applications, APIs and databases.",
     detail:
-      "We keep the model behind an interface so it can be swapped as prices and capabilities change. Integration work covers your existing APIs, databases, queues and third-party tools.",
+      "We keep the model behind an interface so it can be swapped as prices and capabilities change. Integration work covers your existing APIs, databases, queues and third-party tools such as your CRM or helpdesk.",
     deliverables: [
       "API and third-party integrations",
       "Model integration architecture",
@@ -160,9 +160,9 @@ export const SOLUTIONS: Solution[] = [
     problem:
       "Support teams spend valuable time responding to repetitive questions and searching for information.",
     approach:
-      "An AI-powered support assistant that uses your approved knowledge sources and connects with your existing support workflows.",
+      "An AI support chatbot that uses your approved knowledge sources and connects with your existing support workflows.",
     capabilities: [
-      "Knowledge-based customer assistance",
+      "Chatbot answers from your knowledge base",
       "Frequently asked question automation",
       "Ticket classification and routing",
       "Human escalation for complex requests",
