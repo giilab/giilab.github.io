@@ -14,13 +14,13 @@ const GROUPS = [
   {
     id: "ai-engineering",
     title: "AI Engineering",
-    blurb: "Build intelligent software applications that work with your business data, systems and processes.",
+    blurb: "Build intelligent software applications that work with your data, systems and processes.",
     slugs: ["ai-automation", "ai-agents", "ai-applications"],
   },
   {
     id: "automation",
     title: "Business Automation & Integration",
-    blurb: "Connect business applications, eliminate repetitive work and improve how information moves across your organisation.",
+    blurb: "Connect your applications, eliminate repetitive work and improve how information moves across your organisation.",
     slugs: ["ai-integrations", "process-automation"],
   },
   {
@@ -114,7 +114,7 @@ export default function ServicesPage() {
 
       <CTABand
         title={<>Not sure which service <span className="serif accent">you need?</span></>}
-        body="Start with the business problem. We'll help identify whether AI, automation, software engineering or a combination of these is the right approach."
+        body="Start with the problem you want to solve. We'll help identify whether AI, automation, software engineering or a combination of these is the right approach."
         cta="Discuss Your Project"
       />
     </>

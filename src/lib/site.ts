@@ -69,7 +69,7 @@ export const SERVICES: Service[] = [
     slug: "ai-applications",
     title: "Custom AI Applications",
     summary:
-      "Turn your AI product ideas into working applications built around real business requirements.",
+      "Turn your AI product ideas into working applications built around real requirements.",
     detail:
       "Retrieval over your documents, assistants inside your product, classification and extraction pipelines. Built as ordinary software with a model in it, which is what makes it maintainable.",
     deliverables: [
@@ -83,7 +83,7 @@ export const SERVICES: Service[] = [
     slug: "ai-agents",
     title: "AI Agent Development",
     summary:
-      "Develop AI agents that interact with approved business tools and perform tasks within defined permissions.",
+      "Develop AI agents that interact with your approved tools and perform tasks within defined permissions.",
     detail:
       "An agent is only as good as its tools, its guardrails and its tests. We build all three together. You can see what the agent did, and why, before you let it touch more.",
     deliverables: [
@@ -97,7 +97,7 @@ export const SERVICES: Service[] = [
     slug: "ai-automation",
     title: "AI Automation",
     summary:
-      "Automate repetitive tasks and business workflows using AI where it adds measurable value.",
+      "Automate repetitive tasks and workflows using AI where it adds measurable value.",
     detail:
       "We start from the workflow as it actually runs, not as the process document describes it. The parts a model handles well get automated. The rest go to a person, with the context already attached.",
     deliverables: [
@@ -111,7 +111,7 @@ export const SERVICES: Service[] = [
     slug: "ai-integrations",
     title: "AI Integrations",
     summary:
-      "Connect AI capabilities with existing business applications, APIs and databases.",
+      "Connect AI capabilities with your existing applications, APIs and databases.",
     detail:
       "We keep the model behind an interface so it can be swapped as prices and capabilities change. Integration work covers your existing APIs, databases, queues and third-party tools.",
     deliverables: [
@@ -125,11 +125,11 @@ export const SERVICES: Service[] = [
     slug: "process-automation",
     title: "Business Process Automation",
     summary:
-      "Automate repetitive business processes without introducing unnecessary complexity.",
+      "Automate repetitive processes without introducing unnecessary complexity.",
     detail:
       "Not every problem needs AI. Plenty of costly manual work is really a scheduling, data or integration problem. When that is the cheaper fix, we will tell you.",
     deliverables: [
-      "Business process assessment",
+      "Process assessment",
       "Workflow automation",
       "Data validation and reconciliation",
       "Scheduled jobs and operational dashboards",
@@ -179,7 +179,7 @@ export const SOLUTIONS: Solution[] = [
   },
   {
     title: "Intelligent Document Processing",
-    tagline: "Turn unstructured documents into usable business information.",
+    tagline: "Turn unstructured documents into usable information.",
     problem:
       "Invoices, applications, forms and reports often require manual data entry and verification.",
     approach:
@@ -189,13 +189,13 @@ export const SOLUTIONS: Solution[] = [
       "Information extraction",
       "Field validation",
       "Review and approval workflows",
-      "Integration with business systems",
+      "Integration with your existing systems",
     ],
     outcome: "Extraction accuracy, processing time and cost per document.",
   },
   {
     title: "Enterprise Knowledge Assistant",
-    tagline: "Make your business knowledge easier to find.",
+    tagline: "Make your company knowledge easier to find.",
     problem:
       "Important information is often distributed across documents, internal systems, shared drives and knowledge bases.",
     approach:
@@ -213,7 +213,7 @@ export const SOLUTIONS: Solution[] = [
     title: "Operational Data & Intelligence",
     tagline: "Turn disconnected operational data into useful information.",
     problem:
-      "Businesses generate data across applications, machines, devices and operational systems.",
+      "Organisations generate data across applications, machines, devices and operational systems.",
     approach:
       "Reliable data pipelines and intelligent applications that collect, process and present information for operational decision-making.",
     capabilities: [

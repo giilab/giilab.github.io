@@ -20,7 +20,7 @@ export default function SolutionsPage() {
         visual={<AgentLogVisual />}
         eyebrow="Solutions"
         title={<>Technology solutions for <span className="serif accent">real business challenges.</span></>}
-        lead="Every business has processes that consume time, information that is difficult to access and systems that don't work well together. Giilab builds practical AI and software solutions to address these challenges. We start with your workflow, understand your data and validate the approach before scaling."
+        lead="Every organisation has processes that consume time, information that is difficult to access and systems that don't work well together. Giilab builds practical AI and software solutions to address these challenges. We start with your workflow, understand your data and validate the approach before scaling."
       />
 
       <Section>
@@ -60,7 +60,7 @@ export default function SolutionsPage() {
           <SectionHead
             eyebrow="Automation architecture"
             title={<>Automation with <span className="serif accent">human oversight.</span></>}
-            lead="Our systems automate tasks when they meet defined business rules and quality requirements. Exceptions and sensitive decisions are routed to people. Every action is designed around permissions, traceability and measurable quality."
+            lead="Our systems automate tasks when they meet the rules and quality standards you set. Exceptions and sensitive decisions are routed to people. Every action is designed around permissions, traceability and measurable quality."
           />
           <div className="mt-12">
             <RoutingVisual full />
@@ -70,7 +70,7 @@ export default function SolutionsPage() {
 
       <CTABand
         title={<>Which business challenge should we <span className="serif accent">solve first?</span></>}
-        body="Tell us about the workflow, information or operational problem affecting your business."
+        body="Tell us about the workflow, information or operational problem slowing your team down."
         cta="Discuss Your Project"
       />
     </>

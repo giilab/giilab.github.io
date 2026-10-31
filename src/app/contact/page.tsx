@@ -17,7 +17,7 @@ export default function ContactPage() {
         visual={<AiVisual />}
         eyebrow="Contact"
         title={<>Let&rsquo;s discuss what your <span className="serif accent">business needs.</span></>}
-        lead="Have a business problem, an idea or a process worth improving? Tell us a little about it. We'll help you understand the possibilities, technical requirements and next steps. Start with a free 30-minute discovery conversation."
+        lead="Have a problem to solve, an idea or a process worth improving? Tell us a little about it. We'll help you understand the possibilities, technical requirements and next steps. Start with a free 30-minute discovery conversation."
       />
 
       <Section className="pt-0">
@@ -103,12 +103,12 @@ export default function ContactPage() {
 const FAQ_ITEM = "rounded-[var(--radius-brand)] border border-line bg-surface px-7 py-[26px]";
 
 const FAQ = [
-  ["Do I need a technical specification?", "No. Start with the business problem and what you want to achieve. We can help define the technical requirements."],
+  ["Do I need a technical specification?", "No. Start with the problem and what you want to achieve. We can help define the technical requirements."],
   ["Is the initial consultation free?", "Yes. The first 30-minute discovery conversation is free and carries no obligation."],
   ["How much does a project cost?", "Pricing depends on scope, complexity and integration requirements. We provide a proposal before development begins."],
   ["Can you work with our existing software?", "Yes. We evaluate your existing applications, APIs, databases and infrastructure before recommending changes."],
   ["Do you sign NDAs?", "Yes. We can discuss confidentiality requirements and arrange an NDA before reviewing sensitive project information."],
-  ["Do you work with international businesses?", "Yes. Giilab is based in Pune, India and works with teams across time zones."],
+  ["Do you work with international clients?", "Yes. Giilab is based in Pune, India and works with teams across time zones."],
   ["What happens after I submit the form?", "We review your enquiry, arrange a discovery conversation where appropriate and recommend the next steps."],
 ];
 

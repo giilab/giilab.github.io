@@ -226,7 +226,7 @@ export default function ContactForm() {
           aria-invalid={!!errors.message}
           aria-describedby={errors.message ? "message-error" : "message-hint"}
           className={FIELD}
-          placeholder="Tell us about the business challenge. What process are you trying to improve? What systems do you currently use? What would a successful outcome look like?"
+          placeholder="Tell us about the challenge. What process are you trying to improve? What systems do you currently use? What would a successful outcome look like?"
         />
         {errors.message ? (
           <p id="message-error" className="mt-1.5 text-[0.82rem] text-accent-ink">
