@@ -67,6 +67,8 @@ export default function Footer() {
             </ul>
           </nav>
 
+          <LinkColumn title="Legal" links={LEGAL} />
+
           <nav aria-label="Connect">
             <h2 className={HEADING}>Connect</h2>
             <ul className="grid gap-[11px]">
@@ -96,8 +98,6 @@ export default function Footer() {
               </li>
             </ul>
           </nav>
-
-          <LinkColumn title="Legal" links={LEGAL} />
         </div>
 
         <div className="flex flex-wrap items-center justify-between gap-2.5 border-t border-line py-[26px] text-[0.84rem] text-faint">
