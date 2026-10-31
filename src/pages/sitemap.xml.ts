@@ -1,6 +1,11 @@
 import { SITE } from "@/lib/site";
 
-const ROUTES = ["", "/services", "/solutions", "/projects", "/about", "/contact", "/privacy", "/terms", "/editorial-policy"];
+// Every .astro page in src/pages, so a new page lands in the sitemap automatically.
+// "./about.astro" -> "/about", "./index.astro" -> "". Skips the 404 and dynamic [param] routes.
+const ROUTES = Object.keys(import.meta.glob("./**/*.astro"))
+  .map((file) => file.slice(1, -".astro".length).replace(/\/index$/, ""))
+  .filter((route) => route !== "/404" && !route.includes("["))
+  .sort((a, b) => (a === "" ? -1 : b === "" ? 1 : 0));
 
 export function GET() {
   const lastmod = new Date().toISOString();
