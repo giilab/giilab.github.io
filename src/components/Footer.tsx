@@ -3,7 +3,7 @@ import { LockupStacked } from "./Logo";
 import { Container, SocialIcon } from "./ui";
 import { SITE, SERVICES, NAV } from "@/lib/site";
 
-const HEADING = "mb-4 text-[0.75rem] font-semibold uppercase tracking-[0.1em] text-accent-ink";
+const HEADING = "f-heading";
 
 const COMPANY = [
   { href: "/about/", label: "About" },
@@ -23,7 +23,7 @@ function LinkColumn({ title, links }: { title: string; links: readonly { href: s
       <ul className="grid gap-[11px]">
         {links.map((item) => (
           <li key={item.href}>
-            <Link href={item.href} className="text-[0.9rem] text-muted transition-colors hover:text-accent-ink">
+            <Link href={item.href} className="f-link">
               {item.label}
             </Link>
           </li>
@@ -65,7 +65,7 @@ export default function Footer() {
             <ul className="grid gap-[11px]">
               {SERVICES.map((s) => (
                 <li key={s.slug}>
-                  <Link href={`/services/#${s.slug}`} className="text-[0.9rem] text-muted transition-colors hover:text-accent-ink">
+                  <Link href={`/services/#${s.slug}`} className="f-link">
                     {s.title}
                   </Link>
                 </li>
@@ -78,8 +78,8 @@ export default function Footer() {
           <nav aria-label="Connect">
             <h2 className={HEADING}>Connect</h2>
             <ul className="grid gap-[11px]">
-              <li><a href={`mailto:${SITE.email}`} className="text-[0.9rem] text-muted transition-colors hover:text-accent-ink">{SITE.email}</a></li>
-              <li><a href={`tel:${SITE.phone.replace(/\s/g, "")}`} className="text-[0.9rem] text-muted transition-colors hover:text-accent-ink">{SITE.phone}</a></li>
+              <li><a href={`mailto:${SITE.email}`} className="f-link">{SITE.email}</a></li>
+              <li><a href={`tel:${SITE.phone.replace(/\s/g, "")}`} className="f-link">{SITE.phone}</a></li>
               <li className="flex gap-4 pt-1">
                 {[
                   { href: SITE.linkedin, icon: "linkedin" as const, label: "LinkedIn" },
@@ -95,7 +95,7 @@ export default function Footer() {
                       rel="noopener noreferrer"
                       aria-label={`${SITE.name} on ${s.label}`}
                       title={s.label}
-                      className="text-muted transition-colors hover:text-accent-ink"
+                      className="f-link"
                     >
                       <SocialIcon name={s.icon} />
                     </a>

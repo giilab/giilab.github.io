@@ -32,14 +32,6 @@ export const metadata: Metadata = {
   applicationName: SITE.name,
   authors: [{ name: SITE.founder.name, url: SITE.portfolio }],
   creator: SITE.founder.name,
-  keywords: [
-    "AI engineering studio",
-    "AI automation",
-    "AI agent development",
-    "custom AI applications",
-    "business process automation",
-    "AI consulting",
-  ],
   openGraph: {
     type: "website",
     siteName: SITE.name,

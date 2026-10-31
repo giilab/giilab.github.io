@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Container, Section, SectionHead, PageHero, Card } from "@/components/ui";
 import { AiVisual } from "@/components/HeroVisuals";
 import ContactForm from "@/components/ContactForm";
@@ -17,7 +18,7 @@ export default function ContactPage() {
         visual={<AiVisual />}
         eyebrow="Contact"
         title={<>Let&rsquo;s discuss what your <span className="serif accent">business needs.</span></>}
-        lead="Have a problem to solve, an idea or a process worth improving? Tell us a little about it. We'll help you understand the possibilities, technical requirements and next steps. Start with a free 30-minute discovery conversation."
+        lead="Giilab builds AI applications, automation and custom software. Have a problem to solve, an idea or a process worth improving? Tell us a little about it. We'll help you understand the possibilities, technical requirements and next steps. Start with a free 30-minute discovery conversation."
       />
 
       <Section className="pt-0">
@@ -29,7 +30,7 @@ export default function ContactPage() {
           <dl className="mt-10 grid gap-5 lg:grid-cols-2">
             {FAQ.map(([q, a], i) => (
               // Odd count: the last answer spans both columns so the grid has no gap.
-              <div key={q} className={`${FAQ_ITEM} ${i === FAQ.length - 1 ? "lg:col-span-2" : ""}`}>
+              <div key={q} className={`faq-item ${i === FAQ.length - 1 ? "lg:col-span-2" : ""}`}>
                 <dt className="text-[1.05rem] font-semibold">{q}</dt>
                 <dd className="mt-2.5 text-[0.95rem] text-muted">{a}</dd>
               </div>
@@ -50,6 +51,18 @@ export default function ContactPage() {
             </div>
 
             <div className="grid content-start gap-5">
+              <Card className="gap-2.5">
+                <h2 className="text-[1.05rem] font-semibold">What you can contact us about</h2>
+                <ul className="grid gap-1.5 text-[0.92rem]">
+                  {TOPICS.map(([label, href]) => (
+                    <li key={label}>
+                      <Link href={href} className="text-accent-ink underline-offset-4 hover:underline">
+                        {label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </Card>
               <Card className="gap-2.5">
                 <h2 className="text-[1.05rem] font-semibold">Email</h2>
                 <a
@@ -99,8 +112,7 @@ export default function ContactPage() {
   );
 }
 
-// Static answers, so a plain box rather than Card (no hover lift on something you cannot click).
-const FAQ_ITEM = "rounded-[var(--radius-brand)] border border-line bg-surface px-7 py-[26px]";
+// Static answers, so a plain box (.faq-item) rather than Card: no hover lift on something you cannot click.
 
 const FAQ = [
   ["Do I need a technical specification?", "No. Start with the problem and what you want to achieve. We can help define the technical requirements."],
@@ -110,6 +122,14 @@ const FAQ = [
   ["Do you sign NDAs?", "Yes. We can discuss confidentiality requirements and arrange an NDA before reviewing sensitive project information."],
   ["Do you work with international clients?", "Yes. Giilab is based in Pune, India and works with teams across time zones."],
   ["What happens after I submit the form?", "We review your enquiry, arrange a discovery conversation where appropriate and recommend the next steps."],
+];
+
+// Enquiry types, each pointing at the page that describes it.
+const TOPICS = [
+  ["Custom AI applications and AI agents", "/services/#ai-engineering"],
+  ["Automation and system integrations", "/services/#automation"],
+  ["Software engineering and AI consulting", "/services/#software-engineering"],
+  ["A proof of concept for support, documents, search or data", "/solutions/"],
 ];
 
 const NEXT = [

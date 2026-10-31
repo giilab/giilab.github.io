@@ -180,6 +180,14 @@
     max-width: 56ch;
     text-wrap: pretty;
   }
+
+  /* Named once here rather than repeated as utility strings on every link of every
+     page: same styles, less HTML (the audit flags the site-wide text-to-HTML ratio). */
+  .f-heading { @apply mb-4 text-[0.75rem] font-semibold uppercase tracking-[0.1em] text-accent-ink; }
+  .f-link { @apply text-[0.9rem] text-muted transition-colors hover:text-accent-ink; }
+  .roll-link { @apply block h-[1.5em] overflow-hidden text-[0.92rem] leading-[1.5em]; }
+  .roll-track { @apply flex flex-col transition-transform duration-[400ms] ease-[var(--ease-brand)] group-hover:-translate-y-[1.5em]; }
+  .faq-item { @apply rounded-[var(--radius-brand)] border border-line bg-surface px-7 py-[26px]; }
 }
 
 @layer utilities {

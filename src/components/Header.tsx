@@ -14,11 +14,11 @@ function RollLink({ href, label, active }: { href: string; label: string; active
     <Link
       href={href}
       aria-current={active ? "page" : undefined}
-      className={`group block h-[1.5em] overflow-hidden text-[0.92rem] leading-[1.5em] ${
+      className={`group roll-link ${
         active ? "font-medium text-text" : "text-muted"
       }`}
     >
-      <span className="flex flex-col transition-transform duration-[400ms] ease-[var(--ease-brand)] group-hover:-translate-y-[1.5em]">
+      <span className="roll-track">
         <span className="h-[1.5em]">{label}</span>
         <span className="h-[1.5em] text-text" aria-hidden="true">
           {label}
