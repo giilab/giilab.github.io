@@ -1,0 +1,108 @@
+---
+import Base from "@/layouts/Base.astro";
+import Container from "@/components/ui/Container.astro";
+import Section from "@/components/ui/Section.astro";
+import PageHero from "@/components/ui/PageHero.astro";
+import Card from "@/components/ui/Card.astro";
+import ServicesVisual from "@/components/visuals/ServicesVisual.astro";
+import CTABand from "@/components/CTABand.astro";
+import { SERVICES, pageMeta } from "@/lib/site";
+
+const meta = pageMeta(
+  "/services/",
+  "AI Agent, Automation & Software Services",
+  "Giilab AI development services: AI agents, AI chatbots, AI automation, CRM and API integrations, business process automation and AI consulting.",
+);
+
+const GROUPS = [
+  {
+    id: "ai-engineering",
+    title: "AI Engineering",
+    blurb: "Build intelligent software applications that work with your data, systems and processes.",
+    slugs: ["ai-automation", "ai-agents", "ai-applications"],
+  },
+  {
+    id: "automation",
+    title: "Business Automation & Integration",
+    blurb: "Connect your applications, eliminate repetitive work and improve how information moves across your organisation.",
+    slugs: ["ai-integrations", "process-automation"],
+  },
+  {
+    id: "software-engineering",
+    title: "Software Engineering & AI Consulting",
+    blurb: "Get the architecture, engineering expertise and technical direction needed to build reliable software systems.",
+    slugs: ["ai-consulting"],
+  },
+];
+---
+
+<Base meta={meta}>
+  <PageHero
+    eyebrow="Services"
+    lead="From intelligent applications to automated workflows and backend platforms, we design and build technology that addresses real operational challenges. Every engagement starts with understanding the problem, evaluating feasibility and choosing the right engineering approach. Not every problem needs AI. We recommend the simplest solution that delivers the required outcome."
+  >
+    <ServicesVisual slot="visual" />
+    <Fragment slot="title">AI &amp; software services <span class="serif accent">for your business.</span></Fragment>
+    <nav aria-label="Services on this page" class="mt-9 flex flex-wrap gap-2.5">
+      {SERVICES.map((s) => (
+        <a
+          href={`#${s.slug}`}
+          class="rounded-full border border-line-strong px-4 py-2 text-[0.85rem] text-muted transition-colors hover:border-accent hover:text-accent-ink"
+        >
+          {s.title}
+        </a>
+      ))}
+    </nav>
+  </PageHero>
+
+  {GROUPS.map((g) => (
+    <Section id={g.id} class="scroll-mt-20">
+      <Container>
+        <h2 class="text-[clamp(1.6rem,3.2vw,2.4rem)] font-bold">{g.title}</h2>
+        <p class="mt-3 max-w-[60ch] text-[1.02rem] text-muted">{g.blurb}</p>
+        <div class="mt-8 grid gap-5 lg:grid-cols-2">
+          {SERVICES.filter((s) => g.slugs.includes(s.slug)).map((s) => (
+            <Card class="gap-4">
+              <div id={s.slug} class="scroll-mt-28" />
+              <h3 class="text-[1.3rem] font-semibold">{s.title}</h3>
+              <p class="text-[0.98rem] text-muted">{s.summary}</p>
+              <p class="text-[0.93rem] text-muted">{s.detail}</p>
+              <div class="mt-1">
+                <h4 class="text-[0.7rem] font-medium uppercase tracking-[0.14em] text-faint">
+                  What we deliver
+                </h4>
+                <ul class="mt-2.5 grid gap-1.5">
+                  {s.deliverables.map((d) => (
+                    <li class="flex gap-2.5 text-[0.92rem] text-muted">
+                      <span
+                        aria-hidden="true"
+                        class="mt-[0.55rem] h-1.5 w-1.5 shrink-0 rounded-full"
+                        style="background: var(--accent)"
+                      />
+                      {d}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Card>
+          ))}
+        </div>
+      </Container>
+    </Section>
+  ))}
+
+  <Section class="pt-0">
+    <Container>
+      <a href="/how-we-work/" class="text-[1.02rem] font-medium text-accent-ink underline-offset-4 hover:underline">
+        How engagements work &rarr;
+      </a>
+    </Container>
+  </Section>
+
+  <CTABand
+    body="Start with the problem you want to solve. We'll help identify whether AI, automation, software engineering or a combination of these is the right approach."
+    cta="Discuss Your Project"
+  >
+    Not sure which service <span class="serif accent">you need?</span>
+  </CTABand>
+</Base>

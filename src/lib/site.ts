@@ -1,17 +1,13 @@
-import type { Metadata } from "next";
-
 export const SITE = {
   name: "Giilab",
   legalName: "Great Ideas Innovation Lab LLP",
   descriptor: "AI Engineering Studio",
   positioning: "Practical AI solutions for real business problems.",
-  // Single canonical origin: GitHub Pages 301s giilab.in and giilab.github.io here.
+  // Single canonical origin: Cloudflare 301s giilab.in here.
   url: "https://www.giilab.in",
   email: "hello@giilab.in",
   phone: "+91 90287 35097",
   location: "Pune, Maharashtra, India",
-  github: "https://github.com/giilab",
-  portfolio: "https://pkaranje.github.io",
   linkedin: "https://www.linkedin.com/company/gii-lab",
   // wa.me link: country code + number, no "+" or spaces. Empty hides the footer link.
   whatsapp: "https://wa.me/919028735097",
@@ -27,32 +23,27 @@ export const SITE = {
 /** When this build was made: the site's dateModified and the footer's "updated" line. */
 export const BUILT = new Date().toISOString().slice(0, 10);
 
-/**
- * Per-page metadata. Next shallow-merges `openGraph`/`twitter`, so a page that
- * only sets title/description would otherwise share the homepage's social tags.
- */
-export function pageMeta(path: string, title: string, description: string): Metadata {
-  const full = `${title} — ${SITE.name}`;
-  return {
-    title,
-    description,
-    alternates: { canonical: path },
-    openGraph: {
-      type: "website",
-      siteName: SITE.name,
-      url: path,
-      title: full,
-      description,
-      images: [{ url: "/og.png", width: 1200, height: 630, alt: `${SITE.name} — ${SITE.descriptor}` }],
-    },
-    twitter: { card: "summary_large_image", title: full, description, images: ["/og.png"] },
-  };
+export type PageMeta = {
+  /** Canonical path, ending in "/". */
+  path: string;
+  /** Page title; Base.astro adds " | Giilab" (or "Giilab | " with brandFirst) for <title> and social tags. */
+  title: string;
+  description: string;
+  /** Home page: brand before the title. */
+  brandFirst?: boolean;
+  /** Error pages: robots noindex and no canonical link. */
+  noindex?: boolean;
+};
+
+/** Per-page metadata consumed by src/layouts/Base.astro (title, canonical, social tags). */
+export function pageMeta(path: string, title: string, description: string): PageMeta {
+  return { path, title, description };
 }
 
 export const NAV = [
   { href: "/services/", label: "Services" },
   { href: "/solutions/", label: "Solutions" },
-  { href: "/projects/", label: "Projects" },
+  { href: "/how-we-work/", label: "How We Work" },
   { href: "/about/", label: "About" },
 ] as const;
 
@@ -71,7 +62,7 @@ export const SERVICES: Service[] = [
     summary:
       "Turn your AI product ideas into working applications built around real requirements.",
     detail:
-      "Retrieval over your documents, assistants inside your product, classification and extraction pipelines. Built as ordinary software with a model in it, which is what makes it maintainable.",
+      "Retrieval over your documents, chatbots and assistants inside your product, classification and extraction pipelines. Built as ordinary software with a model in it, which is what makes it maintainable.",
     deliverables: [
       "AI application architecture",
       "Retrieval and knowledge systems",
@@ -113,7 +104,7 @@ export const SERVICES: Service[] = [
     summary:
       "Connect AI capabilities with your existing applications, APIs and databases.",
     detail:
-      "We keep the model behind an interface so it can be swapped as prices and capabilities change. Integration work covers your existing APIs, databases, queues and third-party tools.",
+      "We keep the model behind an interface so it can be swapped as prices and capabilities change. Integration work covers your existing APIs, databases, queues and third-party tools such as your CRM or helpdesk.",
     deliverables: [
       "API and third-party integrations",
       "Model integration architecture",
@@ -167,9 +158,9 @@ export const SOLUTIONS: Solution[] = [
     problem:
       "Support teams spend valuable time responding to repetitive questions and searching for information.",
     approach:
-      "An AI-powered support assistant that uses your approved knowledge sources and connects with your existing support workflows.",
+      "An AI support chatbot that uses your approved knowledge sources and connects with your existing support workflows.",
     capabilities: [
-      "Knowledge-based customer assistance",
+      "Chatbot answers from your knowledge base",
       "Frequently asked question automation",
       "Ticket classification and routing",
       "Human escalation for complex requests",
@@ -260,24 +251,3 @@ export const PROCESS = [
     body: "A supervised rollout, with monitoring and human escalation in place. Then a clean handover to your team, or ongoing support from us.",
   },
 ] as const;
-
-/**
- * Published case studies.
- *
- * Deliberately empty. The Projects page renders real entries when this array
- * is populated and an honest "no published work yet" state until then — it
- * never invents clients, metrics or outcomes. To publish one, add an entry
- * with details you can stand behind and have permission to share.
- */
-export type CaseStudy = {
-  slug: string;
-  client: string;
-  industry: string;
-  problem: string;
-  work: string;
-  /** Only include an outcome you can evidence. Omit rather than estimate. */
-  outcome?: string;
-  stack: string[];
-};
-
-export const CASE_STUDIES: CaseStudy[] = [];

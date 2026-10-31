@@ -1,0 +1,125 @@
+---
+import "@fontsource/space-grotesk/400.css";
+import "@fontsource/space-grotesk/500.css";
+import "@fontsource/space-grotesk/600.css";
+import "@fontsource/space-grotesk/700.css";
+import "@fontsource/urbanist/700.css";
+import "@fontsource/urbanist/800.css";
+import "@fontsource/instrument-serif/400-italic.css";
+import "@/styles/globals.css";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import BackToTop from "@/components/BackToTop.astro";
+import { SITE, BUILT, type PageMeta } from "@/lib/site";
+
+type Props = { meta: PageMeta };
+const { meta } = Astro.props;
+
+const title = meta.brandFirst ? `${SITE.name} | ${meta.title}` : `${meta.title} | ${SITE.name}`;
+const canonical = new URL(meta.path, SITE.url).href;
+const og = `${SITE.url}/og.png`;
+const ogAlt = `${SITE.name} — ${SITE.descriptor}`;
+
+// One JSON-LD script per node, each with its own @context and @type: some auditors
+// count a bare @graph wrapper as a schema missing @type. Nodes link up by @id.
+const HOME = `${SITE.url}/`;
+const JSONLD = [
+  {
+    "@type": "ProfessionalService",
+    "@id": `${HOME}#organization`,
+    name: SITE.name,
+    legalName: SITE.legalName,
+    description: SITE.positioning,
+    url: HOME,
+    logo: `${SITE.url}/icon-512.png`,
+    image: `${SITE.url}/og.png`,
+    email: SITE.email,
+    telephone: SITE.phone,
+    sameAs: [SITE.linkedin],
+    founder: { "@type": "Person", "@id": `${HOME}#founder` },
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Pune",
+      addressRegion: "Maharashtra",
+      addressCountry: "IN",
+    },
+    areaServed: "Worldwide",
+    knowsAbout: ["Artificial intelligence engineering", "Business process automation", "Software architecture"],
+  },
+  {
+    "@type": "WebSite",
+    "@id": `${HOME}#website`,
+    name: SITE.name,
+    url: HOME,
+    publisher: { "@type": "ProfessionalService", "@id": `${HOME}#organization` },
+    // Person defined inline: some parsers only read author fields written here.
+    author: {
+      "@type": "Person",
+      "@id": `${HOME}#founder`,
+      name: SITE.founder.name,
+      jobTitle: SITE.founder.role,
+      description: `${SITE.founder.role} at ${SITE.name}, with 12+ years of experience building backend platforms with Python and AWS.`,
+      url: `${SITE.url}/about/#founder`,
+      sameAs: [SITE.founder.linkedin],
+      worksFor: { "@type": "ProfessionalService", "@id": `${HOME}#organization` },
+      knowsAbout: ["Python", "AWS", "Backend engineering", "AI engineering", "Software architecture"],
+    },
+    datePublished: SITE.launched,
+    dateModified: BUILT,
+  },
+].map((node) => JSON.stringify({ "@context": "https://schema.org", ...node }));
+---
+
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <!-- Applies the stored (or system) theme before first paint, so a dark-mode visitor
+         never sees a flash of the light theme. The Worker stamps its CSP nonce. -->
+    <script is:inline>(function(){try{let t=localStorage.getItem('giilab-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch{}})();</script>
+    <link rel="preload" as="image" href="/giilab-mark.svg" />
+    <link rel="llms" href="/llms.txt" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f3f4f6" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0b1220" />
+    <title>{title}</title>
+    <meta name="description" content={meta.description} />
+    <meta name="application-name" content={SITE.name} />
+    <link rel="author" href={SITE.founder.linkedin} />
+    <meta name="author" content={SITE.founder.name} />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="creator" content={SITE.founder.name} />
+    <meta name="robots" content={meta.noindex ? "noindex, follow" : "index, follow"} />
+    {!meta.noindex && <link rel="canonical" href={canonical} />}
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={meta.description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:image" content={og} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={ogAlt} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={meta.description} />
+    <meta name="twitter:image" content={og} />
+    <link rel="icon" href="/giilab-favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon-180.png" sizes="180x180" />
+  </head>
+  <body>
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-brand-ink focus:px-5 focus:py-2.5 focus:text-white"
+    >
+      Skip to content
+    </a>
+    <Header />
+    <main id="main"><slot /></main>
+    <Footer />
+    <BackToTop />
+    {JSONLD.map((node) => <script is:inline type="application/ld+json" set:html={node} />)}
+  </body>
+</html>

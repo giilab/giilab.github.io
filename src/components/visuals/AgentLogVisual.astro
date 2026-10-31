@@ -1,0 +1,49 @@
+---
+/**
+ * Solutions hero: an agent log that "types" one line every 0.75s, holds, then
+ * clears and loops. Pure CSS — each line gets its own keyframes (generated below)
+ * that show it from its tick until the end of the shared cycle. Reduced motion
+ * (.hv-loop) shows the whole log, still.
+ */
+const LOG = [
+  "LLM Agents",
+  "Policy RAG",
+  "Agentic RAG",
+  "AI Governance",
+  "LLM-as-a-Judge",
+  "Multi-Agent Systems",
+  "LLM Gateway",
+  "AI-powered Chatbots",
+];
+const TICK = 0.75;
+// Line i appears on tick i+1; the full log holds for four more ticks, then clears.
+const CYCLE = (LOG.length + 5) * TICK;
+const pct = (s: number) => `${((s / CYCLE) * 100).toFixed(2)}%`;
+const css = LOG.map((_, i) => {
+  const at = (i + 1) * TICK;
+  return `.hv-log-${i}{animation:hv-log-${i} ${CYCLE}s linear infinite}@keyframes hv-log-${i}{0%,${pct(at)}{display:none;opacity:0;transform:translateY(4px)}${pct(at + 0.01)}{display:flex;opacity:0;transform:translateY(4px)}${pct(at + 0.4)},100%{display:flex;opacity:1;transform:none}}`;
+}).join("") +
+  // Generated after globals.css, so it needs its own reduced-motion stop.
+  `@media (prefers-reduced-motion: reduce){${LOG.map((_, i) => `.hv-log-${i}`).join(",")}{animation:none}}`;
+---
+
+<style is:inline set:html={css}></style>
+<div class="rounded-2xl border border-line bg-surface shadow-[0_20px_60px_-30px_rgb(11_18_32/0.35)]">
+  <div class="flex items-center gap-1.5 border-b border-line px-4 py-3">
+    <i class="h-2.5 w-2.5 rounded-full bg-line-strong"></i>
+    <i class="h-2.5 w-2.5 rounded-full bg-line-strong"></i>
+    <i class="h-2.5 w-2.5 rounded-full bg-line-strong"></i>
+    <span class="ml-2 text-[0.75rem] text-faint">giilab — solutions</span>
+  </div>
+  <div class="min-h-[260px] px-4 py-4 font-mono text-[0.8rem] leading-[1.9]">
+    {
+      LOG.map((text, i) => (
+        <div class={`hv-log-${i} hv-loop flex gap-2.5`}>
+          <span class="text-accent-ink">✓</span>
+          <span class="text-muted">{text}</span>
+        </div>
+      ))
+    }
+    <span class="hv-blink hv-loop inline-block h-[1em] w-[0.55em] translate-y-[3px] bg-accent"></span>
+  </div>
+</div>

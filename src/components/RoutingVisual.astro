@@ -1,0 +1,121 @@
+---
+import Mark from "./Mark.astro";
+
+/**
+ * A diagram of how we run AI work: the agent handles what is both confident
+ * and permitted, everything else routes to a person, and corrections feed back
+ * as test cases. Deliberately carries no numbers — it illustrates the delivery
+ * model, it is not a product screenshot.
+ *
+ * `full` (Solutions page) adds the plain-language explanation of each control
+ * and the rule that confidence alone never authorises an action.
+ */
+type Props = { full?: boolean };
+const { full = false } = Astro.props;
+const Heading = full ? "h3" : "h2";
+
+const INPUTS = [
+  { label: "Documents", meta: "Invoices, forms, scans · PDF or image" },
+  { label: "Customer messages", meta: "Emails, chats and tickets" },
+  { label: "Requests and approvals", meta: "Orders, refunds and sign-offs" },
+];
+const CONTROLS = [
+  { label: "Your documents", detail: "Retrieves relevant information from approved knowledge sources." },
+  { label: "Approved actions", detail: "Executes permitted operations using connected business tools." },
+  { label: "Quality tests", detail: "Evaluates outputs against defined test cases." },
+  { label: "Guardrails", detail: "Blocks unsafe, out-of-scope or policy-breaking outputs before they reach anyone." },
+];
+const LABEL = "mb-3 text-[0.7rem] font-medium uppercase tracking-[0.14em] text-faint";
+const ARROW = '<span aria-hidden="true" class="text-accent-ink"><span class="lg:hidden">&darr;</span><span class="hidden lg:inline">&rarr;</span></span>';
+---
+
+<section aria-labelledby="routing-visual-title" class="w-full">
+  <div class="mb-5">
+    <Heading id="routing-visual-title" class="text-[1.15rem] font-semibold sm:text-[1.25rem]">How AI Automation Works at Giilab</Heading>
+    <p class="mt-1.5 text-[0.92rem] text-muted">
+      Every task is evaluated, automated when appropriate, and escalated to a person when needed.
+    </p>
+  </div>
+
+  <div class="rounded-[var(--radius-brand)] border border-line bg-surface p-5 sm:p-6">
+    <div class="grid grid-cols-1 items-center gap-4 lg:grid-cols-[1fr_auto_auto_auto_1fr] lg:gap-5">
+      <!-- 1. what comes in -->
+      <div>
+        <p class={LABEL}>What comes in</p>
+        <ul class="grid gap-2.5">
+          {
+            INPUTS.map((item) => (
+              <li class="rounded-xl border border-line bg-bg px-3.5 py-2.5">
+                <span class="block text-[0.86rem] font-medium">{item.label}</span>
+                <span class="block text-[0.74rem] text-faint">{item.meta}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="justify-self-center" set:html={ARROW} />
+
+      <!-- 2. the agent -->
+      <div class="flex flex-col items-center gap-2 justify-self-center rounded-2xl border border-accent bg-accent-soft px-5 py-4 lg:max-w-[15rem]">
+        <Mark height={30} />
+        <span class="text-center text-[0.84rem] font-semibold">AI Agent + Controls + Guardrails</span>
+        <span class="flex flex-wrap justify-center gap-1">
+          {CONTROLS.map((c) => <span class="rounded-full border border-line-strong px-2 py-0.5 text-[0.72rem] text-muted">{c.label}</span>)}
+        </span>
+      </div>
+
+      <div class="justify-self-center" set:html={ARROW} />
+
+      <!-- 3. outcomes -->
+      <div>
+        <p class={LABEL}>Decisions based on confidence</p>
+        <div class="grid gap-2.5">
+          <div class="rounded-xl border border-line border-l-[3px] border-l-accent bg-bg p-3.5">
+            <span class="block text-[0.86rem] font-medium">Automated Processing</span>
+            <p class="mt-1 text-[0.76rem] text-muted">
+              Meets your confidence threshold and approved automation rules. Actions are logged for review.
+            </p>
+          </div>
+          <div class="rounded-xl border border-line border-l-[3px] border-l-accent-2 bg-bg p-3.5">
+            <span class="block text-[0.86rem] font-medium">Human Review Required</span>
+            <p class="mt-1 text-[0.76rem] text-muted">
+              Low confidence, exceptions, or decisions involving money, policy, or judgment.
+            </p>
+            <p class="mt-2 text-[0.74rem] font-medium text-accent-ink">
+              <span aria-hidden="true">&#8634; </span>Corrections return to the agent as quality tests
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {
+      full && (
+        <dl class="mt-5 grid gap-3 border-t border-line pt-4 sm:grid-cols-2">
+          {CONTROLS.map((c) => (
+            <div>
+              <dt class="text-[0.8rem] font-semibold">{c.label}</dt>
+              <dd class="mt-0.5 text-[0.78rem] text-muted">{c.detail}</dd>
+            </div>
+          ))}
+        </dl>
+      )
+    }
+
+    <div class="mt-5 grid gap-1.5 border-t border-line pt-4 text-[0.78rem]">
+      <p class="text-muted">
+        Every human correction becomes a test case, helping us measure performance and improve automation safely.
+      </p>
+      {
+        full && (
+          <p class="text-faint">
+            Confidence alone never authorises an action. Anything sensitive must also pass your business rules and
+            permission checks. Confidence scores are only an estimate, so thresholds are set and tuned on measured
+            results.
+          </p>
+        )
+      }
+    </div>
+  </div>
+</section>

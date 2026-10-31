@@ -1,0 +1,46 @@
+---
+import MarkGradient from "../MarkGradient.astro";
+import MarkAt from "./MarkAt.astro";
+import { uid } from "@/lib/ids";
+
+/** Projects hero: each client idea flows into the mark and comes out as what we build. */
+const flows = [
+  ["Product idea", "SaaS / software"],
+  ["Manual workflow", "Automation"],
+  ["Scattered data", "Data / cloud system"],
+  ["Legacy system", "Modernised build"],
+  ["AI use case", "AI engineering"],
+  ["Integration gap", "APIs & integrations"],
+];
+// Each JSON line lights up as its input reaches the mark (same delay, same period).
+const jsonY = (i: number) => 119 + i * 23;
+const g = uid("tv");
+---
+
+<svg viewBox="0 0 400 400" class="w-full overflow-visible" focusable="false">
+  <defs><MarkGradient id={g} /></defs>
+  {
+    flows.map(([input], i) => (
+      <text x="0" y={115 + i * 34} font-size="14" class="hv-token hv-loop" style={`fill:var(--muted);animation-delay:${i * 0.75}s`}>
+        {input}
+      </text>
+    ))
+  }
+  <circle cx="190" cy="200" r="50" fill="var(--accent-soft)" class="hv-node hv-loop"></circle>
+  <MarkAt cx={190} cy={200} size={72} gradId={g} />
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13">
+    <text x="238" y={jsonY(0)} style="fill:var(--muted)">[</text>
+    {
+      flows.map(([, output], i) => (
+        <text
+          x="238"
+          y={jsonY(i + 1)}
+          xml:space="preserve"
+          class="hv-out hv-loop"
+          style={`fill:var(--accent-text);animation-delay:${i * 0.75}s`}
+        >{`  "${output}"${i < flows.length - 1 ? "," : ""}`}</text>
+      ))
+    }
+    <text x="238" y={jsonY(flows.length + 1)} style="fill:var(--muted)">]</text>
+  </g>
+</svg>

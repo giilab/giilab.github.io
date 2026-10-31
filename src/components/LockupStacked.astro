@@ -1,0 +1,40 @@
+---
+import { MARK_ASPECT, WORD_ASPECT, LOCKUP } from "@/lib/logo";
+
+/**
+ * Mark + wordmark + the "AI Engineering Studio" descriptor stacked underneath,
+ * as on the brand identity board.
+ *
+ * One documented deviation: the board sets the descriptor at 0.141x the
+ * wordmark height, which only becomes legible at a ~140px mark — far larger
+ * than a site header allows. Here the descriptor is floored at 12px (the
+ * smallest size mobile audits accept) and runs wider than the wordmark. Below
+ * the `sm` breakpoint it is hidden to keep the phone header compact. The
+ * exported SVG logo files keep the board's exact proportions for large-format use.
+ *
+ * Header and footer load the logo as cached files rather than ~19 KB of inline
+ * path data on every page. The wordmark is a mask so it still takes the theme's
+ * text colour. public/giilab-wordmark.svg is WORD_PATH as a file.
+ */
+type Props = { markHeight?: number; class?: string };
+const { markHeight = 44, class: className = "" } = Astro.props;
+const wordHeight = markHeight / LOCKUP.markToWord;
+const gap = wordHeight * LOCKUP.gapToWord;
+const descriptorSize = Math.max(12, wordHeight * 0.42);
+const wordmarkHeight = wordHeight * 1.28;
+---
+
+<span class={`inline-flex items-center ${className}`} style={`gap:${gap}px`}>
+  <img src="/giilab-mark.svg" alt="Giilab" width={Math.round(markHeight * MARK_ASPECT * 100) / 100} height={markHeight} />
+  <span class="flex flex-col" style={`gap:${wordHeight * 0.38}px`}>
+    <span
+      aria-hidden="true"
+      class="block bg-current"
+      style={`width:${Math.round(wordmarkHeight * WORD_ASPECT * 100) / 100}px;height:${wordmarkHeight}px;mask:url(/giilab-wordmark.svg) center / contain no-repeat`}
+    ></span>
+    <span
+      class="hidden whitespace-nowrap font-medium leading-none text-muted sm:block"
+      style={`font-size:${descriptorSize}px;letter-spacing:0.02em`}>AI Engineering Studio</span
+    >
+  </span>
+</span>

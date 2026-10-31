@@ -1,0 +1,40 @@
+---
+import MarkGradient from "../MarkGradient.astro";
+import { MARK_PATH, MARK_VIEWBOX } from "@/lib/logo";
+import { uid } from "@/lib/ids";
+
+/** About hero: scattered particles gather into the ribbon mark, then breathe. */
+const g = uid("pv");
+---
+
+<svg viewBox={MARK_VIEWBOX} class="w-full overflow-visible" focusable="false" data-particles data-grad={g}>
+  <defs><MarkGradient id={g} /></defs>
+  <path d={MARK_PATH} fill="none" data-probe></path>
+  <g class="hv-breathe hv-loop"></g>
+</svg>
+
+<script>
+  // Sample a 15px grid inside the mark; each dot flies in from a random point on a ring.
+  const NS = "http://www.w3.org/2000/svg";
+  for (const svg of document.querySelectorAll<SVGSVGElement>("[data-particles]")) {
+    const probe = svg.querySelector<SVGPathElement>("[data-probe]")!;
+    const group = svg.querySelector("g.hv-breathe")!;
+    for (let x = 6; x < 479; x += 15) {
+      for (let y = 6; y < 512; y += 15) {
+        if (!probe.isPointInFill(new DOMPoint(x, y))) continue;
+        const a = Math.random() * Math.PI * 2;
+        const r = 220 + Math.random() * 200;
+        const c = document.createElementNS(NS, "circle");
+        c.setAttribute("cx", String(x));
+        c.setAttribute("cy", String(y));
+        c.setAttribute("r", "5");
+        c.setAttribute("fill", `url(#${svg.dataset.grad})`);
+        c.setAttribute("class", "hv-gather");
+        c.style.setProperty("--dx", `${Math.cos(a) * r}px`);
+        c.style.setProperty("--dy", `${Math.sin(a) * r}px`);
+        c.style.animationDelay = `${Math.random() * 0.9}s`;
+        group.append(c);
+      }
+    }
+  }
+</script>

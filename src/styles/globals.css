@@ -1,0 +1,275 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* ===========================================================
+   Giilab brand palette — fixed values from the identity board
+   =========================================================== */
+:root {
+  --brand-blue: #2563eb;
+  --brand-purple: #7c3aed;
+  --brand-cyan: #06b6d4;
+  --brand-ink: #0b1220;
+  --brand-paper: #f3f4f6;
+}
+
+/* ===========================================================
+   Semantic tokens. Light is the default; the toggle sets
+   data-theme="dark" on <html>.
+   =========================================================== */
+:root {
+  color-scheme: light;
+  --bg: #f3f4f6;
+  --bg-card: #ffffff;
+  --bg-elev: #e8eaee;
+  --text: #0b1220;
+  /* The board lists #64748B for secondary text; it is 4.1:1 on this ground
+     and fails WCAG AA for body copy, so it is darkened here. */
+  --muted: #475569;
+  --faint: #566273;
+  --line: rgb(11 18 32 / 0.1);
+  --line-strong: rgb(11 18 32 / 0.2);
+  --glass: rgb(243 244 246 / 0.8);
+  --ghost-stroke: rgb(11 18 32 / 0.55);   /* 0.3 measured 1.97:1 — large text needs 3:1 */
+  --accent: #2563eb;
+  --accent-2: #7c3aed;
+  --accent-text: #1d4ed8;
+  --accent-soft: rgb(37 99 235 / 0.1);
+  --on-accent: #ffffff;
+  --grain-opacity: 0.028;
+}
+
+:root[data-theme="dark"] {
+  /* Native scrollbars, form controls and autofill follow the theme. */
+  color-scheme: dark;
+  --bg: #0b1220;
+  --bg-card: #141b2d;
+  --bg-elev: #0e1525;
+  --text: #f3f4f6;
+  --muted: #94a3b8;
+  --faint: #8a98ac;
+  --line: rgb(243 244 246 / 0.1);
+  --line-strong: rgb(243 244 246 / 0.22);
+  --glass: rgb(11 18 32 / 0.75);
+  --ghost-stroke: rgb(243 244 246 / 0.62);
+  --accent: #3b82f6;
+  --accent-2: #a78bfa;
+  --accent-text: #60a5fa;
+  --accent-soft: rgb(59 130 246 / 0.14);
+  /* The dark theme lightens the accent, so white on it is only 3.67:1.
+     Dark ink on the lighter blue is 5.1:1 and matches the reference design. */
+  --on-accent: #0b1220;
+  --grain-opacity: 0.05;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--bg-card);
+  --color-elevated: var(--bg-elev);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-accent-ink: var(--accent-text);
+  --color-accent-soft: var(--accent-soft);
+  --color-on-accent: var(--on-accent);
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-purple: var(--brand-purple);
+  --color-brand-cyan: var(--brand-cyan);
+  --color-brand-ink: var(--brand-ink);
+  --color-brand-paper: var(--brand-paper);
+
+  --font-sans: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Urbanist", "Space Grotesk", sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
+
+  --radius-brand: 18px;
+  --ease-brand: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  /* Tailwind v4 dropped the pointer cursor on buttons; links already have it. */
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]) {
+    cursor: pointer;
+  }
+  html {
+    /* Smooth scrolling comes from Lenis (BackToTop.astro); CSS smooth
+       scroll-behavior fights it. */
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    position: relative;
+  }
+  /* soft colour field behind everything */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(38% 34% at 82% 6%, rgb(124 58 237 / 0.16), transparent 70%),
+      radial-gradient(30% 30% at 8% 32%, rgb(37 99 235 / 0.12), transparent 70%),
+      radial-gradient(26% 26% at 70% 88%, rgb(6 182 212 / 0.08), transparent 70%);
+  }
+  /* film grain */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: var(--grain-opacity);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  }
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Display headings: Urbanist, tight and heavy. */
+  .t-hero {
+    font-family: var(--font-display);
+    font-size: clamp(2.75rem, 8.2vw, 7rem);
+    font-weight: 800;
+    /* Below ~1.08 the serif accent's descenders (p, y, g) hit the next line. */
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+  }
+  .t-h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4.4vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.04;
+    letter-spacing: -0.025em;
+    max-width: 18ch;
+    text-wrap: balance;
+  }
+  .t-h2-wide { max-width: 26ch; }
+  .t-h3 {
+    font-size: clamp(1.15rem, 1.6vw, 1.35rem);
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.015em;
+  }
+  .t-lead {
+    font-size: clamp(1.06rem, 1.4vw, 1.25rem);
+    color: var(--muted);
+    max-width: 56ch;
+    text-wrap: pretty;
+  }
+
+  /* Named once here rather than repeated as utility strings on every link of every
+     page: same styles, less HTML (the audit flags the site-wide text-to-HTML ratio). */
+  .f-heading { @apply mb-4 text-[0.75rem] font-semibold uppercase tracking-[0.1em] text-accent-ink; }
+  .f-link { @apply text-[0.9rem] text-muted transition-colors hover:text-accent-ink; }
+  .roll-link { @apply block h-[1.5em] overflow-hidden text-[0.92rem] leading-[1.5em]; }
+  .roll-track { @apply flex flex-col transition-transform duration-[400ms] ease-[var(--ease-brand)] group-hover:-translate-y-[1.5em]; }
+  .faq-item { @apply rounded-[var(--radius-brand)] border border-line bg-surface px-7 py-[26px]; }
+}
+
+@layer utilities {
+  /* The accent phrase device: Instrument Serif italic in the brand blue. */
+  .serif {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    font-size: 1.04em;
+  }
+  .accent { color: var(--accent-text); }
+  /* Outlined display text. */
+  .ghost {
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--ghost-stroke);
+  }
+  .brand-gradient {
+    background-image: linear-gradient(120deg, var(--accent), var(--accent-2));
+  }
+
+  /* Hero mark: every 8s the outline draws, the gradient fills and holds, then
+     both unwind and it starts again. Floats throughout. */
+  .hero-mark-draw {
+    stroke-dasharray: 1;
+    animation: hero-mark-draw 8s ease-in-out infinite;
+  }
+  .hero-mark-fill {
+    animation: hero-mark-fill 8s ease-in-out infinite;
+  }
+  .hero-mark-float {
+    animation: hero-mark-float 6s ease-in-out infinite;
+  }
+  .hero-mark-glow {
+    position: absolute;
+    inset: -15%;
+    border-radius: 9999px;
+    background: radial-gradient(closest-side, var(--accent-soft), color-mix(in srgb, var(--accent-2) 12%, transparent) 55%, transparent);
+    filter: blur(30px);
+    animation: hero-mark-glow 6s ease-in-out infinite;
+  }
+  /* Hero visuals (src/components/visuals). Infinite loops carry .hv-loop. */
+  .hv-node {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: hv-node 2.4s ease-in-out infinite;
+  }
+  /* Six items, one second each: lit for the first sixth of a 6s cycle. */
+  .hv-svc { animation: hv-svc 6s ease-in-out infinite; }
+  /* Ring turns once a minute; labels counter-turn so they stay upright. */
+  .hv-orbit { animation: hv-orbit 60s linear infinite; }
+  .hv-orbit-counter { animation-direction: reverse; }
+  @keyframes hv-orbit { to { transform: rotate(360deg); } }
+  .hv-token { animation: hv-token 4.5s linear infinite; }
+  /* Same 4.5s period as .hv-token, so each output lights up as its input reaches the mark. */
+  .hv-out { animation: hv-out 4.5s ease-out infinite; }
+  .hv-gather { animation: hv-gather 1.6s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+  .hv-breathe {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: hv-breathe 5s ease-in-out 2.5s infinite;
+  }
+  .hv-blink { animation: hv-blink 1s steps(1) infinite; }
+  @keyframes hv-node { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
+  @keyframes hv-svc {
+    3%, 14% { border-color: var(--accent); background-color: var(--accent-soft); color: var(--text); }
+    20%, 100% { border-color: var(--line); background-color: var(--bg-card); color: var(--muted); }
+  }
+  @keyframes hv-token { 0% { transform: translateX(0); opacity: 0; } 15%, 65% { opacity: 1; } 100% { transform: translateX(130px); opacity: 0; } }
+  @keyframes hv-out { 0%, 55% { opacity: 0.35; } 70%, 90% { opacity: 1; } 100% { opacity: 0.35; } }
+  @keyframes hv-gather { from { transform: translate(var(--dx), var(--dy)); opacity: 0; } to { transform: none; opacity: 1; } }
+  @keyframes hv-breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
+  @keyframes hv-blink { 50% { opacity: 0; } }
+  @keyframes hero-mark-draw { 0% { stroke-dashoffset: 1; } 20%, 80% { stroke-dashoffset: 0; } 95%, 100% { stroke-dashoffset: 1; } }
+  @keyframes hero-mark-fill { 0%, 15% { opacity: 0; } 27%, 75% { opacity: 1; } 85%, 100% { opacity: 0; } }
+  @keyframes hero-mark-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+  @keyframes hero-mark-glow { 0%, 100% { opacity: 0.7; transform: scale(0.95); } 50% { opacity: 1; transform: scale(1.05); } }
+
+  /* The global reduced-motion rule shortens durations, which would make these
+     infinite loops jitter; stop them outright instead. Kept last so it beats
+     the per-class animation rules above at equal specificity. */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-mark-draw, .hero-mark-fill, .hero-mark-float, .hero-mark-glow, .hv-loop { animation: none; }
+  }
+}

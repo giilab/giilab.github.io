@@ -1,0 +1,119 @@
+---
+import Container from "./ui/Container.astro";
+import SocialIcon from "./ui/SocialIcon.astro";
+import LockupStacked from "./LockupStacked.astro";
+import { SITE, SERVICES, NAV } from "@/lib/site";
+
+const COLUMNS = [
+  { title: "Explore", links: NAV.filter((item) => item.href !== "/about/") },
+  {
+    title: "Company",
+    links: [
+      { href: "/about/", label: "About" },
+      { href: "/contact/", label: "Contact" },
+    ],
+  },
+];
+const LEGAL = [
+  { href: "/privacy/", label: "Privacy" },
+  { href: "/terms/", label: "Terms" },
+  { href: "/editorial-policy/", label: "Editorial policy" },
+];
+const SOCIAL = [
+  { href: SITE.linkedin, icon: "linkedin" as const, label: "LinkedIn" },
+  { href: SITE.whatsapp, icon: "whatsapp" as const, label: "WhatsApp" },
+].filter((s) => s.href);
+---
+
+<footer class="relative z-[2] mt-[clamp(56px,7vw,88px)] border-t border-line bg-elevated pt-[clamp(56px,7vw,88px)]">
+  <Container>
+    <div
+      class="grid grid-cols-1 gap-[clamp(28px,3.5vw,48px)] pb-[clamp(48px,6vw,72px)] sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[1fr_auto_auto_auto_auto_auto] lg:gap-x-[clamp(40px,4vw,64px)]"
+    >
+      <div>
+        <a href="/"><LockupStacked markHeight={54} /></a>
+        <p class="mt-[18px] max-w-[19rem] text-[0.9rem] font-semibold text-text">{SITE.positioning}</p>
+        <p class="mt-2 max-w-[19rem] text-[0.9rem] text-muted">
+          We combine AI engineering, business automation and software development to build reliable systems that
+          fit the way you work.
+        </p>
+        <address class="mt-[18px] flex items-center gap-2 text-[0.9rem] not-italic text-text">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="shrink-0 text-accent-ink">
+            <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"></path>
+          </svg>
+          {SITE.location}
+        </address>
+      </div>
+
+      {
+        COLUMNS.map((col) => (
+          <nav aria-label={col.title}>
+            <h2 class="f-heading">{col.title}</h2>
+            <ul class="grid gap-[11px]">
+              {col.links.map((item) => (
+                <li>
+                  <a href={item.href} class="f-link">{item.label}</a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ))
+      }
+
+      <nav aria-label="Services" class="max-w-[11rem]">
+        <h2 class="f-heading">Services</h2>
+        <ul class="grid gap-[11px]">
+          {
+            SERVICES.map((s) => (
+              <li>
+                <a href={`/services/#${s.slug}`} class="f-link">{s.title}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <nav aria-label="Legal">
+        <h2 class="f-heading">Legal</h2>
+        <ul class="grid gap-[11px]">
+          {
+            LEGAL.map((item) => (
+              <li>
+                <a href={item.href} class="f-link">{item.label}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <nav aria-label="Connect">
+        <h2 class="f-heading">Connect</h2>
+        <ul class="grid gap-[11px]">
+          <li><a href={`mailto:${SITE.email}`} class="f-link">{SITE.email}</a></li>
+          <li><a href={`tel:${SITE.phone.replace(/\s/g, "")}`} class="f-link">{SITE.phone}</a></li>
+          <li class="flex gap-4 pt-1">
+            {
+              SOCIAL.map((s) => (
+                <a
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${SITE.name} on ${s.label}`}
+                  title={s.label}
+                  class="f-link"
+                >
+                  <SocialIcon name={s.icon} />
+                </a>
+              ))
+            }
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="flex flex-wrap items-center justify-between gap-2.5 border-t border-line py-[26px] text-[0.84rem] text-faint">
+      <span>&copy; {new Date().getFullYear()} {SITE.legalName}. All rights reserved.</span>
+      <span>Working with businesses worldwide.</span>
+    </div>
+  </Container>
+</footer>

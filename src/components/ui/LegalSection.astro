@@ -1,0 +1,11 @@
+---
+type Props = { h: string };
+const { h } = Astro.props;
+---
+
+<section class="mt-10">
+  <h2 class="text-[1.2rem] font-semibold">{h}</h2>
+  <div class="mt-3 grid gap-3 text-[0.98rem] text-muted [&_a]:text-accent-ink [&_a]:underline [&_a]:underline-offset-4">
+    <slot />
+  </div>
+</section>

@@ -1,0 +1,93 @@
+---
+import Container from "./ui/Container.astro";
+import LockupStacked from "./LockupStacked.astro";
+import ThemeToggle from "./ThemeToggle.astro";
+import { NAV } from "@/lib/site";
+
+const pathname = Astro.url.pathname;
+---
+
+<header
+  data-header
+  class="fixed inset-x-0 top-0 z-50 border-b border-transparent bg-transparent transition-[background-color,border-color,backdrop-filter] duration-[400ms] data-scrolled:border-line data-scrolled:bg-[var(--glass)] data-scrolled:backdrop-blur-[14px]"
+>
+  <Container class="flex h-[76px] items-center justify-between gap-4">
+    <a href="/" class="shrink-0">
+      <LockupStacked markHeight={42} />
+    </a>
+
+    <nav aria-label="Primary" class="hidden items-center gap-[30px] lg:flex">
+      {
+        NAV.map((item) => {
+          const active = pathname === item.href;
+          // Label rolls up to a duplicate of itself on hover.
+          return (
+            <a
+              href={item.href}
+              aria-current={active ? "page" : undefined}
+              class={`group roll-link ${active ? "font-medium text-text" : "text-muted"}`}
+            >
+              <span class="roll-track">
+                <span class="h-[1.5em]">{item.label}</span>
+                <span class="h-[1.5em] text-text" aria-hidden="true">{item.label}</span>
+              </span>
+            </a>
+          );
+        })
+      }
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <a
+        href="/contact/"
+        class="hidden rounded-full bg-accent px-[18px] py-[9px] text-[0.84rem] font-semibold text-on-accent transition-transform duration-300 hover:-translate-y-0.5 sm:inline-flex"
+      >
+        Discuss your project
+      </a>
+      <ThemeToggle />
+      <button
+        type="button"
+        data-menu-button
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+        aria-label="Open menu"
+        class="group grid h-9 w-9 place-items-center rounded-full border border-line-strong text-text transition-colors hover:border-accent-ink hover:text-accent-ink lg:hidden"
+      >
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path class="group-aria-expanded:hidden" d="M3 6h18M3 12h18M3 18h18"></path>
+          <path class="hidden group-aria-expanded:inline" d="M18 6 6 18M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+  </Container>
+
+  <div id="mobile-nav" hidden class="border-t border-line bg-[var(--glass)] backdrop-blur-[14px] lg:hidden">
+    <Container class="flex flex-col py-2">
+      {
+        NAV.map((item) => (
+          <a href={item.href} class="border-b border-line py-3.5 text-[0.95rem] text-muted last:border-b-0">
+            {item.label}
+          </a>
+        ))
+      }
+      <a href="/contact/" class="py-3.5 text-[0.95rem] font-semibold text-accent-ink">Discuss your project</a>
+    </Container>
+  </div>
+</header>
+
+<script>
+  const header = document.querySelector<HTMLElement>("[data-header]")!;
+  const button = header.querySelector<HTMLButtonElement>("[data-menu-button]")!;
+  const menu = header.querySelector<HTMLElement>("#mobile-nav")!;
+
+  const onScroll = () => header.toggleAttribute("data-scrolled", window.scrollY > 12);
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  button.addEventListener("click", () => {
+    const open = button.getAttribute("aria-expanded") !== "true";
+    button.setAttribute("aria-expanded", String(open));
+    button.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    menu.hidden = !open;
+  });
+</script>

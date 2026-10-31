@@ -1,11 +1,9 @@
 node_modules/
-.next/
-out/
+dist/
+.astro/
 shots/
 .env*.local
 .DS_Store
-*.tsbuildinfo
-next-env.d.ts
 # Wrangler local state and secrets
 .wrangler/
 .dev.vars*

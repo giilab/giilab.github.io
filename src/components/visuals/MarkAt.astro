@@ -1,0 +1,11 @@
+---
+import { MARK_PATH, MARK_ASPECT } from "@/lib/logo";
+
+/** The ribbon mark centred at (cx, cy), `size` tall, inside a 400-unit scene. */
+type Props = { cx: number; cy: number; size: number; gradId: string };
+const { cx, cy, size, gradId } = Astro.props;
+---
+
+<g transform={`translate(${cx - (size * MARK_ASPECT) / 2} ${cy - size / 2}) scale(${size / 512})`}>
+  <path d={MARK_PATH} fill={`url(#${gradId})`} />
+</g>

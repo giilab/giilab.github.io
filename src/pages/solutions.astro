@@ -1,0 +1,81 @@
+---
+import Base from "@/layouts/Base.astro";
+import Container from "@/components/ui/Container.astro";
+import Section from "@/components/ui/Section.astro";
+import PageHero from "@/components/ui/PageHero.astro";
+import Card from "@/components/ui/Card.astro";
+import SectionHead from "@/components/ui/SectionHead.astro";
+import AgentLogVisual from "@/components/visuals/AgentLogVisual.astro";
+import CTABand from "@/components/CTABand.astro";
+import RoutingVisual from "@/components/RoutingVisual.astro";
+import { SOLUTIONS, pageMeta } from "@/lib/site";
+
+const meta = pageMeta(
+  "/solutions/",
+  "Business AI Solutions & Automation",
+  "AI chatbots for customer support, document processing automation, knowledge search and operational data, each tested on your own data.",
+);
+
+const LABEL = "text-[0.75rem] font-semibold uppercase tracking-[0.14em] text-accent-ink";
+---
+
+<Base meta={meta}>
+  <PageHero
+    eyebrow="Solutions"
+    lead="Every organisation has processes that consume time, information that is difficult to access and systems that don't work well together. Giilab builds practical AI and software solutions to address these challenges. We start with your workflow, understand your data and validate the approach before scaling."
+  >
+    <AgentLogVisual slot="visual" />
+    <Fragment slot="title">AI solutions for <span class="serif accent">real business challenges.</span></Fragment>
+  </PageHero>
+
+  <Section>
+    <Container>
+      <div class="grid gap-5 lg:grid-cols-2">
+        {SOLUTIONS.map((s) => (
+          <Card class="gap-4">
+            <div>
+              <h2 class="text-[1.25rem] font-semibold">{s.title}</h2>
+              <p class="mt-1.5 text-[1rem] font-medium">{s.tagline}</p>
+              <p class="mt-2 text-[0.95rem] text-muted">{s.problem}</p>
+            </div>
+            <div>
+              <h3 class={LABEL}>Our solution</h3>
+              <p class="mt-1 text-[0.95rem] text-muted">{s.approach}</p>
+            </div>
+            <div>
+              <h3 class={LABEL}>Capabilities</h3>
+              <ul class="mt-1.5 grid list-disc gap-1 pl-5 text-[0.95rem] text-muted">
+                {s.capabilities.map((c) => <li>{c}</li>)}
+              </ul>
+            </div>
+            <div class="mt-auto">
+              <h3 class={LABEL}>How success is measured</h3>
+              <p class="mt-1 text-[0.95rem] text-muted">{s.outcome}</p>
+            </div>
+          </Card>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <Section>
+    <Container>
+      <SectionHead
+        eyebrow="Automation architecture"
+        lead="Our systems automate tasks when they meet the rules and quality standards you set. Exceptions and sensitive decisions are routed to people. Every action is designed around permissions, traceability and measurable quality."
+      >
+        Automation with <span class="serif accent">human oversight.</span>
+      </SectionHead>
+      <div class="mt-12">
+        <RoutingVisual full />
+      </div>
+    </Container>
+  </Section>
+
+  <CTABand
+    body="Tell us about the workflow, information or operational problem slowing your team down."
+    cta="Discuss Your Project"
+  >
+    Which business challenge should we <span class="serif accent">solve first?</span>
+  </CTABand>
+</Base>
