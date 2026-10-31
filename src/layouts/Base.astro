@@ -79,7 +79,7 @@ const JSONLD = [
     <!-- Applies the stored (or system) theme before first paint, so a dark-mode visitor
          never sees a flash of the light theme. The Worker stamps its CSP nonce. -->
     <script is:inline>(function(){try{let t=localStorage.getItem('giilab-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch{}})();</script>
-    <link rel="preload" as="image" href="/giilab-mark.svg" />
+    <link rel="preload" as="image" href="/giilab-mark.svg" fetchpriority="high" />
     <link rel="llms" href="/llms.txt" />
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f3f4f6" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0b1220" />

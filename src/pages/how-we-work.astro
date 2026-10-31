@@ -147,13 +147,7 @@ const LIST_DOT = "mt-[0.55rem] h-1.5 w-1.5 shrink-0 rounded-full";
             </div>
             <ul class="mt-3.5 grid grid-cols-4 gap-x-1.5 gap-y-3">
               {items.map(([name, logo]) => (
-                <li class="flex flex-col items-center gap-1.5 text-center text-[0.68rem] leading-tight text-muted">
-                  {/* White tile keeps dark logos (Next.js, Rust) visible in dark mode. */}
-                  <span class="grid h-10 w-10 place-items-center rounded-xl border border-line bg-white">
-                    <img src={logoSrc(logo)} alt="" width="22" height="22" loading="lazy" />
-                  </span>
-                  {name}
-                </li>
+                <li class="stack-tile"><img src={logoSrc(logo)} alt="" width="40" height="40" loading="lazy" />{name}</li>
               ))}
             </ul>
             <button type="button" hidden class="stack-more mt-auto cursor-pointer self-start pt-3 text-[0.78rem] font-medium text-accent-ink"></button>

@@ -16,8 +16,9 @@ import { MARK_ASPECT, WORD_ASPECT, LOCKUP } from "@/lib/logo";
  * path data on every page. The wordmark is a mask so it still takes the theme's
  * text colour. public/giilab-wordmark.svg is WORD_PATH as a file.
  */
-type Props = { markHeight?: number; class?: string };
-const { markHeight = 44, class: className = "" } = Astro.props;
+// `priority` marks the header copy, which is the LCP element on most pages.
+type Props = { markHeight?: number; priority?: boolean; class?: string };
+const { markHeight = 44, priority = false, class: className = "" } = Astro.props;
 const wordHeight = markHeight / LOCKUP.markToWord;
 const gap = wordHeight * LOCKUP.gapToWord;
 const descriptorSize = Math.max(12, wordHeight * 0.42);
@@ -25,7 +26,7 @@ const wordmarkHeight = wordHeight * 1.28;
 ---
 
 <span class={`inline-flex items-center ${className}`} style={`gap:${gap}px`}>
-  <img src="/giilab-mark.svg" alt="Giilab" width={Math.round(markHeight * MARK_ASPECT * 100) / 100} height={markHeight} />
+  <img src="/giilab-mark.svg" alt="Giilab" fetchpriority={priority ? "high" : undefined} width={Math.round(markHeight * MARK_ASPECT * 100) / 100} height={markHeight} />
   <span class="flex flex-col" style={`gap:${wordHeight * 0.38}px`}>
     <span
       aria-hidden="true"
