@@ -59,10 +59,15 @@ export default function Header() {
           {NAV.map((item) => (
             <RollLink key={item.href} href={item.href} label={item.label} active={pathname === item.href} />
           ))}
-          <RollLink href="/contact/" label="Contact" active={pathname === "/contact/"} />
         </nav>
 
         <div className="flex items-center gap-2">
+          <Link
+            href="/contact/"
+            className="hidden rounded-full bg-accent px-[18px] py-[9px] text-[0.84rem] font-semibold text-on-accent transition-transform duration-300 hover:-translate-y-0.5 sm:inline-flex"
+          >
+            Discuss your project
+          </Link>
           <ThemeToggle />
           <button
             type="button"
@@ -87,8 +92,8 @@ export default function Header() {
                 {item.label}
               </Link>
             ))}
-            <Link href="/contact/" className="py-3.5 text-[0.95rem] text-muted">
-              Contact
+            <Link href="/contact/" className="py-3.5 text-[0.95rem] font-semibold text-accent-ink">
+              Discuss your project
             </Link>
           </Container>
         </div>
