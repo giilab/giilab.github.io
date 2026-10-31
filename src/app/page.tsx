@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Container, Section, SectionHead, ButtonLink, Card, Grid, Pillar, Eyebrow, HeroVisual } from "@/components/ui";
 import HeroMark from "@/components/HeroMark";
 import CTABand from "@/components/CTABand";
-import { INDUSTRIES, pageMeta } from "@/lib/site";
+import { pageMeta } from "@/lib/site";
 
 export const metadata: Metadata = {
   ...pageMeta(
@@ -81,17 +81,6 @@ export default function HomePage() {
           <p className="mt-6 text-[0.95rem] font-medium">
             AI Engineering · Business Automation · Software Engineering
           </p>
-          <div className="mt-[clamp(36px,5vw,56px)] flex flex-wrap items-center gap-x-[14px] gap-y-2.5 text-[0.88rem] text-muted">
-            <span className="text-faint">Shipped in</span>
-            {INDUSTRIES.map((i, n) => (
-              <span key={i.name} className="flex items-center gap-[14px]">
-                {i.name}
-                {n < INDUSTRIES.length - 1 && (
-                  <i aria-hidden="true" className="h-1 w-1 rounded-full bg-line-strong" />
-                )}
-              </span>
-            ))}
-          </div>
         </Container>
       </section>
 

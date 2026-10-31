@@ -227,7 +227,7 @@ export const SOLUTIONS: Solution[] = [
   },
 ];
 
-// Sectors with delivered production work; listed on the homepage and Projects.
+// Sectors with delivered production work; listed on Projects.
 export const INDUSTRIES = [
   { name: "Education" },
   { name: "Food" },
