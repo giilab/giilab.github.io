@@ -60,10 +60,11 @@ export default function Footer() {
           <LinkColumn title="Explore" links={NAV.filter((item) => item.href !== "/about/")} />
           <LinkColumn title="Company" links={COMPANY} />
 
-          <nav aria-label="Services">
+          <nav aria-label="Services" className="max-w-[11rem]">
             <h2 className={HEADING}>Services</h2>
             <ul className="grid gap-[11px]">
-              {SERVICES.map((s) => (
+              {/* The longest title goes last, where its wrap to two lines reads cleanly. */}
+              {[...SERVICES.filter((s) => s.slug !== "process-automation"), ...SERVICES.filter((s) => s.slug === "process-automation")].map((s) => (
                 <li key={s.slug}>
                   <Link href={`/services/#${s.slug}`} className="text-[0.9rem] text-muted transition-colors hover:text-accent-ink">
                     {s.title}
