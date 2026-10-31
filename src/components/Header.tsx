@@ -55,7 +55,7 @@ export default function Header() {
           <LockupStacked markHeight={42} />
         </Link>
 
-        <nav aria-label="Primary" className="hidden items-center gap-[30px] lg:flex">
+        <nav aria-label="Primary" className="ml-auto mr-4 hidden items-center gap-[30px] lg:flex">
           {NAV.map((item) => (
             <RollLink key={item.href} href={item.href} label={item.label} active={pathname === item.href} />
           ))}
