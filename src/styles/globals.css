@@ -97,7 +97,7 @@
     cursor: pointer;
   }
   html {
-    /* Smooth scrolling comes from Lenis (SmoothScroll.tsx); CSS smooth
+    /* Smooth scrolling comes from Lenis (BackToTop.astro); CSS smooth
        scroll-behavior fights it. */
     -webkit-text-size-adjust: 100%;
   }
@@ -229,12 +229,7 @@
     filter: blur(30px);
     animation: hero-mark-glow 6s ease-in-out infinite;
   }
-  /* Hero visual review candidates (HeroVisuals*.tsx). Infinite loops carry .hv-loop. */
-  .hv-pulse {
-    stroke-dasharray: 0.12 2;
-    animation: hv-pulse 2.4s linear infinite;
-  }
-  @keyframes hv-pulse { from { stroke-dashoffset: 0.12; } to { stroke-dashoffset: -1; } }
+  /* Hero visuals (src/components/visuals). Infinite loops carry .hv-loop. */
   .hv-node {
     transform-box: fill-box;
     transform-origin: center;
@@ -246,11 +241,6 @@
   .hv-orbit { animation: hv-orbit 60s linear infinite; }
   .hv-orbit-counter { animation-direction: reverse; }
   @keyframes hv-orbit { to { transform: rotate(360deg); } }
-  .hv-ripple {
-    transform-box: fill-box;
-    transform-origin: center;
-    animation: hv-ripple 3.2s ease-out infinite;
-  }
   .hv-token { animation: hv-token 4.5s linear infinite; }
   /* Same 4.5s period as .hv-token, so each output lights up as its input reaches the mark. */
   .hv-out { animation: hv-out 4.5s ease-out infinite; }
@@ -260,18 +250,16 @@
     transform-origin: center;
     animation: hv-breathe 5s ease-in-out 2.5s infinite;
   }
-  .hv-in { animation: hv-in 0.35s ease-out both; }
   .hv-blink { animation: hv-blink 1s steps(1) infinite; }
   @keyframes hv-node { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
   @keyframes hv-svc {
     3%, 14% { border-color: var(--accent); background-color: var(--accent-soft); color: var(--text); }
     20%, 100% { border-color: var(--line); background-color: var(--bg-card); color: var(--muted); }
-  }  @keyframes hv-ripple { 0% { transform: scale(1); opacity: 0.22; } 12% { transform: scale(2); opacity: 1; } 35%, 100% { transform: scale(1); opacity: 0.22; } }
+  }
   @keyframes hv-token { 0% { transform: translateX(0); opacity: 0; } 15%, 65% { opacity: 1; } 100% { transform: translateX(130px); opacity: 0; } }
   @keyframes hv-out { 0%, 55% { opacity: 0.35; } 70%, 90% { opacity: 1; } 100% { opacity: 0.35; } }
   @keyframes hv-gather { from { transform: translate(var(--dx), var(--dy)); opacity: 0; } to { transform: none; opacity: 1; } }
   @keyframes hv-breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
-  @keyframes hv-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
   @keyframes hv-blink { 50% { opacity: 0; } }
   @keyframes hero-mark-draw { 0% { stroke-dashoffset: 1; } 20%, 80% { stroke-dashoffset: 0; } 95%, 100% { stroke-dashoffset: 1; } }
   @keyframes hero-mark-fill { 0%, 15% { opacity: 0; } 27%, 75% { opacity: 1; } 85%, 100% { opacity: 0; } }
