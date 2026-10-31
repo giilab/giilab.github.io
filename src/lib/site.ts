@@ -66,17 +66,17 @@ export type Service = {
 
 export const SERVICES: Service[] = [
   {
-    slug: "ai-automation",
-    title: "AI Automation",
+    slug: "ai-applications",
+    title: "Custom AI Applications",
     summary:
-      "Automate repetitive tasks and business workflows using AI where it adds measurable value.",
+      "Turn your AI product ideas into working applications built around real business requirements.",
     detail:
-      "We start from the workflow as it actually runs, not as the process document describes it. The parts a model handles well get automated. The rest go to a person, with the context already attached.",
+      "Retrieval over your documents, assistants inside your product, classification and extraction pipelines. Built as ordinary software with a model in it, which is what makes it maintainable.",
     deliverables: [
-      "Workflow assessment and automation design",
-      "AI-powered task processing",
-      "Human review and escalation workflows",
-      "Quality evaluation and monitoring",
+      "AI application architecture",
+      "Retrieval and knowledge systems",
+      "Model integration and evaluation",
+      "Application development and deployment",
     ],
   },
   {
@@ -94,17 +94,17 @@ export const SERVICES: Service[] = [
     ],
   },
   {
-    slug: "ai-applications",
-    title: "Custom AI Applications",
+    slug: "ai-automation",
+    title: "AI Automation",
     summary:
-      "Turn your AI product ideas into working applications built around real business requirements.",
+      "Automate repetitive tasks and business workflows using AI where it adds measurable value.",
     detail:
-      "Retrieval over your documents, assistants inside your product, classification and extraction pipelines. Built as ordinary software with a model in it, which is what makes it maintainable.",
+      "We start from the workflow as it actually runs, not as the process document describes it. The parts a model handles well get automated. The rest go to a person, with the context already attached.",
     deliverables: [
-      "AI application architecture",
-      "Retrieval and knowledge systems",
-      "Model integration and evaluation",
-      "Application development and deployment",
+      "Workflow assessment and automation design",
+      "AI-powered task processing",
+      "Human review and escalation workflows",
+      "Quality evaluation and monitoring",
     ],
   },
   {
