@@ -1,6 +1,6 @@
 # Giilab — www.giilab.in
 
-Company portfolio site for Giilab, an AI engineering studio in Pune.
+Company website for Giilab, an AI engineering studio in Pune.
 
 Astro · TypeScript · Tailwind CSS v4 · static HTML, no UI framework.
 
@@ -19,6 +19,24 @@ npm run typecheck  # astro check
 
 `npm run build` writes a fully static site to `dist/`. There is no server at
 runtime, which is what lets it sit on any static host.
+
+## Pages
+
+| Route | File | Purpose |
+|---|---|---|
+| `/` | `src/pages/index.astro` | Home |
+| `/services/` | `services.astro` | The six services, grouped, with an anchor per service |
+| `/solutions/` | `solutions.astro` | Business problems we solve, plus the human-oversight diagram |
+| `/how-we-work/` | `how-we-work.astro` | Engagement options, delivery process, what you need to start, stack, NDAs |
+| `/about/` | `about.astro` | Philosophy, team set-up, sectors, founder |
+| `/contact/` | `contact.astro` | FAQ, contact form, contact details |
+| `/privacy/`, `/terms/`, `/editorial-policy/` | legal pages | |
+| 404 | `404.astro` | Not indexed |
+| `/sitemap.xml`, `/robots.txt`, `/llms.txt` | `*.ts` endpoints | Generated at build (see SEO) |
+
+`/how-we-work/` replaced `/projects/` while there is no published client work;
+`/projects` and the old `/industries` 301 there. When there is real work to show,
+add a case-study page, and only include outcomes you can evidence.
 
 ## Configuration
 
@@ -39,7 +57,8 @@ serves `dist/` as static assets, configured in `wrangler.jsonc`.
   CSP needs no `'unsafe-inline'`. Edit the CSP there.
 - `public/_headers` sets the other security headers and the long cache on
   the hashed bundles in `/_astro/*`.
-- `public/_redirects` makes the no-trailing-slash redirects permanent (301).
+- `public/_redirects` holds the permanent (301) redirects: no-trailing-slash
+  URLs, and retired pages. Add a line here whenever a page is renamed or removed.
 
 DNS lives at Cloudflare (domain registered at Hostinger). In the Cloudflare
 dashboard, the Worker has `www.giilab.in` and `giilab.in` as custom domains, and
@@ -47,8 +66,9 @@ a Redirect Rule sends `giilab.in/*` to `www`. To change the domain, update it
 there and in `SITE.url` in `src/lib/site.ts`, which every canonical, sitemap,
 robots and structured-data URL is built from.
 
-`.github/workflows/deploy.yml` still publishes a copy to `giilab.github.io`; its
-canonical tags point at `www.giilab.in`.
+`.github/workflows/deploy.yml` runs lint, typecheck and build, and publishes a
+copy to `giilab.github.io` on pushes to `main` and `astro`. Its canonical tags
+point at `www.giilab.in`.
 
 ## How it is put together
 
@@ -61,18 +81,19 @@ src/
     visuals/      decorative hero art
   styles/         globals.css
   lib/
-    site.ts       all site copy and structured content — edit here, not in markup
+    site.ts       shared data: company details, nav, services, solutions, process
     logo.ts       generated logo geometry (see below)
-public/           icons, OG image
+public/           icons, OG image, founder photo, _headers, _redirects
 ```
 
 ### Theming
 
 Colour lives in CSS custom properties in `src/styles/globals.css`, exposed to
-Tailwind through `@theme inline`. Sections declare a tone (`tone-light` or
-`tone-dark`) and every token re-points, so a component written once works on
-both. Use `bg-surface`, `text-muted`, `border-line` and so on rather than
-hard-coded colours.
+Tailwind through `@theme inline`. Dark mode re-points the same tokens under
+`:root[data-theme="dark"]`; an inline script in `Base.astro` sets `data-theme`
+before first paint, and `ThemeToggle.astro` switches it (stored in
+`localStorage` as `giilab-theme`). Use `bg-surface`, `text-muted`, `border-line`
+and so on rather than hard-coded colours, and a component works in both themes.
 
 > **One deliberate departure from the brand board.** The board lists `#64748B`
 > for secondary text. On the `#F3F4F6` ground that is 4.1:1, which fails WCAG AA
@@ -92,21 +113,46 @@ artwork changes, re-trace rather than hand-editing the path strings.
 
 There is no React. The few interactive pieces (header menu, theme toggle, smooth
 scroll and back-to-top, hero particles, contact form) are plain `<script>` tags
-inside their `.astro` components, which Astro bundles into `/_astro/`.
+inside their `.astro` components, which Astro bundles into `/_astro/`. Every
+animation stops under `prefers-reduced-motion`.
 
 ## Editing content
 
-Nearly all copy lives in `src/lib/site.ts`: services, solutions, industries,
-delivery process, contact details. Pages read from it. Change it there and every
-page that uses it follows.
+- **Shared data** lives in `src/lib/site.ts`: company details (`SITE`), the menu
+  (`NAV`, which also drives the footer and `llms.txt`), `SERVICES`, `SOLUTIONS`,
+  `INDUSTRIES` and the delivery `PROCESS`. Change it there and every page that
+  uses it follows.
+- **Page-specific copy** (headings, intros, FAQ, legal text) lives in each page
+  file under `src/pages/`, either in the markup or in a list at the top of the
+  file.
 
-### How We Work page
+## SEO
 
-`/how-we-work/` replaced `/projects/` (old URLs 301 there via `public/_redirects`)
-while there is no published client work. It covers engagement options, the
-delivery process (`PROCESS` in `site.ts`), what a client needs to start, how
-success is measured, the stack and confidentiality. When there is real work to
-show, add a case-study page; only include outcomes you can evidence.
+Each page passes `pageMeta(path, title, description)` from `site.ts` to
+`Base.astro`, which writes the `<title>`, description, canonical, Open Graph,
+Twitter and JSON-LD tags.
+
+- **Titles:** keyword first, then ` | Giilab` (added automatically). The home
+  page sets `brandFirst: true` for `Giilab | …`. Keep the whole title at 51
+  characters or fewer.
+- **Descriptions:** 120–155 characters, naming the page's main keyword.
+- **H1:** one per page. Inner pages carry their keyword in the H1; the home and
+  contact headings are deliberately brand copy.
+- **Error pages** set `noindex: true`: robots `noindex`, no canonical.
+- **`sitemap.xml`** lists every `.astro` page in `src/pages` automatically (404
+  and dynamic routes excluded). A page that should not be indexed must be added
+  to the filter in `sitemap.xml.ts`.
+- **`robots.txt`** allows all crawlers and points to the sitemap.
+- **`llms.txt`** (a summary for AI crawlers) is built from `NAV`, `SERVICES`,
+  `SOLUTIONS` and `PROCESS`.
+
+### Adding a page
+
+1. Create `src/pages/<name>.astro` using `Base`, `PageHero` and `pageMeta()`.
+   It joins the sitemap automatically.
+2. If it belongs in the menu, add it to `NAV` in `site.ts`.
+3. Add `/<name> /<name>/ 301` to `public/_redirects`.
+4. Run `npm run lint`, `npm run typecheck` and `npm run build`.
 
 ## Still to configure
 
