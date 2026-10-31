@@ -49,6 +49,7 @@ export default function Footer() {
               We combine AI engineering, business automation and software development to
               build reliable systems around your business needs.
             </p>
+            <address className="mt-[18px] text-[0.9rem] not-italic text-muted">{SITE.location}</address>
           </div>
 
           <LinkColumn title="Explore" links={NAV.filter((item) => item.href !== "/about/")} />
@@ -74,7 +75,6 @@ export default function Footer() {
             <ul className="grid gap-[11px]">
               <li><a href={`mailto:${SITE.email}`} className="text-[0.9rem] text-muted transition-colors hover:text-accent-ink">{SITE.email}</a></li>
               <li><a href={`tel:${SITE.phone.replace(/\s/g, "")}`} className="text-[0.9rem] text-muted transition-colors hover:text-accent-ink">{SITE.phone}</a></li>
-              <li><address className="text-[0.9rem] not-italic text-muted">{SITE.location}</address></li>
               <li className="flex gap-4 pt-1">
                 {[
                   { href: SITE.linkedin, icon: "linkedin" as const, label: "LinkedIn" },
