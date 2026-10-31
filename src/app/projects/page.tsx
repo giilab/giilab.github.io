@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Container, Section, PageHero, Card, Grid, Pill, ButtonLink } from "@/components/ui";
 import { TokenStreamVisual } from "@/components/HeroVisuals";
 import CTABand from "@/components/CTABand";
-import { CASE_STUDIES, INDUSTRIES, SITE, pageMeta } from "@/lib/site";
+import { CASE_STUDIES, INDUSTRIES, pageMeta } from "@/lib/site";
 
 export const metadata: Metadata = pageMeta(
   "/projects/",
@@ -75,11 +75,6 @@ export default function ProjectsPage() {
                 Explore selected software projects, open-source contributions and technical
                 implementations.
               </p>
-              <div className="mt-auto pt-2">
-                <a href={SITE.github} target="_blank" rel="noopener noreferrer" className="text-[0.9rem] font-medium text-accent-ink">
-                  Explore GitHub &rarr;
-                </a>
-              </div>
             </Card>
             <Card className="gap-3">
               <h2 className="text-[1.1rem] font-semibold">Technical Demonstrations</h2>
@@ -91,11 +86,6 @@ export default function ProjectsPage() {
                 Each demonstration explains the problem, architecture, implementation and
                 technical decisions.
               </p>
-              <div className="mt-auto pt-2">
-                <a href={SITE.portfolio} target="_blank" rel="noopener noreferrer" className="text-[0.9rem] font-medium text-accent-ink">
-                  Portfolio &rarr;
-                </a>
-              </div>
             </Card>
             <Card className="gap-3">
               <h2 className="text-[1.1rem] font-semibold">Client Engagements</h2>
