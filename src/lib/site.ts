@@ -67,86 +67,86 @@ export type Service = {
 export const SERVICES: Service[] = [
   {
     slug: "ai-automation",
-    title: "AI automation",
+    title: "AI Automation",
     summary:
-      "One process that eats hours every week, run end to end, with your people kept for the exceptions.",
+      "Automate repetitive tasks and business workflows using AI where it adds measurable value.",
     detail:
       "We start from the workflow as it actually runs, not as the process document describes it. The parts a model handles well get automated. The rest go to a person, with the context already attached.",
     deliverables: [
-      "Workflow and data mapping",
-      "Automation built against your real cases",
-      "Confidence thresholds and escalation rules",
-      "Accuracy and cost-per-task reporting",
+      "Workflow assessment and automation design",
+      "AI-powered task processing",
+      "Human review and escalation workflows",
+      "Quality evaluation and monitoring",
     ],
   },
   {
     slug: "ai-agents",
-    title: "AI agent development",
+    title: "AI Agent Development",
     summary:
-      "Agents that use your tools under explicit limits, and stop when they are out of their depth.",
+      "Develop AI agents that interact with approved business tools and perform tasks within defined permissions.",
     detail:
       "An agent is only as good as its tools, its guardrails and its tests. We build all three together. You can see what the agent did, and why, before you let it touch more.",
     deliverables: [
-      "Tool and permission design",
+      "Agent architecture and tool integration",
+      "Workflow and permission design",
       "Guardrails and failure handling",
-      "Evaluation suite on your own cases",
-      "Action logging and review",
+      "Evaluation and action monitoring",
     ],
   },
   {
     slug: "ai-applications",
-    title: "Custom AI applications",
+    title: "Custom AI Applications",
     summary:
-      "Your idea as a working system on real data, with the evaluations that make it safe to ship.",
+      "Turn your AI product ideas into working applications built around real business requirements.",
     detail:
       "Retrieval over your documents, assistants inside your product, classification and extraction pipelines. Built as ordinary software with a model in it, which is what makes it maintainable.",
     deliverables: [
-      "Retrieval and context design",
-      "Model selection and prompt engineering",
-      "Evaluation harness and regression tests",
-      "Production deployment",
+      "AI application architecture",
+      "Retrieval and knowledge systems",
+      "Model integration and evaluation",
+      "Application development and deployment",
     ],
   },
   {
     slug: "ai-integrations",
-    title: "AI integrations",
+    title: "AI Integrations",
     summary:
-      "Connect models to the systems you already run, without rebuilding them around a vendor.",
+      "Connect AI capabilities with existing business applications, APIs and databases.",
     detail:
       "We keep the model behind an interface so it can be swapped as prices and capabilities change. Integration work covers your existing APIs, databases, queues and third-party tools.",
     deliverables: [
-      "Integration architecture",
-      "API and data plumbing",
-      "Model-agnostic abstraction layer",
-      "Monitoring and alerting",
+      "API and third-party integrations",
+      "Model integration architecture",
+      "Data and application connectivity",
+      "Monitoring and error handling",
     ],
   },
   {
     slug: "process-automation",
-    title: "Business process automation",
+    title: "Business Process Automation",
     summary:
-      "Software that removes the manual steps between systems, with or without a model involved.",
+      "Automate repetitive business processes without introducing unnecessary complexity.",
     detail:
       "Not every problem needs AI. Plenty of costly manual work is really a scheduling, data or integration problem. When that is the cheaper fix, we will tell you.",
     deliverables: [
-      "Process analysis",
-      "Pipelines and scheduled jobs",
+      "Business process assessment",
+      "Workflow automation",
       "Data validation and reconciliation",
-      "Operational dashboards",
+      "Scheduled jobs and operational dashboards",
     ],
   },
   {
     slug: "ai-consulting",
-    title: "AI consulting",
+    title: "AI Consulting",
     summary:
-      "Clear technical direction before the expensive decisions get made.",
+      "Evaluate AI opportunities, technical feasibility and implementation options before committing development resources.",
     detail:
       "Architecture review, build-versus-buy, feasibility assessment and a delivery plan you can actually staff. Sometimes the useful output is a recommendation not to build.",
     deliverables: [
-      "Architecture and design review",
-      "Feasibility and cost assessment",
-      "Technical roadmap",
-      "Team and delivery planning",
+      "AI opportunity assessment",
+      "Technical architecture reviews",
+      "Build-versus-buy evaluation",
+      "Implementation roadmap and cost assessment",
     ],
   },
 ];
