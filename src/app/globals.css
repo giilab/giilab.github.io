@@ -258,7 +258,7 @@
     3%, 14% { border-color: var(--accent); background-color: var(--accent-soft); color: var(--text); }
     20%, 100% { border-color: var(--line); background-color: var(--bg-card); color: var(--muted); }
   }  @keyframes hv-ripple { 0% { transform: scale(1); opacity: 0.22; } 12% { transform: scale(2); opacity: 1; } 35%, 100% { transform: scale(1); opacity: 0.22; } }
-  @keyframes hv-token { 0% { transform: translateX(0); opacity: 0; } 15%, 65% { opacity: 1; } 100% { transform: translateX(40px); opacity: 0; } }
+  @keyframes hv-token { 0% { transform: translateX(0); opacity: 0; } 15%, 65% { opacity: 1; } 100% { transform: translateX(130px); opacity: 0; } }
   @keyframes hv-json { 0% { opacity: 0; transform: translateX(-6px); } 12%, 80% { opacity: 1; transform: none; } 100% { opacity: 0; } }
   @keyframes hv-gather { from { transform: translate(var(--dx), var(--dy)); opacity: 0; } to { transform: none; opacity: 1; } }
   @keyframes hv-breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
