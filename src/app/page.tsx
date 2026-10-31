@@ -17,43 +17,43 @@ export const metadata: Metadata = {
 const OFFERINGS = [
   {
     title: "AI Engineering",
-    body: "Build intelligent applications, AI agents and knowledge systems around your business data.",
+    body: "Build intelligent applications, AI agents and knowledge systems that use your own data.",
     href: "/services/#ai-engineering",
     link: "Explore AI Engineering",
   },
   {
     title: "Business Automation",
-    body: "Connect workflows, automate repetitive tasks and reduce manual operational effort.",
+    body: "Connect your tools, automate repetitive tasks and cut down on manual work.",
     href: "/services/#automation",
     link: "Explore Automation",
   },
   {
     title: "Software Engineering",
-    body: "Build reliable backend platforms, APIs, integrations and data infrastructure.",
+    body: "Build reliable backend systems, APIs, integrations and data pipelines.",
     href: "/services/#software-engineering",
     link: "Explore Software Engineering",
   },
 ];
 
 const PROBLEMS = [
-  ["Customer Support", "Help customers find answers and resolve routine requests faster."],
-  ["Document Processing", "Extract, validate and process information from business documents."],
-  ["Knowledge Management", "Make internal information easier to search, access and use."],
-  ["Operational Intelligence", "Connect business data and build systems that support better decisions."],
+  ["Customer Support", "Help customers find answers and solve simple requests faster. Your team keeps the hard cases."],
+  ["Document Processing", "Pull the details out of invoices, forms and contracts, and check them. Unclear fields go to a person."],
+  ["Knowledge Management", "Make it easy for your team to find what they need. Every answer shows where it came from."],
+  ["Operational Intelligence", "Bring your data together so you can make better decisions. Spot problems early, not at month end."],
 ];
 
 // Short form of PROCESS; the About page carries the detailed version.
 const STEPS = [
-  ["01", "Discover", "Understand your business process, data and requirements."],
-  ["02", "Prove", "Validate the approach against real business scenarios."],
-  ["03", "Build", "Develop a reliable solution with integrations, testing and monitoring."],
-  ["04", "Run", "Deploy, monitor and improve the system with a clear handover or ongoing support."],
+  ["01", "Discover", "Learn how your process works today, and what you need."],
+  ["02", "Prove", "Test the idea on your real cases before you spend more."],
+  ["03", "Build", "Build a solid system with tests, monitoring and the right connections."],
+  ["04", "Run", "Launch it, watch it and improve it. Then we hand it over, or keep supporting it."],
 ];
 
 const TRUST = [
-  ["Senior Engineering", "Work directly with experienced engineering leadership from discovery through delivery."],
-  ["Measurable Outcomes", "Define success criteria before development and evaluate results against real business scenarios."],
-  ["Responsible Implementation", "Build with appropriate access controls, data protection, testing and human oversight."],
+  ["Senior Engineering", "Work directly with senior engineers, from the first call to the final launch."],
+  ["Measurable Outcomes", "We agree how to measure success before we build. Then we test the results on your real cases."],
+  ["Responsible Implementation", "We protect your data, limit who can access it, test every change and keep people in charge of key decisions."],
 ];
 
 export default function HomePage() {
@@ -71,8 +71,8 @@ export default function HomePage() {
           </h1>
           <p className="t-lead mt-6">
             Most AI projects stall between the demo and the real system. Giilab builds what
-            sits underneath: the integrations, the guardrails and the testing. We validate
-            solutions against your business data before scaling what works.
+            sits underneath: the integrations, the guardrails and the testing. We test each
+            solution on your real data before we scale it.
           </p>
           <div className="mt-9 flex flex-wrap gap-3.5">
             <ButtonLink href="/contact/">Discuss Your Project</ButtonLink>
@@ -93,8 +93,8 @@ export default function HomePage() {
         <Container>
           <SectionHead
             eyebrow="What we do"
-            title={<>Engineering first. <span className="serif accent">Business outcomes always.</span></>}
-            lead="We combine AI, automation and software engineering to solve practical business challenges."
+            title={<>Engineering first. <span className="serif accent">Real outcomes always.</span></>}
+            lead="We use AI, automation and software engineering to solve practical problems. We pick the simplest tool that does the job."
             wide
           />
           <Grid className="mt-[clamp(40px,6vw,72px)]">
@@ -118,7 +118,8 @@ export default function HomePage() {
         <Container>
           <SectionHead
             eyebrow="Problems we solve"
-            title={<>Solve the problems <span className="serif accent">slowing your business down.</span></>}
+            title={<>Solve the problems <span className="serif accent">slowing your team down.</span></>}
+            lead="Most teams lose hours each week to the same few problems. These are the four we see most often, and the ones we know how to fix."
             wide
           />
           <Grid cols={4} className="mt-[clamp(40px,6vw,72px)]">
@@ -130,7 +131,7 @@ export default function HomePage() {
             ))}
           </Grid>
           <div className="mt-9">
-            <ButtonLink href="/solutions/" variant="ghost">Explore Business Solutions</ButtonLink>
+            <ButtonLink href="/solutions/" variant="ghost">Explore Our Solutions</ButtonLink>
           </div>
         </Container>
       </Section>
@@ -141,7 +142,7 @@ export default function HomePage() {
           <SectionHead
             eyebrow="How we work"
             title={<>Small proof first. <span className="serif accent">Then scale.</span></>}
-            lead="We take a measured approach to building technology solutions."
+            lead="We take a measured approach. Every stage ends with something you can check, and you can stop after any of them. Nothing grows until the last step has proved it works."
             wide
           />
           <Grid cols={4} className="mt-[clamp(40px,6vw,72px)]">
@@ -167,6 +168,7 @@ export default function HomePage() {
           <SectionHead
             eyebrow="Why Giilab"
             title={<>Engineering you can evaluate. <span className="serif accent">Solutions you can trust.</span></>}
+            lead="We are a small, senior team. You talk to the people who build your system, and you see the results before you commit to more."
             wide
           />
           <Grid className="mt-12">

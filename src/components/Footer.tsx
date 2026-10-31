@@ -47,7 +47,7 @@ export default function Footer() {
             </p>
             <p className="mt-2 max-w-[19rem] text-[0.9rem] text-muted">
               We combine AI engineering, business automation and software development to
-              build reliable systems around your business needs.
+              build reliable systems that fit the way you work.
             </p>
             <address className="mt-[18px] flex items-center gap-2 text-[0.9rem] not-italic text-text">
               <svg width={16} height={16} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="shrink-0 text-accent-ink">
