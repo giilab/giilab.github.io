@@ -75,6 +75,7 @@ const JSONLD = [
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
     <!-- Applies the stored (or system) theme before first paint, so a dark-mode visitor
          never sees a flash of the light theme. The Worker stamps its CSP nonce. -->
     <script is:inline>(function(){try{let t=localStorage.getItem('giilab-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch{}})();</script>
