@@ -153,47 +153,77 @@ export const SERVICES: Service[] = [
 
 export type Solution = {
   title: string;
+  tagline: string;
   problem: string;
   approach: string;
+  capabilities: string[];
   outcome: string;
 };
 
 export const SOLUTIONS: Solution[] = [
   {
-    title: "Customer support automation",
+    title: "Intelligent Customer Support",
+    tagline: "Give your customers faster access to answers.",
     problem:
-      "Support volume grows with your customer base. Either headcount grows with it, or replies get slower.",
+      "Support teams spend valuable time responding to repetitive questions and searching for information.",
     approach:
-      "An assistant answers from your own documents and past tickets. It handles routine requests through your helpdesk. Anything involving money, policy or judgment goes to a person.",
+      "An AI-powered support assistant that uses your approved knowledge sources and connects with your existing support workflows.",
+    capabilities: [
+      "Knowledge-based customer assistance",
+      "Frequently asked question automation",
+      "Ticket classification and routing",
+      "Human escalation for complex requests",
+    ],
     outcome:
-      "Measured on deflection rate, answer accuracy and time to first response — on your tickets, before and after.",
+      "Answer accuracy, response time and the proportion of requests resolved without human intervention.",
   },
   {
-    title: "Document processing at scale",
+    title: "Intelligent Document Processing",
+    tagline: "Turn unstructured documents into usable business information.",
     problem:
-      "Invoices, forms, contracts and reports arrive in inconsistent formats and get re-keyed by hand.",
+      "Invoices, applications, forms and reports often require manual data entry and verification.",
     approach:
-      "Extraction tuned to your document types, with a confidence score for each field. Fields we are sure of post straight through. The rest go to a fast review queue.",
-    outcome:
-      "Measured on field-level accuracy, straight-through rate and cost per document.",
+      "An intelligent document processing system that extracts information, validates fields and routes exceptions for human review.",
+    capabilities: [
+      "Document classification",
+      "Information extraction",
+      "Field validation",
+      "Review and approval workflows",
+      "Integration with business systems",
+    ],
+    outcome: "Extraction accuracy, processing time and cost per document.",
   },
   {
-    title: "Knowledge search over internal systems",
+    title: "Enterprise Knowledge Assistant",
+    tagline: "Make your business knowledge easier to find.",
     problem:
-      "The answer is somewhere in a wiki, a shared drive or a ticket system. Nobody can find it.",
+      "Important information is often distributed across documents, internal systems, shared drives and knowledge bases.",
     approach:
-      "Search runs across all your sources and respects who can see what. Every answer cites the document it came from. A test set of real questions shows you when quality slips.",
-    outcome:
-      "Measured on answer accuracy against a question set drawn from your own staff.",
+      "A searchable knowledge assistant that retrieves relevant information from approved sources and provides answers with supporting references.",
+    capabilities: [
+      "Enterprise search",
+      "Retrieval-augmented generation (RAG)",
+      "Source-based answers",
+      "Role-based access controls",
+      "Knowledge evaluation",
+    ],
+    outcome: "Answer relevance, retrieval accuracy and user task completion.",
   },
   {
-    title: "Operational data pipelines",
+    title: "Operational Data & Intelligence",
+    tagline: "Turn disconnected operational data into useful information.",
     problem:
-      "Device, machine or transaction data arrives faster than the reporting stack can absorb it.",
+      "Businesses generate data across applications, machines, devices and operational systems.",
     approach:
-      "Data is taken in, checked and rolled up by ordinary backend services you can monitor. A model is added only where it earns its place.",
-    outcome:
-      "Measured on freshness, completeness and the cost of running the pipeline.",
+      "Reliable data pipelines and intelligent applications that collect, process and present information for operational decision-making.",
+    capabilities: [
+      "Data ingestion and processing",
+      "API and system integration",
+      "Data quality validation",
+      "Operational dashboards",
+      "Monitoring and alerting",
+    ],
+    outcome: "Data freshness, completeness, reliability and operating cost.",
   },
 ];
 
