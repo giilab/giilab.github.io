@@ -1,4 +1,4 @@
-import { SITE, NAV, SERVICES, SOLUTIONS } from "@/lib/site";
+import { SITE, NAV, SERVICES, SOLUTIONS, PROCESS } from "@/lib/site";
 
 // llms.txt (https://llmstxt.org): a plain-text site summary for AI crawlers, built from site.ts.
 export function GET() {
@@ -19,6 +19,10 @@ export function GET() {
     "## Solutions",
     "",
     ...SOLUTIONS.map((s) => `- ${s.title}: ${s.approach}`),
+    "",
+    "## How we work",
+    "",
+    ...PROCESS.map((p) => `${p.n}. ${p.title}: ${p.body}`),
     "",
   ].join("\n");
   return new Response(body);
