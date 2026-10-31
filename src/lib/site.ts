@@ -52,7 +52,6 @@ export function pageMeta(path: string, title: string, description: string): Meta
 export const NAV = [
   { href: "/services/", label: "Services" },
   { href: "/solutions/", label: "Solutions" },
-  { href: "/industries/", label: "Industries" },
   { href: "/projects/", label: "Projects" },
   { href: "/about/", label: "About" },
 ] as const;
@@ -198,92 +197,15 @@ export const SOLUTIONS: Solution[] = [
   },
 ];
 
-// `name` is the short label for lists; `title` heads the card on the Industries page.
+// Sectors with delivered production work; listed on the homepage and Projects.
 export const INDUSTRIES = [
-  {
-    name: "Education",
-    title: "Education & Learning",
-    note: "Build technology that improves learning experiences and supports education operations.",
-    areas: [
-      "Learning management platforms",
-      "Content discovery and recommendations",
-      "Learner support automation",
-      "Education data platforms",
-      "Reporting and analytics",
-    ],
-  },
-  {
-    name: "Food",
-    title: "Food & Commerce",
-    note: "Connect product discovery, ordering and business operations through practical software systems.",
-    areas: [
-      "Digital catalogues",
-      "Ordering and inventory workflows",
-      "Business process automation",
-      "Customer communication",
-      "Commerce integrations",
-    ],
-  },
-  {
-    name: "Healthcare",
-    title: "Healthcare",
-    note: "Improve administrative workflows and information accessibility while keeping appropriate human oversight.",
-    areas: [
-      "Document processing",
-      "Administrative automation",
-      "Information retrieval",
-      "Healthcare application integrations",
-      "Operational data management",
-    ],
-  },
-  {
-    name: "Manufacturing",
-    title: "Manufacturing",
-    note: "Connect production information and operational systems to support more informed decisions.",
-    areas: [
-      "Production data integration",
-      "Quality data management",
-      "Document automation",
-      "Operational dashboards",
-      "Process monitoring",
-    ],
-  },
-  {
-    name: "Industrial",
-    title: "Industrial",
-    note: "Build software infrastructure for connected equipment and industrial operations.",
-    areas: [
-      "Equipment and sensor data ingestion",
-      "Device and sensor monitoring",
-      "Data processing pipelines",
-      "Alerts and notifications",
-      "Operational dashboards",
-    ],
-  },
-  {
-    name: "Energy",
-    title: "Energy",
-    note: "Develop software systems that support energy monitoring, asset management and operational efficiency.",
-    areas: [
-      "Energy data analytics",
-      "Asset monitoring",
-      "Installation planning",
-      "Performance reporting",
-      "Energy management workflows",
-    ],
-  },
-  {
-    name: "Open Source",
-    title: "Open Source & Developer Ecosystems",
-    note: "Build and maintain software tools, integrations and platforms that support developer communities.",
-    areas: [
-      "Developer platforms",
-      "Open-source integrations",
-      "Data infrastructure",
-      "Platform engineering",
-      "Documentation and tooling",
-    ],
-  },
+  { name: "Education" },
+  { name: "Food" },
+  { name: "Healthcare" },
+  { name: "Manufacturing" },
+  { name: "Industrial" },
+  { name: "Energy" },
+  { name: "Open Source" },
 ] as const;
 
 export const PROCESS = [

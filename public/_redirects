@@ -1,7 +1,8 @@
 # Permanent trailing-slash redirects (Cloudflare's built-in one is a 307).
 /about /about/ 301
 /contact /contact/ 301
-/industries /industries/ 301
+/industries /projects/ 301
+/industries/ /projects/ 301
 /privacy /privacy/ 301
 /projects /projects/ 301
 /services /services/ 301
