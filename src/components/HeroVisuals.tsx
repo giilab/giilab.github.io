@@ -139,8 +139,8 @@ export function RippleVisual() {
 /** Option 5: raw tokens flow into the mark, structured fields come out. */
 export function TokenStreamVisual() {
   const g = `tv-${useId().replace(/:/g, "")}`;
-  const tokens = ["Invoice #4471", "Giilab LLP", "due in 30 days", "₹48,200", "GST 18%"];
-  const json = ["{", '  "vendor": "Giilab LLP",', '  "total": 48200,', '  "due": "30d",', '  "tax": 0.18', "}"];
+  const tokens = ["Frontend app", "Backend API", "RAG search", "Data pipeline", "Cloud infra"];
+  const json = ["{", '  "build": "green",', '  "tests": "pass",', '  "deploy": "live",', '  "uptime": 0.999', "}"];
   return (
     <svg viewBox="0 0 400 400" className="w-full" focusable="false">
       <defs><MarkGradient id={g} /></defs>
