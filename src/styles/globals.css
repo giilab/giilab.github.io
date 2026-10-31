@@ -266,31 +266,10 @@
   @keyframes hero-mark-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
   @keyframes hero-mark-glow { 0%, 100% { opacity: 0.7; transform: scale(0.95); } 50% { opacity: 1; transform: scale(1.05); } }
 
-  /* Logo rows on How we work. Each copy carries its own trailing gap so -50% lands exactly
-     on the start of the second copy. Edges fade out; hover pauses. */
-  .marquee {
-    overflow: hidden;
-    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
-  }
-  .marquee-track {
-    display: flex;
-    width: max-content;
-    animation: marquee var(--marquee-duration, 40s) linear infinite;
-  }
-  .marquee-reverse { animation-direction: reverse; }
-  .marquee:hover .marquee-track { animation-play-state: paused; }
-  .marquee-copy { display: flex; gap: 0.6rem; padding-right: 0.6rem; }
-  @keyframes marquee { to { transform: translateX(-50%); } }
-
   /* The global reduced-motion rule shortens durations, which would make these
      infinite loops jitter; stop them outright instead. Kept last so it beats
      the per-class animation rules above at equal specificity. */
   @media (prefers-reduced-motion: reduce) {
     .hero-mark-draw, .hero-mark-fill, .hero-mark-float, .hero-mark-glow, .hv-loop { animation: none; }
-    /* Static rows instead: one copy, wrapped, no edge fade, no repeats. */
-    .marquee { mask-image: none; }
-    .marquee-track { animation: none; width: auto; }
-    .marquee-copy { flex-wrap: wrap; padding-right: 0; }
-    .marquee-copy[aria-hidden], .marquee-copy > [aria-hidden] { display: none; }
   }
 }
