@@ -1,0 +1,17 @@
+---
+import Section from "./Section.astro";
+import Container from "./Container.astro";
+
+/** Body of a legal page (terms, privacy): wraps a list of <LegalSection> blocks. */
+type Props = { updated: string };
+const { updated } = Astro.props;
+---
+
+<Section>
+  <Container>
+    <div class="max-w-[68ch]">
+      <p class="text-[0.85rem] text-faint">Last updated: {updated}</p>
+      <slot />
+    </div>
+  </Container>
+</Section>

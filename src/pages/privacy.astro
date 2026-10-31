@@ -1,0 +1,79 @@
+---
+import Base from "@/layouts/Base.astro";
+import PageHero from "@/components/ui/PageHero.astro";
+import LegalSections from "@/components/ui/LegalSections.astro";
+import LegalSection from "@/components/ui/LegalSection.astro";
+import { SITE, pageMeta } from "@/lib/site";
+
+const meta = pageMeta(
+  "/privacy/",
+  "Privacy Policy: How We Handle Your Data",
+  `What personal data the ${SITE.name} website receives when you contact us, why we use it, our no-tracking approach and your rights.`,
+);
+---
+
+<Base meta={meta}>
+  <PageHero eyebrow="Legal"><Fragment slot="title">Privacy policy</Fragment></PageHero>
+  <LegalSections updated="October 2026">
+    <LegalSection h="Who we are">
+      <p>
+        {SITE.legalName} (&ldquo;{SITE.name}&rdquo;, &ldquo;we&rdquo;) runs {SITE.url} from {SITE.location}. For any privacy
+        question or request, write to <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+      </p>
+    </LegalSection>
+    <LegalSection h="What we collect">
+      <p>
+        If you use the contact form, email us or message us on WhatsApp, we receive what you choose to send: your
+        name, email address, phone number, company, project stage and message. We use it only to reply
+        to you and, if we work together, to manage that relationship.
+      </p>
+      <p>
+        We do not use analytics, advertising or tracking tools, and we do not sell or
+        share your details for marketing.
+      </p>
+    </LegalSection>
+    <LegalSection h="Cookies and local storage">
+      <p>
+        The site sets no cookies. If you switch between light and dark themes, your choice
+        is saved in your browser&rsquo;s local storage so it is remembered next time. It
+        never leaves your device, and clearing your browser data removes it.
+      </p>
+    </LegalSection>
+    <LegalSection h="Service providers">
+      <p>
+        The site is hosted on GitHub Pages, which keeps standard server logs such as IP
+        addresses for security. Contact form messages are delivered through a third-party
+        form service, which passes them to our inbox. Fonts are served from this site, not
+        from an external font service.
+      </p>
+    </LegalSection>
+    <LegalSection h="Retention">
+      <p>
+        We keep enquiries for as long as needed to respond and follow up, and delete them
+        once they are no longer needed, unless we must keep them for legal or accounting
+        reasons.
+      </p>
+    </LegalSection>
+    <LegalSection h="Your rights">
+      <p>
+        Under India&rsquo;s Digital Personal Data Protection Act, 2023, and similar laws
+        where you live, you can ask to see, correct or delete the personal data we hold
+        about you, or withdraw consent. Email{" "}
+        <a href={`mailto:${SITE.email}`}>{SITE.email}</a> and we will respond within 30
+        days.
+      </p>
+    </LegalSection>
+    <LegalSection h="Client project data">
+      <p>
+        Data we handle while working on a client project is covered by that client&rsquo;s
+        agreement with us, not by this policy.
+      </p>
+    </LegalSection>
+    <LegalSection h="Changes">
+      <p>
+        We may update this policy; the date above shows the latest version. Significant
+        changes will be noted on this page.
+      </p>
+    </LegalSection>
+  </LegalSections>
+</Base>

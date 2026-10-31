@@ -1,0 +1,24 @@
+---
+import MarkGradient from "./MarkGradient.astro";
+import { MARK_VIEWBOX, MARK_ASPECT, MARK_PATH } from "@/lib/logo";
+import { uid } from "@/lib/ids";
+
+/** The Giilab ribbon mark. Gradient by default, or a single colour via `mono`. */
+type Props = { height?: number; mono?: boolean; title?: string; class?: string };
+const { height = 36, mono = false, title, class: className } = Astro.props;
+const id = uid("giilab-grad");
+---
+
+<svg
+  viewBox={MARK_VIEWBOX}
+  width={Math.round(height * MARK_ASPECT * 100) / 100}
+  height={height}
+  class={className}
+  role={title ? "img" : undefined}
+  aria-label={title}
+  aria-hidden={title ? undefined : "true"}
+  focusable="false"
+>
+  {!mono && <defs><MarkGradient id={id} /></defs>}
+  <path d={MARK_PATH} fill={mono ? "currentColor" : `url(#${id})`} />
+</svg>

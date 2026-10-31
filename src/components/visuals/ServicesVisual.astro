@@ -1,0 +1,37 @@
+---
+import Mark from "../Mark.astro";
+import { SERVICES } from "@/lib/site";
+
+/**
+ * The six services orbit the mark, each lit in turn. HTML rather than SVG so labels
+ * stay at a readable pixel size; cqw keeps the ring proportional.
+ */
+const step = 360 / SERVICES.length;
+---
+
+<div class="relative aspect-square w-full" style="container-type:inline-size">
+  <div class="absolute inset-[15%] rounded-full border border-dashed border-line-strong"></div>
+  <div class="absolute inset-0 flex items-center justify-center">
+    <div class="hero-mark-glow"></div>
+    <Mark height={80} class="relative" />
+  </div>
+  <ul class="hv-orbit hv-loop absolute inset-0">
+    {
+      SERVICES.map((s, i) => (
+        <li
+          class="absolute left-1/2 top-1/2"
+          style={`transform:rotate(${i * step}deg) translateX(35cqw) rotate(${-i * step}deg)`}
+        >
+          <div class="hv-orbit hv-orbit-counter hv-loop -translate-x-1/2 -translate-y-1/2">
+            <span
+              class="hv-svc hv-loop block w-[30cqw] rounded-2xl border border-line bg-surface px-2.5 py-1.5 text-center text-[0.72rem] font-medium leading-tight text-muted"
+              style={`animation-delay:${i}s`}
+            >
+              {s.title}
+            </span>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</div>

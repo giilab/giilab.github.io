@@ -1,0 +1,23 @@
+---
+import Container from "./Container.astro";
+import Eyebrow from "./Eyebrow.astro";
+import HeroVisual from "./HeroVisual.astro";
+
+// Slots: "title" (the h1, may carry a serif accent), "visual" (decorative art beside the
+// heading on wide screens), default (extra content under the lead).
+type Props = { eyebrow: string; lead?: string };
+const { eyebrow, lead } = Astro.props;
+const hasVisual = Astro.slots.has("visual");
+---
+
+<section class="relative z-[2] pt-[clamp(118px,11vw,152px)] pb-[clamp(40px,5vw,64px)]">
+  <Container>
+    {hasVisual && <HeroVisual><slot name="visual" /></HeroVisual>}
+    <div class={hasVisual ? "xl:pr-[clamp(260px,24vw,380px)]" : undefined}>
+      <Eyebrow>{eyebrow}</Eyebrow>
+      <h1 class="t-hero mt-[26px]"><slot name="title" /></h1>
+      {lead && <p class="t-lead mt-5">{lead}</p>}
+      <slot />
+    </div>
+  </Container>
+</section>

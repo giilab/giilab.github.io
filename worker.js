@@ -1,5 +1,5 @@
 // Serves the static export and stamps a per-request nonce on every <script>,
-// so the CSP can drop 'unsafe-inline' (Next inlines its RSC payload scripts).
+// so the CSP can drop 'unsafe-inline' (Astro inlines the theme script and small bundles).
 // Only HTML routes reach this Worker; see run_worker_first in wrangler.jsonc.
 const csp = (nonce) =>
   [

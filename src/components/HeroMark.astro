@@ -1,0 +1,23 @@
+---
+import MarkGradient from "./MarkGradient.astro";
+import { MARK_VIEWBOX, MARK_PATH } from "@/lib/logo";
+import { uid } from "@/lib/ids";
+
+/**
+ * Decorative hero mark: on an 8s loop the ribbon outline draws itself, fills with
+ * the brand gradient, holds, then unwinds; it floats throughout. Pure CSS; reduced
+ * motion shows it filled and still.
+ */
+type Props = { class?: string };
+const { class: className = "" } = Astro.props;
+const id = uid("hero-grad");
+---
+
+<div aria-hidden="true" class={`pointer-events-none ${className}`}>
+  <div class="hero-mark-glow"></div>
+  <svg viewBox={MARK_VIEWBOX} class="hero-mark-float relative w-full" focusable="false">
+    <defs><MarkGradient id={id} /></defs>
+    <path d={MARK_PATH} fill={`url(#${id})`} class="hero-mark-fill" />
+    <path d={MARK_PATH} fill="none" stroke={`url(#${id})`} stroke-width="3" pathLength="1" class="hero-mark-draw" />
+  </svg>
+</div>

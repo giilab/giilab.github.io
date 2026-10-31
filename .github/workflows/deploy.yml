@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [main, astro]
   workflow_dispatch:
 
 permissions:
@@ -29,16 +29,16 @@ jobs:
 
       - run: npm run lint
 
-      - run: npx tsc --noEmit
+      - run: npm run typecheck
 
-      - name: Build static export
+      - name: Build static site
         run: npm run build
 
       - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: ./out
+          path: ./dist
 
   deploy:
     needs: build

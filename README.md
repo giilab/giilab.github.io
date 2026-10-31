@@ -2,7 +2,7 @@
 
 Company portfolio site for Giilab, an AI engineering studio in Pune.
 
-Next.js 15 (App Router) · TypeScript · Tailwind CSS v4 · static export.
+Astro · TypeScript · Tailwind CSS v4 · static HTML, no UI framework.
 
 ---
 
@@ -10,34 +10,35 @@ Next.js 15 (App Router) · TypeScript · Tailwind CSS v4 · static export.
 
 ```bash
 npm install
-npm run dev        # http://localhost:3000
-npm run build      # static export into ./out
+npm run dev        # http://localhost:4321
+npm run build      # static site into ./dist
+npm run preview    # serve ./dist locally
 npm run lint
-npx tsc --noEmit
+npm run typecheck  # astro check
 ```
 
-`npm run build` writes a fully static site to `out/`. There is no server at
+`npm run build` writes a fully static site to `dist/`. There is no server at
 runtime, which is what lets it sit on any static host.
 
 ## Configuration
 
-No environment variables. Because the site is a static export it cannot receive
+No environment variables. Because the site is static it cannot receive
 form posts itself, so the contact form sends to [Web3Forms](https://web3forms.com),
 which emails each submission to the inbox its access key was created for. The
-key is `ACCESS_KEY` in `src/components/ContactForm.tsx`; it is public by design.
+key is `ACCESS_KEY` in `src/components/ContactForm.astro`; it is public by design.
 To send to a different inbox, create a new key at web3forms.com and replace it.
 
 ## Deployment
 
 The site is served at <https://www.giilab.in> by Cloudflare Workers. Cloudflare
 builds every push to `main` (`npm run build`, then `npx wrangler deploy`) and
-serves `out/` as static assets, configured in `wrangler.jsonc`.
+serves `dist/` as static assets, configured in `wrangler.jsonc`.
 
 - `worker.js` runs in front of HTML pages only. It stamps a per-request nonce on
   every `<script>` and sends the Content-Security-Policy that trusts it, so the
   CSP needs no `'unsafe-inline'`. Edit the CSP there.
 - `public/_headers` sets the other security headers and the long cache on
-  `/_next/static/*`.
+  the hashed bundles in `/_astro/*`.
 - `public/_redirects` makes the no-trailing-slash redirects permanent (301).
 
 DNS lives at Cloudflare (domain registered at Hostinger). In the Cloudflare
@@ -53,17 +54,21 @@ canonical tags point at `www.giilab.in`.
 
 ```
 src/
-  app/            one folder per route, plus sitemap.ts and robots.ts
-  components/     Header, Footer, Logo, RoutingVisual, CTABand, ContactForm, ui.tsx
+  pages/          one .astro file per route, plus sitemap.xml.ts, robots.txt.ts, llms.txt.ts
+  layouts/        Base.astro: <head>, SEO tags, JSON-LD, header and footer
+  components/     Header, Footer, Mark, RoutingVisual, CTABand, ContactForm, ...
+    ui/           layout primitives (Section, Container, Card, PageHero, ...)
+    visuals/      decorative hero art
+  styles/         globals.css
   lib/
-    site.ts       all site copy and structured content — edit here, not in JSX
+    site.ts       all site copy and structured content — edit here, not in markup
     logo.ts       generated logo geometry (see below)
 public/           icons, OG image
 ```
 
 ### Theming
 
-Colour lives in CSS custom properties in `src/app/globals.css`, exposed to
+Colour lives in CSS custom properties in `src/styles/globals.css`, exposed to
 Tailwind through `@theme inline`. Sections declare a tone (`tone-light` or
 `tone-dark`) and every token re-points, so a component written once works on
 both. Use `bg-surface`, `text-muted`, `border-line` and so on rather than
@@ -81,9 +86,13 @@ identity board, so the site carries no font dependency for the logo and the
 header lockup is identical to the exported SVG files. It is generated — if the
 artwork changes, re-trace rather than hand-editing the path strings.
 
-`src/components/Logo.tsx` exposes `<Mark>`, `<Wordmark>` and `<Lockup>`.
-`<Lockup>` derives every dimension from `markHeight` using the ratios measured
-off the board, so the lockup cannot drift.
+`src/components/Mark.astro` and `LockupStacked.astro` render it.
+
+### Interactivity
+
+There is no React. The few interactive pieces (header menu, theme toggle, smooth
+scroll and back-to-top, hero particles, contact form) are plain `<script>` tags
+inside their `.astro` components, which Astro bundles into `/_astro/`.
 
 ## Editing content
 

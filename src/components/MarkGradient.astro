@@ -1,0 +1,11 @@
+---
+import { GRADIENT } from "@/lib/logo";
+
+/** Brand gradient in mark coordinates; reference it from paths drawn in mark space. */
+type Props = { id: string; x1?: number; y1?: number; x2?: number; y2?: number };
+const { id, x1 = GRADIENT.x1, y1 = GRADIENT.y1, x2 = GRADIENT.x2, y2 = GRADIENT.y2 } = Astro.props;
+---
+
+<linearGradient id={id} gradientUnits="userSpaceOnUse" x1={x1} y1={y1} x2={x2} y2={y2}>
+  {GRADIENT.stops.map(([offset, color]) => <stop offset={offset} stop-color={color} />)}
+</linearGradient>

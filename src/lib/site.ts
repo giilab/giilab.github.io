@@ -1,5 +1,3 @@
-import type { Metadata } from "next";
-
 export const SITE = {
   name: "Giilab",
   legalName: "Great Ideas Innovation Lab LLP",
@@ -27,26 +25,21 @@ export const SITE = {
 /** When this build was made: the site's dateModified and the footer's "updated" line. */
 export const BUILT = new Date().toISOString().slice(0, 10);
 
-/**
- * Per-page metadata. Next shallow-merges `openGraph`/`twitter`, so a page that
- * only sets title/description would otherwise share the homepage's social tags.
- */
-export function pageMeta(path: string, title: string, description: string): Metadata {
-  const full = `${title} — ${SITE.name}`;
-  return {
-    title,
-    description,
-    alternates: { canonical: path },
-    openGraph: {
-      type: "website",
-      siteName: SITE.name,
-      url: path,
-      title: full,
-      description,
-      images: [{ url: "/og.png", width: 1200, height: 630, alt: `${SITE.name} — ${SITE.descriptor}` }],
-    },
-    twitter: { card: "summary_large_image", title: full, description, images: ["/og.png"] },
-  };
+export type PageMeta = {
+  /** Canonical path, ending in "/". */
+  path: string;
+  /** Page title; Base.astro appends " — Giilab". Social tags always use this form. */
+  title: string;
+  description: string;
+  /** Full <title> override (home page); social tags keep `title — Giilab`. */
+  absolute?: string;
+  /** Error pages: robots noindex and no canonical link. */
+  noindex?: boolean;
+};
+
+/** Per-page metadata consumed by src/layouts/Base.astro (title, canonical, social tags). */
+export function pageMeta(path: string, title: string, description: string): PageMeta {
+  return { path, title, description };
 }
 
 export const NAV = [

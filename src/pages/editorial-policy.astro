@@ -1,0 +1,73 @@
+---
+import Base from "@/layouts/Base.astro";
+import PageHero from "@/components/ui/PageHero.astro";
+import LegalSections from "@/components/ui/LegalSections.astro";
+import LegalSection from "@/components/ui/LegalSection.astro";
+import { SITE, pageMeta } from "@/lib/site";
+
+const meta = pageMeta(
+  "/editorial-policy/",
+  "Editorial Policy: How We Publish Our Work",
+  `How ${SITE.name} writes about its work: client permission, evidence for each claim, who writes our pages and how to report errors.`,
+);
+---
+
+<Base meta={meta}>
+  <PageHero eyebrow="Legal"><Fragment slot="title">Editorial policy</Fragment></PageHero>
+  <LegalSections updated="October 2026">
+    <LegalSection h="What this policy covers">
+      <p>
+        This policy covers everything {SITE.legalName} (&ldquo;{SITE.name}&rdquo;) publishes on{" "}
+        {SITE.url}: service and solution pages, project descriptions and any other content
+        about our work. It sets out what we will and will not claim, and why.
+      </p>
+    </LegalSection>
+    <LegalSection h="Client work">
+      <p>
+        We publish client work only with the client&rsquo;s permission. Without it, we do not
+        name the client or share details that would identify them. When a client agrees, we
+        describe four things: the problem, what we built, how the result was measured and the
+        technology we used.
+      </p>
+    </LegalSection>
+    <LegalSection h="Claims and evidence">
+      <p>
+        We state an outcome only if we can back it with evidence. If we cannot, we leave it
+        out rather than estimate it. Where we give a number, it comes from a measure agreed with
+        the client before the work began. General views on what AI can and cannot do are
+        written as opinion, not presented as results.
+      </p>
+    </LegalSection>
+    <LegalSection h="Logos, testimonials and numbers">
+      <p>
+        We do not show logos, testimonials, numbers or certifications we cannot verify. When
+        we name a technology or a company, it is to describe our work, not to suggest an
+        endorsement or a partnership.
+      </p>
+    </LegalSection>
+    <LegalSection h="Technical content">
+      <p>
+        Our explanations of how we approach a problem are general. They are not advice for your
+        specific systems, data or legal position. For that, talk to us about your case directly.
+      </p>
+    </LegalSection>
+    <LegalSection h="Who writes our pages">
+      <p>
+        Pages are written by {SITE.founder.name}, {SITE.founder.role}. Legal pages show the
+        date they were last updated.
+      </p>
+    </LegalSection>
+    <LegalSection h="Corrections">
+      <p>
+        Spotted something wrong? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a> and we
+        will correct it.
+      </p>
+    </LegalSection>
+    <LegalSection h="Changes and contact">
+      <p>
+        We may update this policy; the date above shows the latest version. Questions go to{" "}
+        <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+      </p>
+    </LegalSection>
+  </LegalSections>
+</Base>

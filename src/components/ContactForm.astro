@@ -1,0 +1,204 @@
+---
+import { SITE } from "@/lib/site";
+
+/**
+ * A static site has no server, so submissions go to Web3Forms, which emails them
+ * to the inbox the access key was created for. The key is public by design: it
+ * can only send to that inbox.
+ */
+const STAGES = [
+  "Exploring an idea",
+  "Evaluating solutions",
+  "Ready to start development",
+  "Improving an existing system",
+  "Looking for technical consulting",
+];
+const FIELD =
+  "w-full rounded-xl border border-line bg-bg px-4 py-3 text-[0.95rem] text-text placeholder:text-faint focus:border-accent focus:outline-none";
+const LABEL = "mb-1.5 block text-[0.88rem] font-medium";
+const ERROR = "mt-1.5 text-[0.82rem] text-accent-ink";
+---
+
+<div data-contact data-site-name={SITE.name}>
+  <div role="status" hidden data-success class="rounded-[var(--radius-brand)] border border-line bg-surface p-8">
+    <h2 class="text-[1.2rem] font-semibold">Thanks — that reached us.</h2>
+    <p class="mt-2.5 text-[0.95rem] text-muted">
+      We read everything that comes in and reply within two working days. If it is urgent, email {SITE.email} directly.
+    </p>
+    <button type="button" data-again class="mt-5 text-[0.9rem] font-medium text-accent-ink underline-offset-4 hover:underline">
+      Send another message
+    </button>
+  </div>
+
+  <form method="post" novalidate class="grid gap-5">
+    <div class="grid gap-5 sm:grid-cols-2">
+      <div>
+        <label for="name" class={LABEL}>Your name <span class="text-accent-ink">*</span></label>
+        <input id="name" name="name" type="text" autocomplete="name" required class={FIELD} placeholder="Your name" />
+        <p id="name-error" hidden class={ERROR}></p>
+      </div>
+
+      <div>
+        <label for="email" class={LABEL}>Business email <span class="text-accent-ink">*</span></label>
+        <input id="email" name="email" type="email" autocomplete="email" required class={FIELD} placeholder="you@company.com" />
+        <p id="email-error" hidden class={ERROR}></p>
+      </div>
+
+      <div>
+        <label for="company" class={LABEL}>Company <span class="text-faint">(optional)</span></label>
+        <input id="company" name="company" type="text" autocomplete="organization" class={FIELD} placeholder="Your company" />
+      </div>
+
+      <div>
+        <label for="phone" class={LABEL}>Phone <span class="text-faint">(optional)</span></label>
+        <input id="phone" name="phone" type="tel" autocomplete="tel" class={FIELD} placeholder="+91 98765 43210" />
+        <p id="phone-error" hidden class={ERROR}></p>
+      </div>
+
+      <div class="sm:col-span-2">
+        <label for="stage" class={LABEL}>Project stage <span class="text-faint">(optional)</span></label>
+        <select id="stage" name="stage" class={FIELD}>
+          <option value="" selected>Prefer not to say</option>
+          {STAGES.map((s) => <option value={s}>{s}</option>)}
+        </select>
+      </div>
+    </div>
+
+    <div>
+      <label for="message" class={LABEL}>What are you trying to solve? <span class="text-accent-ink">*</span></label>
+      <textarea
+        id="message"
+        name="message"
+        rows="6"
+        required
+        aria-describedby="message-hint"
+        class={FIELD}
+        placeholder="Tell us about the challenge. What process are you trying to improve? What systems do you currently use? What would a successful outcome look like?"
+      ></textarea>
+      <p id="message-error" hidden class={ERROR}></p>
+      <p id="message-hint" class="mt-1.5 text-[0.82rem] text-faint">You don&rsquo;t need a technical specification to get started.</p>
+    </div>
+
+    <!-- honeypot — hidden from people, tempting to bots -->
+    <div aria-hidden="true" class="absolute left-[-9999px] h-px w-px overflow-hidden">
+      <label for="company_website">Leave this field empty</label>
+      <input id="company_website" name="company_website" type="text" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <p role="alert" hidden data-server-error class="rounded-xl border border-line-strong bg-accent-soft px-4 py-3 text-[0.9rem]">
+      We could not send that just now. Please try again, or email us directly.{" "}
+      <a href={`mailto:${SITE.email}`} class="font-medium text-accent-ink underline underline-offset-4">{SITE.email}</a>
+    </p>
+
+    <div class="flex flex-wrap items-center gap-4">
+      <button
+        type="submit"
+        class="group brand-gradient inline-flex items-center gap-2.5 rounded-full px-7 py-3.5 text-[0.95rem] font-medium text-on-accent transition-transform duration-300 hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
+      >
+        <span aria-hidden="true" class="hidden h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white group-disabled:inline-block"></span>
+        <span class="group-disabled:hidden">Send message <span aria-hidden="true">&rarr;</span></span>
+        <span class="hidden group-disabled:inline">Sending…</span>
+      </button>
+      <span aria-live="polite" class="sr-only" data-live></span>
+      <p class="text-[0.85rem] text-faint">
+        Or email{" "}
+        <a href={`mailto:${SITE.email}`} class="text-accent-ink underline underline-offset-4">{SITE.email}</a>
+      </p>
+    </div>
+  </form>
+</div>
+
+<script>
+  const ENDPOINT = "https://api.web3forms.com/submit";
+  const ACCESS_KEY = "d1f6f160-b878-486a-acc7-b237295fc8d7";
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  // Loose on purpose: formats vary too much worldwide for anything stricter.
+  const PHONE_RE = /^\+?[\d\s()-]{7,20}$/;
+
+  type Field = "name" | "email" | "phone" | "message";
+
+  function validate(d: Record<string, string>): Partial<Record<Field, string>> {
+    const e: Partial<Record<Field, string>> = {};
+    if (!d.name.trim()) e.name = "Please tell us your name.";
+    if (!d.email.trim()) e.email = "We need an email address to reply to.";
+    else if (!EMAIL_RE.test(d.email.trim())) e.email = "That does not look like a valid email address.";
+    if (d.phone.trim() && !PHONE_RE.test(d.phone.trim())) e.phone = "Please use digits and a country code, like +91 98765 43210.";
+    if (!d.message.trim()) e.message = "Please describe the problem you are trying to solve.";
+    else if (d.message.trim().length < 20) e.message = "A little more detail helps — 20 characters or more.";
+    return e;
+  }
+
+  const root = document.querySelector<HTMLElement>("[data-contact]")!;
+  const form = root.querySelector("form")!;
+  const success = root.querySelector<HTMLElement>("[data-success]")!;
+  const serverError = root.querySelector<HTMLElement>("[data-server-error]")!;
+  const submit = form.querySelector<HTMLButtonElement>("[type=submit]")!;
+  const live = form.querySelector<HTMLElement>("[data-live]")!;
+  const hint = form.querySelector<HTMLElement>("#message-hint")!;
+
+  function showErrors(errors: Partial<Record<Field, string>>) {
+    for (const f of ["name", "email", "phone", "message"] as Field[]) {
+      const input = form.querySelector<HTMLInputElement>(`#${f}`)!;
+      const msg = form.querySelector<HTMLElement>(`#${f}-error`)!;
+      const text = errors[f];
+      msg.textContent = text ?? "";
+      msg.hidden = !text;
+      if (text) input.setAttribute("aria-invalid", "true");
+      else input.removeAttribute("aria-invalid");
+      if (f === "message") {
+        hint.hidden = !!text;
+        input.setAttribute("aria-describedby", text ? "message-error" : "message-hint");
+      } else if (text) input.setAttribute("aria-describedby", `${f}-error`);
+      else input.removeAttribute("aria-describedby");
+    }
+  }
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const fd = new FormData(form);
+    // Honeypot: real people leave this empty.
+    if (String(fd.get("company_website") ?? "").trim()) return;
+
+    const data = Object.fromEntries(
+      ["name", "email", "phone", "company", "stage", "message"].map((k) => [k, String(fd.get(k) ?? "")]),
+    );
+    const errors = validate(data);
+    showErrors(errors);
+    const first = Object.keys(errors)[0];
+    if (first) {
+      form.querySelector<HTMLElement>(`#${first}`)?.focus();
+      return;
+    }
+
+    submit.disabled = true;
+    serverError.hidden = true;
+    live.textContent = "Sending your message";
+    try {
+      const res = await fetch(ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          ...data,
+          access_key: ACCESS_KEY,
+          subject: `New enquiry from ${data.name}`,
+          from_name: `${root.dataset.siteName} website`,
+        }),
+      });
+      const result = await res.json().catch(() => ({}));
+      if (!res.ok || !result.success) throw new Error(`Request failed with status ${res.status}`);
+      form.reset();
+      form.hidden = true;
+      success.hidden = false;
+    } catch {
+      serverError.hidden = false;
+    } finally {
+      submit.disabled = false;
+      live.textContent = "";
+    }
+  });
+
+  root.querySelector("[data-again]")!.addEventListener("click", () => {
+    success.hidden = true;
+    form.hidden = false;
+  });
+</script>

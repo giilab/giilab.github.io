@@ -1,0 +1,185 @@
+---
+import Base from "@/layouts/Base.astro";
+import Container from "@/components/ui/Container.astro";
+import Section from "@/components/ui/Section.astro";
+import PageHero from "@/components/ui/PageHero.astro";
+import Card from "@/components/ui/Card.astro";
+import Grid from "@/components/ui/Grid.astro";
+import SectionHead from "@/components/ui/SectionHead.astro";
+import SocialIcon from "@/components/ui/SocialIcon.astro";
+import ParticleVisual from "@/components/visuals/ParticleVisual.astro";
+import CTABand from "@/components/CTABand.astro";
+import { SITE, PROCESS, pageMeta } from "@/lib/site";
+
+const meta = pageMeta(
+  "/about/",
+  "About Our AI Engineering Studio in Pune, India",
+  "Meet Giilab, a Pune-based engineering studio building practical AI applications, automation and reliable software systems.",
+);
+
+const PRINCIPLES = [
+  {
+    t: "Engineering before technology trends",
+    d: "We select technology based on the problem, not because it is popular.",
+  },
+  {
+    t: "A model is a component, not an architecture",
+    d: "Reliable AI systems need strong data pipelines, integrations, testing and infrastructure.",
+  },
+  {
+    t: "Measure before scaling",
+    d: "We define evaluation criteria using real business scenarios before production deployment.",
+  },
+  {
+    t: "Automate with appropriate oversight",
+    d: "Systems should know their boundaries and involve people when decisions require judgment.",
+  },
+  {
+    t: "Build for long-term maintainability",
+    d: "Testing, monitoring, documentation and reliable infrastructure are part of the engineering work.",
+  },
+  {
+    t: "Respect business data",
+    d: "We design access controls and data handling around the client's requirements and agreements.",
+  },
+];
+
+const BIG_NUMBER =
+  "block font-[family-name:var(--font-display)] text-[3rem] font-extrabold leading-none tracking-[-0.05em] text-accent-ink";
+---
+
+<Base meta={meta}>
+  <PageHero
+    eyebrow="About"
+    lead={`${SITE.name} is an independent engineering studio working with startups and growing businesses. We combine software engineering, AI development and automation to build systems that are practical, measurable and maintainable. Our approach is simple: understand the problem, choose the right technology and prove the solution before scaling it. Based in Pune, India. Working with teams worldwide.`}
+  >
+    <ParticleVisual slot="visual" />
+    <Fragment slot="title">An engineering studio that <span class="serif accent">happens to do AI.</span></Fragment>
+  </PageHero>
+
+  <Section>
+    <Container>
+      <SectionHead eyebrow="Our philosophy">
+        What guides <span class="serif accent">our engineering.</span>
+      </SectionHead>
+      <!-- Numbered like the engagement stages below, but as cards. -->
+      <Grid class="mt-12">
+        {PRINCIPLES.map((p, i) => (
+          <Card class="gap-0">
+            <span class={BIG_NUMBER}>{String(i + 1).padStart(2, "0")}</span>
+            <h3 class="mt-4 text-[1.1rem] font-semibold">{p.t}</h3>
+            <p class="mt-2 text-[0.93rem] text-muted">{p.d}</p>
+          </Card>
+        ))}
+      </Grid>
+    </Container>
+  </Section>
+
+  <Section id="process" class="scroll-mt-20">
+    <Container>
+      <SectionHead
+        eyebrow="How we work"
+        lead="You are never more than one stage away from stopping, and every stage produces something you can evaluate."
+      >
+        From discovery <span class="serif accent">to production.</span>
+      </SectionHead>
+      <Grid cols={4} class="mt-12">
+        {PROCESS.map((p) => (
+          <div class="border-t-2 border-line-strong pt-6">
+            <span class={BIG_NUMBER}>{p.n}</span>
+            <h3 class="mt-3 text-[1.1rem]">{p.title}</h3>
+            <p class="mt-2 text-[0.93rem] text-muted">{p.body}</p>
+          </div>
+        ))}
+      </Grid>
+    </Container>
+  </Section>
+
+  <Section>
+    <Container>
+      <div class="grid gap-5 lg:grid-cols-3">
+        <Card class="gap-3">
+          <h2 class="text-[1.1rem] font-semibold">Where we are</h2>
+          <p class="text-[0.95rem] text-muted">
+            {SITE.location}. We work with teams across time zones, with a few hours of
+            deliberate overlap each day and written updates that do not depend on
+            being in the same meeting.
+          </p>
+        </Card>
+        <Card class="gap-3">
+          <h2 class="text-[1.1rem] font-semibold">How we are set up</h2>
+          <p class="text-[0.95rem] text-muted">
+            A small senior team rather than a pyramid. The person who scopes your work
+            is the person who builds it, which is the main reason the estimates mean
+            anything.
+          </p>
+        </Card>
+        <Card class="gap-3">
+          <h2 class="text-[1.1rem] font-semibold">What we will not claim</h2>
+          <p class="text-[0.95rem] text-muted">
+            No invented client list, no borrowed metrics, no certifications we do not
+            hold. If something on this site is not yet evidenced, it is because we
+            have not evidenced it.
+          </p>
+        </Card>
+      </div>
+    </Container>
+  </Section>
+
+  <Section id="founder">
+    <Container>
+      <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+        <SectionHead eyebrow="Who you work with">
+          The person who scopes it <span class="serif accent">builds it.</span>
+        </SectionHead>
+        <!-- Photo, then name + LinkedIn, role and a bio of verifiable facts. -->
+        <div class="grid gap-6 rounded-[var(--radius-brand)] border border-line bg-surface p-6 sm:grid-cols-[160px_1fr] sm:p-7">
+          <img
+            src="/team/pratik.webp"
+            alt={`${SITE.founder.name}, ${SITE.founder.role}`}
+            width="160"
+            height="160"
+            loading="lazy"
+            class="aspect-square w-[160px] rounded-[var(--radius-brand)] object-cover"
+          />
+          <div class="grid content-start gap-2.5">
+            <h3 class="text-[1.25rem] font-semibold">{SITE.founder.name}</h3>
+            <p class="text-[0.9rem] font-medium text-accent-ink">{SITE.founder.role}</p>
+            <div class="grid gap-2.5 text-[0.95rem] text-muted">
+              <p>
+                Pratik brings more than 12 years of experience in software engineering,
+                backend platforms, SaaS applications and cloud-native systems.
+              </p>
+              <p>
+                His engineering experience includes Python, AWS, distributed systems, data
+                platforms and production application architecture.
+              </p>
+              <p>
+                Through {SITE.name}, he brings this experience into practical AI engineering,
+                helping businesses move from ideas and prototypes to reliable software
+                systems.
+              </p>
+              <p>
+                The goal is not to introduce AI everywhere. It is to build technology that
+                solves the right problem.
+              </p>
+            </div>
+            <a
+              href={SITE.founder.linkedin}
+              target="_blank"
+              rel="noopener noreferrer me"
+              aria-label={`${SITE.founder.name} on LinkedIn`}
+              class="w-fit text-accent-ink hover:opacity-80"
+            >
+              <SocialIcon name="linkedin" size={22} />
+            </a>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <CTABand body="Have an idea, a technical challenge or a business process worth improving? Let's start with a conversation.">
+    Let&rsquo;s solve something <span class="serif accent">meaningful.</span>
+  </CTABand>
+</Base>
