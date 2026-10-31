@@ -12,16 +12,19 @@ export const metadata: Metadata = pageMeta(
 
 const GROUPS = [
   {
+    id: "ai-engineering",
     title: "AI Engineering",
     blurb: "Build intelligent software applications that work with your business data, systems and processes.",
     slugs: ["ai-automation", "ai-agents", "ai-applications"],
   },
   {
+    id: "automation",
     title: "Business Automation & Integration",
     blurb: "Connect business applications, eliminate repetitive work and improve how information moves across your organisation.",
     slugs: ["ai-integrations", "process-automation"],
   },
   {
+    id: "software-engineering",
     title: "Software Engineering & AI Consulting",
     blurb: "Get the architecture, engineering expertise and technical direction needed to build reliable software systems.",
     slugs: ["ai-consulting"],
@@ -51,7 +54,7 @@ export default function ServicesPage() {
       </PageHero>
 
       {GROUPS.map((g) => (
-        <Section key={g.title}>
+        <Section key={g.id} id={g.id} className="scroll-mt-20">
           <Container>
             <h2 className="text-[clamp(1.6rem,3.2vw,2.4rem)] font-bold">{g.title}</h2>
             <p className="mt-3 max-w-[60ch] text-[1.02rem] text-muted">{g.blurb}</p>

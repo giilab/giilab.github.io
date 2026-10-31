@@ -68,7 +68,7 @@ export default function AboutPage() {
         </Container>
       </Section>
 
-      <Section>
+      <Section id="process" className="scroll-mt-20">
         <Container>
           <SectionHead
             eyebrow="How we work"

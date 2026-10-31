@@ -28,12 +28,15 @@ export default function CTABand({
           <div className="mt-9 flex flex-wrap justify-center gap-3.5">
             <ButtonLink href="/contact/">{cta}</ButtonLink>
           </div>
-          <a
-            href={`mailto:${SITE.email}`}
-            className="mt-5 inline-block text-[0.9rem] text-muted underline-offset-4 hover:text-accent-ink hover:underline"
-          >
-            {SITE.email}
-          </a>
+          <p className="mt-5 text-[0.9rem] text-muted">
+            Or email us at{" "}
+            <a
+              href={`mailto:${SITE.email}`}
+              className="underline-offset-4 hover:text-accent-ink hover:underline"
+            >
+              {SITE.email}
+            </a>
+          </p>
         </div>
       </Container>
     </section>
