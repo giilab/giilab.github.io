@@ -6,8 +6,8 @@ import { SITE, pageMeta } from "@/lib/site";
 
 export const metadata: Metadata = pageMeta(
   "/contact/",
-  "Contact Us to Start an AI Project",
-  "Tell us the problem you are trying to solve and get an honest answer on whether AI is the right tool. Start a project with Giilab.",
+  "Contact Us to Discuss Your AI or Software Project",
+  "Have a business challenge or software project? Contact Giilab to discuss AI engineering, automation and custom software solutions.",
 );
 
 export default function ContactPage() {
@@ -16,35 +16,20 @@ export default function ContactPage() {
       <PageHero
         visual={<AiVisual />}
         eyebrow="Contact"
-        title={<>Tell us what your <span className="serif accent">business needs.</span></>}
-        lead="One free 30-minute call, and an honest answer on what AI can and cannot do about it. Bring a problem rather than a brief."
+        title={<>Let&rsquo;s discuss what your <span className="serif accent">business needs.</span></>}
+        lead="Have a business problem, an idea or a process worth improving? Tell us a little about it. We'll help you understand the possibilities, technical requirements and next steps. Start with a free 30-minute discovery conversation."
       />
 
       <Section className="pt-0">
         <Container>
           <SectionHead
             eyebrow="FAQ"
-            title={<>Before you <span className="serif accent">get in touch.</span></>}
+            title={<>Frequently asked <span className="serif accent">questions.</span></>}
           />
           <dl className="mt-10 grid gap-5 lg:grid-cols-2">
-            <div className={`${FAQ_ITEM} lg:row-span-2`}>
-              <dt className="text-[1.05rem] font-semibold">What should I put in my message?</dt>
-              <dd className="mt-2.5 grid gap-2.5 text-[0.95rem] text-muted">
-                <p>You do not need a brief or a spec. A few lines on each of these is plenty:</p>
-                <ul className="grid list-disc gap-1.5 pl-4">
-                  <li>What the work looks like today, and who does it.</li>
-                  <li>Roughly how often it happens, or how much of it there is.</li>
-                  <li>Which systems or files the data lives in.</li>
-                  <li>What you have already tried.</li>
-                </ul>
-                <p>
-                  Not sure AI is the answer? Say so. Often the cheaper fix is a change to a
-                  process or to the data, and we will tell you if it is.
-                </p>
-              </dd>
-            </div>
-            {FAQ.map(([q, a]) => (
-              <div key={q} className={FAQ_ITEM}>
+            {FAQ.map(([q, a], i) => (
+              // Odd count: the last answer spans both columns so the grid has no gap.
+              <div key={q} className={`${FAQ_ITEM} ${i === FAQ.length - 1 ? "lg:col-span-2" : ""}`}>
                 <dt className="text-[1.05rem] font-semibold">{q}</dt>
                 <dd className="mt-2.5 text-[0.95rem] text-muted">{a}</dd>
               </div>
@@ -94,10 +79,15 @@ export default function ContactPage() {
               </Card>
               <Card className="gap-2.5">
                 <h2 className="text-[1.05rem] font-semibold">What happens next</h2>
-                <ol className="grid list-decimal gap-1.5 pl-4 text-[0.92rem] text-muted">
-                  <li>We read it and reply within two working days.</li>
-                  <li>A 30-minute call to understand the problem properly.</li>
-                  <li>A scoped proposal, or an honest no.</li>
+                <ol className="grid gap-2.5 text-[0.92rem] text-muted">
+                  {NEXT.map(([step, text], i) => (
+                    <li key={step}>
+                      <span className="font-medium text-text">
+                        {String(i + 1).padStart(2, "0")} — {step}
+                      </span>
+                      <span className="block">{text}</span>
+                    </li>
+                  ))}
                 </ol>
               </Card>
             </div>
@@ -113,8 +103,17 @@ export default function ContactPage() {
 const FAQ_ITEM = "rounded-[var(--radius-brand)] border border-line bg-surface px-7 py-[26px]";
 
 const FAQ = [
-  ["Is the first call free?", "Yes. One 30-minute call, with no obligation to go further. Bring whoever knows the work best."],
-  ["What does it cost?", "It depends on the scope. After the call you get a scoped proposal, so you know the cost before any work starts."],
-  ["Will you sign an NDA?", "Yes. If it helps, we sign one before you share any details about your systems or your data."],
-  ["Do you work with teams outside India?", "Yes. We work with teams across time zones and keep a few hours of overlap with your working day."],
+  ["Do I need a technical specification?", "No. Start with the business problem and what you want to achieve. We can help define the technical requirements."],
+  ["Is the initial consultation free?", "Yes. The first 30-minute discovery conversation is free and carries no obligation."],
+  ["How much does a project cost?", "Pricing depends on scope, complexity and integration requirements. We provide a proposal before development begins."],
+  ["Can you work with our existing software?", "Yes. We evaluate your existing applications, APIs, databases and infrastructure before recommending changes."],
+  ["Do you sign NDAs?", "Yes. We can discuss confidentiality requirements and arrange an NDA before reviewing sensitive project information."],
+  ["Do you work with international businesses?", "Yes. Giilab is based in Pune, India and works with teams across time zones."],
+  ["What happens after I submit the form?", "We review your enquiry, arrange a discovery conversation where appropriate and recommend the next steps."],
+];
+
+const NEXT = [
+  ["Review", "We review your requirements and respond within two working days."],
+  ["Discuss", "We arrange a 30-minute conversation to understand the problem."],
+  ["Recommend", "You receive a suggested technical approach, proposal or an honest recommendation if the project isn't a fit."],
 ];

@@ -23,7 +23,6 @@ function validate(data: { name: string; email: string; company: string; phone: s
   if (!data.name.trim()) e.name = "Please tell us your name.";
   if (!data.email.trim()) e.email = "We need an email address to reply to.";
   else if (!EMAIL_RE.test(data.email.trim())) e.email = "That does not look like a valid email address.";
-  if (!data.company.trim()) e.company = "Please tell us which company you are with.";
   if (data.phone.trim() && !PHONE_RE.test(data.phone.trim()))
     e.phone = "Please use digits and a country code, like +91 98765 43210.";
   if (!data.message.trim()) e.message = "Please describe the problem you are trying to solve.";
@@ -31,6 +30,14 @@ function validate(data: { name: string; email: string; company: string; phone: s
     e.message = "A little more detail helps — 20 characters or more.";
   return e;
 }
+
+const STAGES = [
+  "Exploring an idea",
+  "Evaluating solutions",
+  "Ready to start development",
+  "Improving an existing system",
+  "Looking for technical consulting",
+];
 
 const FIELD =
   "w-full rounded-xl border border-line bg-bg px-4 py-3 text-[0.95rem] text-text placeholder:text-faint focus:border-accent focus:outline-none";
@@ -139,7 +146,7 @@ export default function ContactForm() {
 
         <div>
           <label htmlFor="email" className="mb-1.5 block text-[0.88rem] font-medium">
-            Email <span className="text-accent-ink">*</span>
+            Business email <span className="text-accent-ink">*</span>
           </label>
           <input
             id="email"
@@ -161,24 +168,16 @@ export default function ContactForm() {
 
         <div>
           <label htmlFor="company" className="mb-1.5 block text-[0.88rem] font-medium">
-            Company <span className="text-accent-ink">*</span>
+            Company <span className="text-faint">(optional)</span>
           </label>
           <input
             id="company"
             name="company"
             type="text"
             autoComplete="organization"
-            required
-            aria-invalid={!!errors.company}
-            aria-describedby={errors.company ? "company-error" : undefined}
             className={FIELD}
             placeholder="Your company"
           />
-          {errors.company && (
-            <p id="company-error" className="mt-1.5 text-[0.82rem] text-accent-ink">
-              {errors.company}
-            </p>
-          )}
         </div>
 
         <div>
@@ -204,13 +203,13 @@ export default function ContactForm() {
 
         <div className="sm:col-span-2">
           <label htmlFor="stage" className="mb-1.5 block text-[0.88rem] font-medium">
-            Where are you today? <span className="text-faint">(optional)</span>
+            Project stage <span className="text-faint">(optional)</span>
           </label>
           <select id="stage" name="stage" className={FIELD} defaultValue="">
             <option value="">Prefer not to say</option>
-            <option value="Exploring an idea">Exploring an idea</option>
-            <option value="Ready to build a first version">Ready to build a first version</option>
-            <option value="Fixing an existing AI system">Fixing an existing AI system</option>
+            {STAGES.map((s) => (
+              <option key={s} value={s}>{s}</option>
+            ))}
           </select>
         </div>
       </div>
@@ -227,7 +226,7 @@ export default function ContactForm() {
           aria-invalid={!!errors.message}
           aria-describedby={errors.message ? "message-error" : "message-hint"}
           className={FIELD}
-          placeholder="The workflow that is eating time, the system that keeps breaking, or the idea you want tested."
+          placeholder="Tell us about the business challenge. What process are you trying to improve? What systems do you currently use? What would a successful outcome look like?"
         />
         {errors.message ? (
           <p id="message-error" className="mt-1.5 text-[0.82rem] text-accent-ink">
@@ -235,7 +234,7 @@ export default function ContactForm() {
           </p>
         ) : (
           <p id="message-hint" className="mt-1.5 text-[0.82rem] text-faint">
-            A couple of sentences is plenty to start.
+            You don&rsquo;t need a technical specification to get started.
           </p>
         )}
       </div>
