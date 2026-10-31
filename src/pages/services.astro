@@ -4,7 +4,6 @@ import Container from "@/components/ui/Container.astro";
 import Section from "@/components/ui/Section.astro";
 import PageHero from "@/components/ui/PageHero.astro";
 import Card from "@/components/ui/Card.astro";
-import Grid from "@/components/ui/Grid.astro";
 import ServicesVisual from "@/components/visuals/ServicesVisual.astro";
 import CTABand from "@/components/CTABand.astro";
 import { SERVICES, pageMeta } from "@/lib/site";
@@ -34,13 +33,6 @@ const GROUPS = [
     blurb: "Get the architecture, engineering expertise and technical direction needed to build reliable software systems.",
     slugs: ["ai-consulting"],
   },
-];
-
-const ENGAGEMENTS = [
-  ["Start here", "A scoped proof against your real cases"],
-  ["Then", "A production build with tests and monitoring"],
-  ["Or", "An architecture review, if you have a team already"],
-  ["Always", "A measurable success criterion agreed up front"],
 ];
 ---
 
@@ -99,21 +91,11 @@ const ENGAGEMENTS = [
     </Section>
   ))}
 
-  <Section>
+  <Section class="pt-0">
     <Container>
-      <h2 class="text-[clamp(1.6rem,3.2vw,2.4rem)] font-bold">
-        How engagements <span class="serif accent">usually run.</span>
-      </h2>
-      <Grid cols={4} class="mt-8 gap-4">
-        {ENGAGEMENTS.map(([k, v]) => (
-          <div class="rounded-[var(--radius-brand)] border border-line bg-surface p-5">
-            <span class="text-[0.7rem] font-medium uppercase tracking-[0.14em] text-faint">
-              {k}
-            </span>
-            <p class="mt-2 text-[0.95rem]">{v}</p>
-          </div>
-        ))}
-      </Grid>
+      <a href="/how-we-work/" class="text-[1.02rem] font-medium text-accent-ink underline-offset-4 hover:underline">
+        How engagements work &rarr;
+      </a>
     </Container>
   </Section>
 

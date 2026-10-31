@@ -7,9 +7,10 @@ import Card from "@/components/ui/Card.astro";
 import Grid from "@/components/ui/Grid.astro";
 import SectionHead from "@/components/ui/SectionHead.astro";
 import SocialIcon from "@/components/ui/SocialIcon.astro";
+import Pill from "@/components/ui/Pill.astro";
 import ParticleVisual from "@/components/visuals/ParticleVisual.astro";
 import CTABand from "@/components/CTABand.astro";
-import { SITE, PROCESS, pageMeta } from "@/lib/site";
+import { SITE, INDUSTRIES, pageMeta } from "@/lib/site";
 
 const meta = pageMeta(
   "/about/",
@@ -62,7 +63,6 @@ const BIG_NUMBER =
       <SectionHead eyebrow="Our philosophy">
         What guides <span class="serif accent">our engineering.</span>
       </SectionHead>
-      <!-- Numbered like the engagement stages below, but as cards. -->
       <Grid class="mt-12">
         {PRINCIPLES.map((p, i) => (
           <Card class="gap-0">
@@ -70,26 +70,6 @@ const BIG_NUMBER =
             <h3 class="mt-4 text-[1.1rem] font-semibold">{p.t}</h3>
             <p class="mt-2 text-[0.93rem] text-muted">{p.d}</p>
           </Card>
-        ))}
-      </Grid>
-    </Container>
-  </Section>
-
-  <Section id="process" class="scroll-mt-20">
-    <Container>
-      <SectionHead
-        eyebrow="How we work"
-        lead="You are never more than one stage away from stopping, and every stage produces something you can evaluate."
-      >
-        From discovery <span class="serif accent">to production.</span>
-      </SectionHead>
-      <Grid cols={4} class="mt-12">
-        {PROCESS.map((p) => (
-          <div class="border-t-2 border-line-strong pt-6">
-            <span class={BIG_NUMBER}>{p.n}</span>
-            <h3 class="mt-3 text-[1.1rem]">{p.title}</h3>
-            <p class="mt-2 text-[0.93rem] text-muted">{p.body}</p>
-          </div>
         ))}
       </Grid>
     </Container>
@@ -113,6 +93,10 @@ const BIG_NUMBER =
             is the person who builds it, which is the main reason the estimates mean
             anything.
           </p>
+          <p class="text-[0.85rem] font-medium text-faint">Sectors the team has delivered in</p>
+          <div class="flex flex-wrap gap-2">
+            {INDUSTRIES.map((i) => <Pill>{i.name}</Pill>)}
+          </div>
         </Card>
         <Card class="gap-3">
           <h2 class="text-[1.1rem] font-semibold">What we will not claim</h2>
@@ -164,15 +148,25 @@ const BIG_NUMBER =
                 solves the right problem.
               </p>
             </div>
-            <a
-              href={SITE.founder.linkedin}
-              target="_blank"
-              rel="noopener noreferrer me"
-              aria-label={`${SITE.founder.name} on LinkedIn`}
-              class="w-fit text-accent-ink hover:opacity-80"
-            >
-              <SocialIcon name="linkedin" size={22} />
-            </a>
+            <div class="flex items-center gap-4">
+              <a
+                href={SITE.founder.linkedin}
+                target="_blank"
+                rel="noopener noreferrer me"
+                aria-label={`${SITE.founder.name} on LinkedIn`}
+                class="w-fit text-accent-ink hover:opacity-80"
+              >
+                <SocialIcon name="linkedin" size={22} />
+              </a>
+              <a
+                href={SITE.portfolio}
+                target="_blank"
+                rel="noopener noreferrer me"
+                class="text-[0.95rem] text-accent-ink underline-offset-4 hover:underline"
+              >
+                Portfolio &rarr;
+              </a>
+            </div>
           </div>
         </div>
       </div>

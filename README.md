@@ -100,15 +100,15 @@ Nearly all copy lives in `src/lib/site.ts`: services, solutions, industries,
 delivery process, contact details. Pages read from it. Change it there and every
 page that uses it follows.
 
-### Publishing a case study
+### How We Work page
 
-`CASE_STUDIES` in `src/lib/site.ts` is intentionally empty, and
-`/projects` renders an honest "nothing published yet" state. Add an entry and the
-page switches to rendering real case studies automatically. Only include an
-`outcome` you can evidence.
+`/how-we-work/` replaced `/projects/` (old URLs 301 there via `public/_redirects`)
+while there is no published client work. It covers engagement options, the
+delivery process (`PROCESS` in `site.ts`), what a client needs to start, how
+success is measured, the stack and confidentiality. When there is real work to
+show, add a case-study page; only include outcomes you can evidence.
 
 ## Still to configure
 
 - `SITE.email` in `src/lib/site.ts` is `hello@giilab.in`; make sure that mailbox exists.
-- `CASE_STUDIES` is empty by design.
 - No analytics is installed.

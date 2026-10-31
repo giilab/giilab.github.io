@@ -1,0 +1,157 @@
+---
+import Base from "@/layouts/Base.astro";
+import Container from "@/components/ui/Container.astro";
+import Section from "@/components/ui/Section.astro";
+import PageHero from "@/components/ui/PageHero.astro";
+import Card from "@/components/ui/Card.astro";
+import Grid from "@/components/ui/Grid.astro";
+import SectionHead from "@/components/ui/SectionHead.astro";
+import Pill from "@/components/ui/Pill.astro";
+import TokenStreamVisual from "@/components/visuals/TokenStreamVisual.astro";
+import CTABand from "@/components/CTABand.astro";
+import { PROCESS, pageMeta } from "@/lib/site";
+
+const meta = pageMeta(
+  "/how-we-work/",
+  "How We Deliver AI & Software Projects",
+  "How Giilab works: a free discovery call, a proof of concept on your data, then a tested production build and support. Process, stack and NDAs.",
+);
+
+const ENGAGEMENTS = [
+  ["Discovery call", "Free, 30 minutes", "Tell us the problem. We give you an honest view of whether AI, automation or plain software is the right fix, and what it would take."],
+  ["Proof of concept", "Weeks, not months", "A short build tested on your real cases, measured against a target agreed up front. It ends in a clear go or no-go."],
+  ["Production build", "Built to last", "The proven approach built properly: tests, monitoring, guardrails and the integrations that make it part of your systems."],
+  ["Support or handover", "Your choice", "A supervised rollout, then a clean handover to your team or ongoing support from us."],
+];
+
+const START = [
+  "The problem you want solved, and what a good result looks like.",
+  "A handful of real example cases or sample data to test against.",
+  "One person on your side who knows the process and can answer questions.",
+];
+
+const MEASURE = [
+  "We agree how success will be measured before we build.",
+  "We test on your real cases, not on a demo.",
+  "We report the result against that measure, including when it falls short.",
+  "If we cannot back a claim with evidence, we leave it out.",
+];
+
+const STACK = ["Python", "AWS", "Large language models", "Retrieval (RAG)", "AI agents", "APIs & integrations", "Data pipelines", "Monitoring & evaluation"];
+
+const BIG_NUMBER =
+  "block font-[family-name:var(--font-display)] text-[3rem] font-extrabold leading-none tracking-[-0.05em] text-accent-ink";
+const LIST_DOT = "mt-[0.55rem] h-1.5 w-1.5 shrink-0 rounded-full";
+---
+
+<Base meta={meta}>
+  <PageHero
+    eyebrow="How we work"
+    lead="Every project follows the same path: understand the problem, prove the approach on your own data, then build it properly. You can stop after any stage, and every stage gives you something you can evaluate."
+  >
+    <TokenStreamVisual slot="visual" />
+    <Fragment slot="title">From first call <span class="serif accent">to working system.</span></Fragment>
+  </PageHero>
+
+  <Section>
+    <Container>
+      <SectionHead eyebrow="Ways to work with us">
+        Start small, <span class="serif accent">scale on evidence.</span>
+      </SectionHead>
+      <Grid cols={4} class="mt-12">
+        {ENGAGEMENTS.map(([title, tag, body]) => (
+          <Card class="gap-2">
+            <span class="text-[0.7rem] font-medium uppercase tracking-[0.14em] text-faint">{tag}</span>
+            <h3 class="text-[1.1rem] font-semibold">{title}</h3>
+            <p class="text-[0.93rem] text-muted">{body}</p>
+          </Card>
+        ))}
+      </Grid>
+      <p class="mt-6 text-[0.95rem] text-muted">
+        Already have an engineering team? We also run architecture reviews and build-versus-buy
+        assessments.
+      </p>
+    </Container>
+  </Section>
+
+  <Section id="process" class="scroll-mt-20">
+    <Container>
+      <SectionHead
+        eyebrow="Our process"
+        lead="You are never more than one stage away from stopping, and every stage produces something you can evaluate."
+      >
+        From discovery <span class="serif accent">to production.</span>
+      </SectionHead>
+      <Grid cols={4} class="mt-12">
+        {PROCESS.map((p) => (
+          <div class="border-t-2 border-line-strong pt-6">
+            <span class={BIG_NUMBER}>{p.n}</span>
+            <h3 class="mt-3 text-[1.1rem]">{p.title}</h3>
+            <p class="mt-2 text-[0.93rem] text-muted">{p.body}</p>
+          </div>
+        ))}
+      </Grid>
+    </Container>
+  </Section>
+
+  <Section>
+    <Container>
+      <div class="grid gap-5 lg:grid-cols-2">
+        <Card class="gap-3">
+          <h2 class="text-[1.1rem] font-semibold">What you need to start</h2>
+          <ul class="grid gap-2">
+            {START.map((s) => (
+              <li class="flex gap-2.5 text-[0.95rem] text-muted">
+                <span aria-hidden="true" class={LIST_DOT} style="background: var(--accent)" />
+                {s}
+              </li>
+            ))}
+          </ul>
+          <p class="text-[0.95rem] text-muted">No technical specification needed. We help define it.</p>
+        </Card>
+        <Card class="gap-3">
+          <h2 class="text-[1.1rem] font-semibold">How we measure success</h2>
+          <ul class="grid gap-2">
+            {MEASURE.map((s) => (
+              <li class="flex gap-2.5 text-[0.95rem] text-muted">
+                <span aria-hidden="true" class={LIST_DOT} style="background: var(--accent)" />
+                {s}
+              </li>
+            ))}
+          </ul>
+        </Card>
+      </div>
+    </Container>
+  </Section>
+
+  <Section>
+    <Container>
+      <div class="grid gap-10 lg:grid-cols-2 lg:gap-16">
+        <div>
+          <h2 class="text-[clamp(1.4rem,2.8vw,2rem)] font-bold">Technology we use</h2>
+          <p class="mt-3 text-[0.98rem] text-muted">
+            We choose the simplest technology that delivers the result. These are the tools we
+            reach for most.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-2.5">
+            {STACK.map((t) => <Pill>{t}</Pill>)}
+          </div>
+        </div>
+        <div>
+          <h2 class="text-[clamp(1.4rem,2.8vw,2rem)] font-bold">Confidentiality</h2>
+          <p class="mt-3 text-[0.98rem] text-muted">
+            We sign NDAs before reviewing sensitive information. Client work is shared only with
+            the client&rsquo;s permission, and access to your data is limited to the people who need it.
+          </p>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <CTABand
+    body="Tell us about the problem. The first 30-minute conversation is free and carries no obligation."
+    cta="Discuss Your Project"
+  >
+    Ready to take <span class="serif accent">the first step?</span>
+  </CTABand>
+</Base>

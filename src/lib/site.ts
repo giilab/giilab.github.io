@@ -44,7 +44,7 @@ export function pageMeta(path: string, title: string, description: string): Page
 export const NAV = [
   { href: "/services/", label: "Services" },
   { href: "/solutions/", label: "Solutions" },
-  { href: "/projects/", label: "Projects" },
+  { href: "/how-we-work/", label: "How We Work" },
   { href: "/about/", label: "About" },
 ] as const;
 
@@ -252,24 +252,3 @@ export const PROCESS = [
     body: "A supervised rollout, with monitoring and human escalation in place. Then a clean handover to your team, or ongoing support from us.",
   },
 ] as const;
-
-/**
- * Published case studies.
- *
- * Deliberately empty. The Projects page renders real entries when this array
- * is populated and an honest "no published work yet" state until then — it
- * never invents clients, metrics or outcomes. To publish one, add an entry
- * with details you can stand behind and have permission to share.
- */
-export type CaseStudy = {
-  slug: string;
-  client: string;
-  industry: string;
-  problem: string;
-  work: string;
-  /** Only include an outcome you can evidence. Omit rather than estimate. */
-  outcome?: string;
-  stack: string[];
-};
-
-export const CASE_STUDIES: CaseStudy[] = [];
