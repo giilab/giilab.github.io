@@ -1,4 +1,4 @@
-# Giilab — www.giilab.in
+# Giilab — <www.giilab.in>
 
 Company website for Giilab, an AI engineering studio in Pune.
 
@@ -78,7 +78,7 @@ point at `www.giilab.in`.
 
 ## How it is put together
 
-```
+```bash
 src/
   pages/          one .astro file per route, plus sitemap.xml.ts, robots.txt.ts, llms.txt.ts
   layouts/        Base.astro: <head>, SEO tags, JSON-LD, header and footer
