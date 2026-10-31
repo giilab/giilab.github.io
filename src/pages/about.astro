@@ -20,7 +20,7 @@ const meta = pageMeta(
 
 const PRINCIPLES = [
   {
-    t: "Engineering before technology trends",
+    t: "Problems before technology trends",
     d: "We select technology based on the problem, not because it is popular.",
   },
   {
@@ -37,7 +37,7 @@ const PRINCIPLES = [
   },
   {
     t: "Build for long-term maintainability",
-    d: "Testing, monitoring, documentation and reliable infrastructure are part of the engineering work.",
+    d: "Testing, monitoring, documentation and reliable infrastructure are part of the job.",
   },
   {
     t: "Respect business data",
@@ -45,14 +45,12 @@ const PRINCIPLES = [
   },
 ];
 
-const BIG_NUMBER =
-  "block font-[family-name:var(--font-display)] text-[3rem] font-extrabold leading-none tracking-[-0.05em] text-accent-ink";
 ---
 
 <Base meta={meta}>
   <PageHero
     eyebrow="About"
-    lead={`${SITE.name} is an independent engineering studio working with startups and growing businesses. We combine software engineering, AI development and automation to build systems that are practical, measurable and maintainable. Our approach is simple: understand the problem, choose the right technology and prove the solution before scaling it. Based in Pune, India. Working with teams worldwide.`}
+    lead={`${SITE.name} is an independent studio working with startups and growing businesses. We combine software engineering, AI development and automation to build systems that are practical, measurable and maintainable. Our approach is simple: understand the problem, choose the right technology and prove the solution before scaling it. Based in Pune, India. Working with teams worldwide.`}
   >
     <ParticleVisual slot="visual" />
     <Fragment slot="title">An AI engineering studio <span class="serif accent">in Pune, India.</span></Fragment>
@@ -61,12 +59,12 @@ const BIG_NUMBER =
   <Section>
     <Container>
       <SectionHead eyebrow="Our philosophy">
-        What guides <span class="serif accent">our engineering.</span>
+        What guides <span class="serif accent">our work.</span>
       </SectionHead>
       <Grid class="mt-12">
         {PRINCIPLES.map((p, i) => (
           <Card class="gap-0">
-            <span class={BIG_NUMBER}>{String(i + 1).padStart(2, "0")}</span>
+            <span class="big-number">{String(i + 1).padStart(2, "0")}</span>
             <h3 class="mt-4 text-[1.1rem] font-semibold">{p.t}</h3>
             <p class="mt-2 text-[0.93rem] text-muted">{p.d}</p>
           </Card>
@@ -136,7 +134,7 @@ const BIG_NUMBER =
                 backend platforms, SaaS applications and cloud-native systems.
               </p>
               <p>
-                His engineering experience includes Python, AWS, distributed systems, data
+                His experience includes Python, AWS, distributed systems, data
                 platforms and production application architecture.
               </p>
               <p>

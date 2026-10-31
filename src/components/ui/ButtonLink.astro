@@ -2,22 +2,15 @@
 type Props = { href: string; variant?: "primary" | "ghost" | "invert"; class?: string };
 const { href, variant = "primary", class: className = "" } = Astro.props;
 
-const BTN =
-  "group inline-flex items-center gap-2.5 rounded-full px-[30px] py-[15px] text-[0.95rem] font-semibold tracking-[0.01em] transition-[transform,background-color,color,border-color] duration-[350ms] ease-[var(--ease-brand)]";
-const styles = {
-  primary: "bg-accent text-on-accent hover:-translate-y-0.5 hover:scale-[1.02]",
-  ghost: "border border-line-strong text-text hover:-translate-y-0.5 hover:border-accent-ink hover:text-accent-ink",
-  invert: "bg-white text-[#1d4ed8] hover:-translate-y-0.5 hover:scale-[1.02]",
-}[variant];
 const external = href.startsWith("http");
 ---
 
 <a
   href={href}
-  class={`${BTN} ${styles} ${className}`}
+  class={`btn btn-${variant} group ${className}`}
   target={external ? "_blank" : undefined}
   rel={external ? "noopener noreferrer" : undefined}
 >
   <slot />
-  <span aria-hidden="true" class="transition-transform duration-[350ms] ease-[var(--ease-brand)] group-hover:translate-x-1">&rarr;</span>
+  <span aria-hidden="true" class="btn-arrow">&rarr;</span>
 </a>

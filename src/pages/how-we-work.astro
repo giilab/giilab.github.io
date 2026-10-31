@@ -48,8 +48,6 @@ const ROWS: [string, Tech[]][] = (
 // Short rows repeat so one copy is wider than the viewport and the loop has no gap.
 const MIN_CHIPS = 16;
 
-const BIG_NUMBER =
-  "block font-[family-name:var(--font-display)] text-[3rem] font-extrabold leading-none tracking-[-0.05em] text-accent-ink";
 const LIST_DOT = "mt-[0.55rem] h-1.5 w-1.5 shrink-0 rounded-full";
 ---
 
@@ -94,7 +92,7 @@ const LIST_DOT = "mt-[0.55rem] h-1.5 w-1.5 shrink-0 rounded-full";
       <Grid cols={4} class="mt-12">
         {PROCESS.map((p) => (
           <div class="border-t-2 border-line-strong pt-6">
-            <span class={BIG_NUMBER}>{p.n}</span>
+            <span class="big-number">{p.n}</span>
             <h3 class="mt-3 text-[1.1rem]">{p.title}</h3>
             <p class="mt-2 text-[0.93rem] text-muted">{p.body}</p>
           </div>

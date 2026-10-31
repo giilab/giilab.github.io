@@ -57,13 +57,11 @@ const STEPS = [
 ];
 
 const TRUST = [
-  ["Senior Engineering", "Work directly with senior engineers, from the first call to the final launch."],
+  ["Senior Team", "Work directly with senior engineers, from the first call to the final launch."],
   ["Measurable Outcomes", "We agree how to measure success before we build. Then we test the results on your real cases."],
   ["Responsible Implementation", "We protect your data, limit who can access it, test every change and keep people in charge of key decisions."],
 ];
 
-const BIG_NUMBER =
-  "block font-[family-name:var(--font-display)] text-[3rem] font-extrabold leading-none tracking-[-0.05em] text-accent-ink";
 ---
 
 <Base meta={meta}>
@@ -100,10 +98,10 @@ const BIG_NUMBER =
     <Container>
       <SectionHead
         eyebrow="What we do"
-        lead="We use AI, automation and software engineering to solve practical problems. We pick the simplest tool that does the job."
+        lead="We use AI, automation and software development to solve practical problems. We pick the simplest tool that does the job."
         wide
       >
-        Engineering first. <span class="serif accent">Real outcomes always.</span>
+        Problem first. <span class="serif accent">Real outcomes always.</span>
       </SectionHead>
       <Grid class="mt-[clamp(40px,6vw,72px)]">
         {
@@ -163,7 +161,7 @@ const BIG_NUMBER =
         {
           STEPS.map(([n, t, d]) => (
             <div class="border-t-2 border-line-strong pt-[22px]">
-              <span class={BIG_NUMBER}>{n}</span>
+              <span class="big-number">{n}</span>
               <h3 class="t-h3 mt-3">{t}</h3>
               <p class="mt-2 text-[0.93rem] text-muted">{d}</p>
             </div>
@@ -171,7 +169,7 @@ const BIG_NUMBER =
         }
       </Grid>
       <div class="mt-9">
-        <ButtonLink href="/how-we-work/" variant="ghost">Our Engineering Approach</ButtonLink>
+        <ButtonLink href="/how-we-work/" variant="ghost">See How We Work</ButtonLink>
       </div>
     </Container>
   </Section>
@@ -184,13 +182,13 @@ const BIG_NUMBER =
         lead="We are a small, senior team. You talk to the people who build your system, and you see the results before you commit to more."
         wide
       >
-        Engineering you can evaluate. <span class="serif accent">Solutions you can trust.</span>
+        Work you can evaluate. <span class="serif accent">Solutions you can trust.</span>
       </SectionHead>
       <Grid class="mt-12">
         {
           TRUST.map(([t, d], i) => (
             <Card class="gap-0">
-              <span class={BIG_NUMBER}>{String(i + 1).padStart(2, "0")}</span>
+              <span class="big-number">{String(i + 1).padStart(2, "0")}</span>
               <h3 class="mt-4 text-[1.1rem] font-semibold">{t}</h3>
               <p class="mt-2 text-[0.93rem] text-muted">{d}</p>
             </Card>
