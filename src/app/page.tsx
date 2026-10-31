@@ -78,9 +78,13 @@ export default function HomePage() {
             <ButtonLink href="/contact/">Discuss Your Project</ButtonLink>
             <ButtonLink href="/solutions/" variant="ghost">Explore Our Solutions</ButtonLink>
           </div>
-          <p className="mt-6 text-[0.95rem] font-medium">
-            AI Engineering · Business Automation · Software Engineering
-          </p>
+          <ul className="mt-6 flex flex-wrap gap-2.5">
+            {["AI Engineering", "Business Automation", "Software Engineering"].map((c) => (
+              <li key={c} className="rounded-full bg-accent-soft px-4 py-1.5 text-[0.88rem] font-medium text-accent-ink">
+                {c}
+              </li>
+            ))}
+          </ul>
         </Container>
       </section>
 
