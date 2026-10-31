@@ -28,11 +28,9 @@ export const BUILT = new Date().toISOString().slice(0, 10);
 export type PageMeta = {
   /** Canonical path, ending in "/". */
   path: string;
-  /** Page title; Base.astro appends " — Giilab". Social tags always use this form. */
+  /** Page title; Base.astro appends " | Giilab" for <title> and social tags. */
   title: string;
   description: string;
-  /** Full <title> override (home page); social tags keep `title — Giilab`. */
-  absolute?: string;
   /** Error pages: robots noindex and no canonical link. */
   noindex?: boolean;
 };

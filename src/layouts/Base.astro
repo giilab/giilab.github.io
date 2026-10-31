@@ -15,8 +15,7 @@ import { SITE, BUILT, type PageMeta } from "@/lib/site";
 type Props = { meta: PageMeta };
 const { meta } = Astro.props;
 
-const title = meta.absolute ?? `${meta.title} — ${SITE.name}`;
-const social = `${meta.title} — ${SITE.name}`;
+const title = `${meta.title} | ${SITE.name}`;
 const canonical = new URL(meta.path, SITE.url).href;
 const og = `${SITE.url}/og.png`;
 const ogAlt = `${SITE.name} — ${SITE.descriptor}`;
@@ -92,7 +91,7 @@ const JSONLD = [
     <meta name="creator" content={SITE.founder.name} />
     <meta name="robots" content={meta.noindex ? "noindex, follow" : "index, follow"} />
     {!meta.noindex && <link rel="canonical" href={canonical} />}
-    <meta property="og:title" content={social} />
+    <meta property="og:title" content={title} />
     <meta property="og:description" content={meta.description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content={SITE.name} />
@@ -102,7 +101,7 @@ const JSONLD = [
     <meta property="og:image:alt" content={ogAlt} />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={social} />
+    <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={meta.description} />
     <meta name="twitter:image" content={og} />
     <link rel="icon" href="/giilab-favicon.svg" type="image/svg+xml" />
