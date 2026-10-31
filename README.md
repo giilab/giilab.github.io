@@ -22,17 +22,23 @@ runtime, which is what lets it sit on any static host.
 
 ## Pages
 
+Ten pages in `src/pages/`. All but the 404 are in the sitemap.
+
 | Route | File | Purpose |
-|---|---|---|
-| `/` | `src/pages/index.astro` | Home |
+| --- | --- | --- |
+| `/` | `index.astro` | Home |
 | `/services/` | `services.astro` | The six services, grouped, with an anchor per service |
 | `/solutions/` | `solutions.astro` | Business problems we solve, plus the human-oversight diagram |
 | `/how-we-work/` | `how-we-work.astro` | Engagement options, delivery process, what you need to start, stack, NDAs |
 | `/about/` | `about.astro` | Philosophy, team set-up, sectors, founder |
 | `/contact/` | `contact.astro` | FAQ, contact form, contact details |
-| `/privacy/`, `/terms/`, `/editorial-policy/` | legal pages | |
-| 404 | `404.astro` | Not indexed |
-| `/sitemap.xml`, `/robots.txt`, `/llms.txt` | `*.ts` endpoints | Generated at build (see SEO) |
+| `/privacy/` | `privacy.astro` | Privacy policy |
+| `/terms/` | `terms.astro` | Terms of use |
+| `/editorial-policy/` | `editorial-policy.astro` | Editorial policy |
+| 404 | `404.astro` | Error page, not indexed |
+
+Three more files are generated at build, not pages: `sitemap.xml.ts`,
+`robots.txt.ts` and `llms.txt.ts` (see SEO).
 
 `/how-we-work/` replaced `/projects/` while there is no published client work;
 `/projects` and the old `/industries` 301 there. When there is real work to show,
@@ -132,7 +138,7 @@ Each page passes `pageMeta(path, title, description)` from `site.ts` to
 `Base.astro`, which writes the `<title>`, description, canonical, Open Graph,
 Twitter and JSON-LD tags.
 
-- **Titles:** keyword first, then ` | Giilab` (added automatically). The home
+- **Titles:** keyword first, then `| Giilab` (added automatically). The home
   page sets `brandFirst: true` for `Giilab | …`. Keep the whole title at 51
   characters or fewer.
 - **Descriptions:** 120–155 characters, naming the page's main keyword.
