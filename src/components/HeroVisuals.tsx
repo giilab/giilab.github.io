@@ -139,7 +139,7 @@ export function RippleVisual() {
 /** Option 5: raw tokens flow into the mark, structured fields come out. */
 export function TokenStreamVisual() {
   const g = `tv-${useId().replace(/:/g, "")}`;
-  const tokens = ["AI Engineering", "SaaS", "Data & Cloud Engineering", "Software Engineering"];
+  const tokens = ["Product idea", "Manual workflow", "Scattered data", "Legacy system", "AI use case", "Integration gap"];
   const json = ["{", '  "build": "green",', '  "tests": "pass",', '  "deploy": "live",', '  "uptime": 0.999', "}"];
   return (
     <svg viewBox="0 0 400 400" className="w-full" focusable="false">
@@ -148,10 +148,10 @@ export function TokenStreamVisual() {
         <text
           key={t}
           x={0}
-          y={130 + i * 34}
+          y={115 + i * 34}
           fontSize={12}
           className="hv-token hv-loop"
-          style={{ fill: "var(--muted)", animationDelay: `${i * 0.9}s` }}
+          style={{ fill: "var(--muted)", animationDelay: `${i * 0.75}s` }}
         >
           {t}
         </text>
