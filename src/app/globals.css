@@ -244,7 +244,7 @@
     animation: hv-ripple 3.2s ease-out infinite;
   }
   .hv-token { animation: hv-token 4.5s linear infinite; }
-  /* Same 4.5s period as .hv-token, so each output lands as its input reaches the mark. */
+  /* Same 4.5s period as .hv-token, so each output lights up as its input reaches the mark. */
   .hv-out { animation: hv-out 4.5s ease-out infinite; }
   .hv-gather { animation: hv-gather 1.6s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
   .hv-breathe {
@@ -260,7 +260,7 @@
     20%, 100% { border-color: var(--line); background-color: var(--bg-card); color: var(--muted); }
   }  @keyframes hv-ripple { 0% { transform: scale(1); opacity: 0.22; } 12% { transform: scale(2); opacity: 1; } 35%, 100% { transform: scale(1); opacity: 0.22; } }
   @keyframes hv-token { 0% { transform: translateX(0); opacity: 0; } 15%, 65% { opacity: 1; } 100% { transform: translateX(130px); opacity: 0; } }
-  @keyframes hv-out { 0%, 55% { opacity: 0; transform: translateX(-6px); } 70%, 90% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+  @keyframes hv-out { 0%, 55% { opacity: 0.35; } 70%, 90% { opacity: 1; } 100% { opacity: 0.35; } }
   @keyframes hv-gather { from { transform: translate(var(--dx), var(--dy)); opacity: 0; } to { transform: none; opacity: 1; } }
   @keyframes hv-breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
   @keyframes hv-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
