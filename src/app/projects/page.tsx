@@ -6,33 +6,27 @@ import { CASE_STUDIES, INDUSTRIES, SITE, pageMeta } from "@/lib/site";
 
 export const metadata: Metadata = pageMeta(
   "/projects/",
-  "Projects & Case Studies",
-  "Work Giilab has delivered in AI automation and backend engineering, and which client projects we can and cannot publish yet.",
+  "AI Engineering Projects & Technical Portfolio",
+  "Explore Giilab's software engineering portfolio, technical demonstrations and AI application development approach.",
 );
 
-export default function ProjectsPage() {
-  const hasPublished = CASE_STUDIES.length > 0;
+const CATEGORIES = [
+  { name: "Software Engineering", body: "Backend platforms, APIs, cloud applications and integrations." },
+  { name: "AI Engineering", body: "RAG, intelligent applications, AI agents and automation demonstrations." },
+  { name: "Data & Cloud Engineering", body: "Data pipelines, infrastructure and operational systems." },
+];
 
+export default function ProjectsPage() {
   return (
     <>
       <PageHero
         visual={<TokenStreamVisual />}
         eyebrow="Projects"
-        title={
-          hasPublished ? (
-            <>Work we can <span className="serif accent">show you.</span></>
-          ) : (
-            <>No case studies <span className="serif accent">yet.</span></>
-          )
-        }
-        lead={
-          hasPublished
-            ? "Each entry below is work we delivered, described with the client's permission."
-            : "Giilab is a young studio and the work we have delivered sits under client confidentiality. Rather than fill this page with logos and numbers we cannot evidence, here is what we can actually offer."
-        }
+        title={<>Engineering ideas into <span className="serif accent">working systems.</span></>}
+        lead="Our work spans backend platforms, cloud-native applications, data engineering, software integrations and intelligent automation. Some client engagements are confidential. We share the technical work we can make public and discuss relevant delivery experience directly."
       />
 
-      {hasPublished ? (
+      {CASE_STUDIES.length > 0 && (
         <Section>
           <Container>
             <Grid className="lg:grid-cols-2">
@@ -57,88 +51,104 @@ export default function ProjectsPage() {
             </Grid>
           </Container>
         </Section>
-      ) : (
-        <Section>
-          <Container>
-            <div className="grid gap-5 lg:grid-cols-3">
-              <Card className="gap-3">
-                <h2 className="text-[1.1rem] font-semibold">References on a call</h2>
-                <p className="text-[0.95rem] text-muted">
-                  We can talk through delivered work in detail, and where a client agrees,
-                  put you in touch with them directly. That is more useful than a
-                  paragraph on a website.
-                </p>
-              </Card>
-              <Card className="gap-3">
-                <h2 className="text-[1.1rem] font-semibold">Code you can read</h2>
-                <p className="text-[0.95rem] text-muted">
-                  Public repositories and a technical portfolio are linked below. They show
-                  how the work is actually built rather than how it is described.
-                </p>
-                <div className="mt-auto flex flex-wrap gap-3 pt-2">
-                  <a href={SITE.github} target="_blank" rel="noopener noreferrer" className="text-[0.9rem] font-medium text-accent-ink">
-                    GitHub &rarr;
-                  </a>
-                  <a href={SITE.portfolio} target="_blank" rel="noopener noreferrer" className="text-[0.9rem] font-medium text-accent-ink">
-                    Portfolio &rarr;
-                  </a>
-                </div>
-              </Card>
-              <Card className="gap-3">
-                <h2 className="text-[1.1rem] font-semibold">A paid proof instead</h2>
-                <p className="text-[0.95rem] text-muted">
-                  The most honest evidence is a short, scoped build on your own cases. You
-                  judge the result against a number agreed up front, then decide whether it
-                  goes further.
-                </p>
-              </Card>
-            </div>
-
-            <div className="mt-12 max-w-[62ch]">
-              <h2 className="text-[clamp(1.4rem,2.8vw,2rem)] font-bold">
-                What a published case study will cover
-              </h2>
-              <p className="mt-3 text-[0.98rem] text-muted">
-                When a client agrees to publish, each entry here will cover four things:
-              </p>
-              <ul className="mt-3 grid list-disc gap-1.5 pl-5 text-[0.98rem] text-muted">
-                <li>The problem, in plain terms.</li>
-                <li>What we built, and how it fits their systems.</li>
-                <li>The number we agreed to measure, and what it came to.</li>
-                <li>The tools and stack we used.</li>
-              </ul>
-              <p className="mt-3 text-[0.98rem] text-muted">
-                If we cannot back an outcome with evidence, we leave it out rather than
-                estimate it.
-              </p>
-            </div>
-
-            <div className="mt-12">
-              <h2 className="text-[clamp(1.4rem,2.8vw,2rem)] font-bold">
-                Sectors the team has delivered in
-              </h2>
-              <p className="mt-3 max-w-[60ch] text-[0.98rem] text-muted">
-                Production systems, built and run. Specific clients and outcomes are
-                available on request rather than published here.
-              </p>
-              <div className="mt-6 flex flex-wrap gap-2.5">
-                {INDUSTRIES.map((i) => (
-                  <Pill key={i.name}>{i.name}</Pill>
-                ))}
-              </div>
-              <div className="mt-9">
-                <ButtonLink href="/contact/" variant="ghost">
-                  Ask for references
-                </ButtonLink>
-              </div>
-            </div>
-          </Container>
-        </Section>
       )}
 
+      <Section>
+        <Container>
+          <div className="grid gap-5 lg:grid-cols-3">
+            <Card className="gap-3">
+              <h2 className="text-[1.1rem] font-semibold">Engineering Portfolio</h2>
+              <p className="text-[0.95rem] text-muted">
+                Explore selected software projects, open-source contributions and technical
+                implementations.
+              </p>
+              <div className="mt-auto pt-2">
+                <a href={SITE.github} target="_blank" rel="noopener noreferrer" className="text-[0.9rem] font-medium text-accent-ink">
+                  Explore GitHub &rarr;
+                </a>
+              </div>
+            </Card>
+            <Card className="gap-3">
+              <h2 className="text-[1.1rem] font-semibold">Technical Demonstrations</h2>
+              <p className="text-[0.95rem] text-muted">
+                See how we approach practical engineering challenges through working
+                demonstrations and prototypes.
+              </p>
+              <p className="text-[0.95rem] text-muted">
+                Each demonstration explains the problem, architecture, implementation and
+                technical decisions.
+              </p>
+              <div className="mt-auto pt-2">
+                <a href={SITE.portfolio} target="_blank" rel="noopener noreferrer" className="text-[0.9rem] font-medium text-accent-ink">
+                  Portfolio &rarr;
+                </a>
+              </div>
+            </Card>
+            <Card className="gap-3">
+              <h2 className="text-[1.1rem] font-semibold">Client Engagements</h2>
+              <p className="text-[0.95rem] text-muted">
+                Client work is shared according to confidentiality and disclosure agreements.
+              </p>
+              <p className="text-[0.95rem] text-muted">
+                Where permitted, we can discuss relevant experience, architecture decisions
+                and delivery approaches during an initial conversation.
+              </p>
+            </Card>
+          </div>
+
+          <div className="mt-12">
+            <h2 className="text-[clamp(1.4rem,2.8vw,2rem)] font-bold">What we build</h2>
+            <Grid className="mt-6 lg:grid-cols-3">
+              {CATEGORIES.map((c) => (
+                <Card key={c.name} className="gap-2">
+                  <h3 className="text-[1.05rem] font-semibold">{c.name}</h3>
+                  <p className="text-[0.95rem] text-muted">{c.body}</p>
+                </Card>
+              ))}
+            </Grid>
+          </div>
+
+          <div className="mt-12 max-w-[62ch]">
+            <h2 className="text-[clamp(1.4rem,2.8vw,2rem)] font-bold">How we demonstrate value</h2>
+            <p className="mt-3 text-[0.98rem] text-muted">
+              Rather than relying on generic performance claims, we prefer evidence from real
+              implementations. Where a project allows publication, we document:
+            </p>
+            <ul className="mt-3 grid list-disc gap-1.5 pl-5 text-[0.98rem] text-muted">
+              <li>The business or technical challenge.</li>
+              <li>The solution and architecture.</li>
+              <li>The implementation approach.</li>
+              <li>The evaluation criteria and measured outcomes.</li>
+              <li>The technology stack.</li>
+            </ul>
+          </div>
+
+          <div className="mt-12">
+            <h2 className="text-[clamp(1.4rem,2.8vw,2rem)] font-bold">
+              Sectors the team has delivered in
+            </h2>
+            <p className="mt-3 max-w-[60ch] text-[0.98rem] text-muted">
+              Production systems, built and run. Specific clients and outcomes are
+              available on request rather than published here.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-2.5">
+              {INDUSTRIES.map((i) => (
+                <Pill key={i.name}>{i.name}</Pill>
+              ))}
+            </div>
+            <div className="mt-9">
+              <ButtonLink href="/contact/" variant="ghost">
+                Ask for references
+              </ButtonLink>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
       <CTABand
-        title="Want the detail?"
-        body="We will walk you through comparable work on a call, under NDA if that helps."
+        title={<>Start with your own <span className="serif accent">challenge.</span></>}
+        body="A focused proof of concept can help evaluate feasibility before committing to a larger implementation."
+        cta="Discuss a Proof of Concept"
       />
     </>
   );

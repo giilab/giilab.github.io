@@ -4,9 +4,11 @@ import { SITE } from "@/lib/site";
 export default function CTABand({
   title,
   body = "One free 30-minute call, and an honest answer on what AI can and cannot do about it.",
+  cta = "Discuss your project",
 }: {
   title?: React.ReactNode;
   body?: string;
+  cta?: string;
 }) {
   return (
     <section className="relative z-[2] py-[clamp(56px,7vw,88px)]">
@@ -24,7 +26,7 @@ export default function CTABand({
           </h2>
           <p className="t-lead mx-auto mt-5 text-center">{body}</p>
           <div className="mt-9 flex flex-wrap justify-center gap-3.5">
-            <ButtonLink href="/contact/">Discuss your project</ButtonLink>
+            <ButtonLink href="/contact/">{cta}</ButtonLink>
           </div>
           <a
             href={`mailto:${SITE.email}`}
