@@ -8,7 +8,7 @@ import Grid from "@/components/ui/Grid.astro";
 import SectionHead from "@/components/ui/SectionHead.astro";
 import TokenStreamVisual from "@/components/visuals/TokenStreamVisual.astro";
 import CTABand from "@/components/CTABand.astro";
-import { STACK, logoSrc, type Tech } from "@/lib/stack";
+import { STACK, logoSrc } from "@/lib/stack";
 import { PROCESS, pageMeta } from "@/lib/site";
 
 const meta = pageMeta(
@@ -36,9 +36,6 @@ const MEASURE = [
   "We report the result against that measure, including when it falls short.",
   "If we cannot back a claim with evidence, we leave it out.",
 ];
-
-// Each stack card shows two rows of logos; the rest open in place under "+N more".
-const VISIBLE = 8;
 
 const BIG_NUMBER =
   "block font-[family-name:var(--font-display)] text-[3rem] font-extrabold leading-none tracking-[-0.05em] text-accent-ink";
@@ -140,36 +137,28 @@ const LIST_DOT = "mt-[0.55rem] h-1.5 w-1.5 shrink-0 rounded-full";
       >
         The stack <span class="serif accent">we build on.</span>
       </SectionHead>
+      {/* Every logo renders; the script below trims each card to what fits (see there). */}
       <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {STACK.map(([group, items]) => {
-          const tile = ([name, logo]: Tech) => (
-            <li class="flex flex-col items-center gap-1.5 text-center text-[0.68rem] leading-tight text-muted">
-              {/* White tile keeps dark logos (Next.js, Rust) visible in dark mode. */}
-              <span class="grid h-10 w-10 place-items-center rounded-xl border border-line bg-white">
-                <img src={logoSrc(logo)} alt="" width="22" height="22" loading="lazy" />
-              </span>
-              {name}
-            </li>
-          );
-          const rest = items.slice(VISIBLE);
-          return (
-            <div class="flex flex-col rounded-[var(--radius-brand)] border border-line bg-surface p-4">
-              <div class="flex items-baseline justify-between border-b border-line pb-2.5">
-                <h3 class="text-[0.9rem] font-semibold">{group}</h3>
-                <span class="text-[0.75rem] text-faint">{items.length}</span>
-              </div>
-              <ul class="mt-3.5 grid grid-cols-4 gap-x-1.5 gap-y-3">{items.slice(0, VISIBLE).map(tile)}</ul>
-              {rest.length > 0 && (
-                <details class="group mt-auto pt-3 open:mt-3 open:pt-0">
-                  <summary class="cursor-pointer list-none text-[0.78rem] font-medium text-accent-ink group-open:hidden">
-                    +{rest.length} more
-                  </summary>
-                  <ul class="grid grid-cols-4 gap-x-1.5 gap-y-3">{rest.map(tile)}</ul>
-                </details>
-              )}
+        {STACK.map(([group, items]) => (
+          <div class="stack-card flex flex-col rounded-[var(--radius-brand)] border border-line bg-surface p-4">
+            <div class="flex items-baseline justify-between border-b border-line pb-2.5">
+              <h3 class="text-[0.9rem] font-semibold">{group}</h3>
+              <span class="text-[0.75rem] text-faint">{items.length}</span>
             </div>
-          );
-        })}
+            <ul class="mt-3.5 grid grid-cols-4 gap-x-1.5 gap-y-3">
+              {items.map(([name, logo]) => (
+                <li class="flex flex-col items-center gap-1.5 text-center text-[0.68rem] leading-tight text-muted">
+                  {/* White tile keeps dark logos (Next.js, Rust) visible in dark mode. */}
+                  <span class="grid h-10 w-10 place-items-center rounded-xl border border-line bg-white">
+                    <img src={logoSrc(logo)} alt="" width="22" height="22" loading="lazy" />
+                  </span>
+                  {name}
+                </li>
+              ))}
+            </ul>
+            <button type="button" hidden class="stack-more mt-auto cursor-pointer self-start pt-3 text-[0.78rem] font-medium text-accent-ink"></button>
+          </div>
+        ))}
       </div>
     </Container>
   </Section>
@@ -181,3 +170,52 @@ const LIST_DOT = "mt-[0.55rem] h-1.5 w-1.5 shrink-0 rounded-full";
     Ready to take <span class="serif accent">the first step?</span>
   </CTABand>
 </Base>
+
+<script>
+  // Stack cards: a closed card shows two rows of logos, plus any further rows that fit in the
+  // height its grid row already has (an opened neighbour makes the row taller). The rest sit
+  // behind "+N more". Without JavaScript every logo shows.
+  const VISIBLE = 8;
+  const PER_ROW = 4;
+  const cards = [...document.querySelectorAll<HTMLElement>(".stack-card")];
+
+  const show = (card: HTMLElement, n: number) => {
+    const items = card.querySelectorAll("li");
+    items.forEach((li, i) => (li.hidden = i >= n));
+    const button = card.querySelector<HTMLButtonElement>(".stack-more")!;
+    const open = card.dataset.open === "true";
+    button.hidden = !open && n >= items.length;
+    button.textContent = open ? "Show less" : `+${items.length - n} more`;
+    button.setAttribute("aria-expanded", String(open));
+  };
+
+  const layout = () => {
+    cards.forEach((card) => show(card, card.dataset.open === "true" ? Infinity : VISIBLE));
+    for (const card of cards) {
+      if (card.dataset.open === "true") continue;
+      const total = card.querySelectorAll("li").length;
+      for (let n = VISIBLE; n < total; n += PER_ROW) {
+        const before = card.offsetHeight;
+        show(card, n + PER_ROW);
+        // The card got taller, so that row did not fit in the space it had: take it back.
+        if (card.offsetHeight > before) {
+          show(card, n);
+          break;
+        }
+      }
+    }
+  };
+
+  cards.forEach((card) =>
+    card.querySelector(".stack-more")!.addEventListener("click", () => {
+      card.dataset.open = String(card.dataset.open !== "true");
+      layout();
+    }),
+  );
+  let frame = 0;
+  addEventListener("resize", () => {
+    cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(layout);
+  });
+  layout();
+</script>
