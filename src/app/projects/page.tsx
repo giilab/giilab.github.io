@@ -20,7 +20,7 @@ const CATEGORIES = [
   {
     name: "AI Engineering",
     body: "RAG, intelligent applications, AI agents and automation demonstrations.",
-    icon: "M10 3.5 11.6 8a3 3 0 0 0 1.9 1.9l4.5 1.6-4.5 1.6a3 3 0 0 0-1.9 1.9L10 19.5 8.4 15a3 3 0 0 0-1.9-1.9L2 11.5l4.5-1.6A3 3 0 0 0 8.4 8L10 3.5ZM18.5 2.5v4M16.5 4.5h4M19 16v3M17.5 17.5h3",
+    icon: "M7 5h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2ZM9.5 15l1.75-6h1.5L14.5 15M10.1 13h3.8M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3",
   },
   {
     name: "Data & Cloud Engineering",
@@ -114,12 +114,14 @@ export default function ProjectsPage() {
             <Grid className="mt-6 lg:grid-cols-3">
               {CATEGORIES.map((c) => (
                 <Card key={c.name} className="gap-2">
-                  <span className="mb-2 grid size-11 place-items-center rounded-xl bg-accent-soft text-accent-ink">
-                    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <path d={c.icon} />
-                    </svg>
-                  </span>
-                  <h3 className="text-[1.05rem] font-semibold">{c.name}</h3>
+                  <div className="flex items-center gap-3">
+                    <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-accent-soft text-accent-ink">
+                      <svg width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <path d={c.icon} />
+                      </svg>
+                    </span>
+                    <h3 className="text-[1.05rem] font-semibold">{c.name}</h3>
+                  </div>
                   <p className="text-[0.95rem] text-muted">{c.body}</p>
                 </Card>
               ))}
